@@ -3,57 +3,61 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Martin Cuevas
+ * @author Juan Mendoza
  *
  */
 public class Sucursal {
-	private String sucursalId, nombre, direccion, telefono;
-	private List<Vendedor> vendedores;
 
+	private int idSucursal;
+	private String nombre;
+	private String direccion;
+	private List<Usuario> usuarios;
+	
+	
+	
 	/**
 	 * 
 	 */
 	public Sucursal() {
-		this.sucursalId = "";
-		this.nombre = "";
-		this.direccion = "";
-		this.telefono = "";
-		this.vendedores = new ArrayList<Vendedor>();
 	}
 
+	
+
 	/**
-	 * @param sucursalId
+	 * @param idSucursal
 	 * @param nombre
 	 * @param direccion
-	 * @param telefono
-	 * @param vendedores
+	 * @param usuarios
 	 */
-	public Sucursal(String sucursalId, String nombre, String direccion, String telefono, List<Vendedor> vendedores) {
-		this.sucursalId = sucursalId;
+	public Sucursal(int idSucursal, String nombre, String direccion, List<Usuario> usuarios) {
+		this.idSucursal = idSucursal;
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.telefono = telefono;
-		this.vendedores = vendedores;
+		this.usuarios = usuarios;
 	}
 
-	/**
-	 * @return the sucursalId
-	 */
-	public String getSucursalId() {
-		return sucursalId;
-	}
+	
 
 	/**
-	 * @param sucursalId
-	 *            the sucursalId to set
+	 * @return the idSucursal
 	 */
-	public void setSucursalId(String sucursalId) {
-		this.sucursalId = sucursalId;
+	public int getIdSucursal() {
+		return idSucursal;
 	}
+
+
+
+	/**
+	 * @param idSucursal the idSucursal to set
+	 */
+	public void setIdSucursal(int idSucursal) {
+		this.idSucursal = idSucursal;
+	}
+
+
 
 	/**
 	 * @return the nombre
@@ -62,13 +66,16 @@ public class Sucursal {
 		return nombre;
 	}
 
+
+
 	/**
-	 * @param nombre
-	 *            the nombre to set
+	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 
 	/**
 	 * @return the direccion
@@ -77,42 +84,42 @@ public class Sucursal {
 		return direccion;
 	}
 
+
+
 	/**
-	 * @param direccion
-	 *            the direccion to set
+	 * @param direccion the direccion to set
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
-	/**
-	 * @return the telefono
-	 */
-	public String getTelefono() {
-		return telefono;
-	}
+
 
 	/**
-	 * @param telefono
-	 *            the telefono to set
+	 * @return the usuarios
 	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
+
+
 
 	/**
-	 * @return the vendedores
+	 * @param usuarios the usuarios to set
 	 */
-	public List<Vendedor> getVendedores() {
-		return vendedores;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
-	/**
-	 * @param vendedores
-	 *            the vendedores to set
-	 */
-	public void setVendedores(List<Vendedor> vendedores) {
-		this.vendedores = vendedores;
-	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Sucursal){
+			Sucursal sucursal = (Sucursal)obj;
+			return sucursal.getIdSucursal() == this.idSucursal;
+		}
+		return false;
+	}
+	
 }

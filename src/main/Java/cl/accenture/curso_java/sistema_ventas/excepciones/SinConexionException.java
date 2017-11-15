@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cl.accenture.curso_java.sistema_ventas.modelo;
+package cl.accenture.curso_java.sistema_ventas.excepciones;
 
 /**
  * @author Martin Cuevas

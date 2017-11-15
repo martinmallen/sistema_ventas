@@ -6,6 +6,8 @@ package cl.accenture.curso_java.sistema_ventas.modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
+
 /**
  * @author Martin Cuevas
  *
