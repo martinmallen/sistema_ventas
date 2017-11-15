@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Inicio sesion</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+<STYLE type="text/css">
+.cont-alumno {
+	border: 1px solid silver;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+</STYLE>
+<style type="text/css">
+<!--
+body {
+ background-image: url(imagenes/fondo.jpg);
+	  background-position: center center;	  
+	  background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+#mail {
+	width: 100%;
+	position: fixed;
+}
+-->
+</style>
+
+</head>
+<body>
+	<DIV class="container-fluid">
+		<DIV class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<DIV></DIV>
+				<div class="text-center">
+					<H1>sistema inventario</H1>
+				</div>
+				<div class="d-inline-block bg-warning" style="padding: 10px;">
+					<h1>Iniciar Sesion</h1>
+					<h:form>
+						<div class="form-group">
+							<LABEL>Nombre de Usuario</LABEL>
+							<h:inputText value="#{loginControlador.nombreUsuario}"
+								styleClass="form-control"></h:inputText>
+						</div>
+						<div class="form-group">
+							<LABEL>Password</LABEL>
+							<h:inputSecret value="#{loginControlador.password}"
+								styleClass="form-control"></h:inputSecret>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" value="recuerdame"></input>recuerdame</label>
+						</div>
+						<div class="form-group">
+							<h:commandButton value="Ingresar"
+								action="#{loginControlador.iniciarSesion}"
+								styleClass="btn btn-primary btn-block"></h:commandButton>
+						</div>
+					</h:form>
+					<h:outputText value="#{loginControlador.mensaje}"></h:outputText>
+				</div>
+			</div>
+		</DIV>
+	</DIV>
+</body>
+</html>
