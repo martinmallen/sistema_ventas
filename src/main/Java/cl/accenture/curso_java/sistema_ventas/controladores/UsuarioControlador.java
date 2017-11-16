@@ -11,4 +11,9 @@ import java.io.Serializable;
  */
 public class UsuarioControlador implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6033183801879955808L;
+
 }
