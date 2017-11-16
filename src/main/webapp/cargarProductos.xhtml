@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<title>Cargar Productos</title>
+<style type="text/css">
+body {
+	background: silver;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+</head>
+<body>
+<nav>
+		<div class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li><a href="#"><img alt="Brand"
+						src="imagenes/Accenture-logo.png" class="img-responsive"
+						style="width: 35px; height: 35px"></img> </a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Transacciones<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Nueva</a></li>
+						<li><a href="#">Listar</a></li>
+						<li><a href="#">Anular</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Productos<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Buscar</a></li>
+						<li><a href="#">Agregar</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Sucursal<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Productos</a></li>
+						<li><a href="#">Vendedores</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Crear<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Vendedor</a></li>
+						<li><a href="#">Jefe Sucursal</a></li>
+						<li><a href="#">Sucursal</a></li>
+						<li><a href="#">Administrador</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Bloquear<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Usuario</a></li>
+						<li><a href="#">Producto</a></li>
+						<li><a href="#">Sucursal</a></li>
+					</ul></li>
+			</ul>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="navbar-text">(USUARIO)</div>
+					<div class="form-group text-right">
+						<h:form>
+							<h:commandButton value="Cerrar Sesion"
+								action="#{usuarioControlador.cerrarSesion}"
+								styleClass="btn btn-danger navbar-btn"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+</nav>
+
+</body>
+</html>
