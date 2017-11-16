@@ -1,31 +1,79 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<meta charset="ISO-8859-1"/>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <title>Busqueda</title>
 </head>
+<style type="text/css">
+#Content div {
+	margin: 5px 0;
+	width: 120px;
+	border: 1px #03f solid;
+	border-top-width: 8px;
+}
+</style>
 <body>
-<div class="container-fluid" >
-		<div class="row" >
-			<div class=" col-md-6 col-md-offset-3" >
-				<div class="bg-info" style="padding:10px;" >
-					<h:form>
-						<div class="form-group" >
-							<h:inputText value="#{buscarProductoControlador}" styleClass="form-control" ></h:inputText>
-						</div>
-						<div class="form-group" >
-							<h:commandButton value="Buscar Producto" action="#{buscarProductoControlador}" styleClass="btn btn-primary btn-block" ></h:commandButton>
-						</div>
-					</h:form>
-					<h:outputText value="#{loginControlador.mensaje}" ></h:outputText>
-				</div>
+	<div class="container-fluid">
+		<div class="row col-md-6 col-md-offset-3">
+			<div class="bg-info" style="padding: 10px;">
+				<h:form>
+					<div class="form-group">
+						<h:inputText value="#{buscarProductoControlador}"
+							styleClass="form-control"></h:inputText>
+						<hr></hr>
+						<h:commandButton value="Buscar Producto"
+							action="#{buscarProductoControlador}"
+							styleClass="btn btn-primary btn-block"></h:commandButton>
+						<h:commandButton value="Listar Productos"
+							action="#{listarProductoControlador}"
+							styleClass="btn btn-primary btn-block"></h:commandButton>
+					</div>
+				</h:form>
 			</div>
 		</div>
-	</div>
+		<hr></hr>
+		<div class="row">
+			<h:form>
+				<h:dataTable value="#{listarProductosControlador.producto}"
+					var="Productos" styleClass="table table-bordered">
 
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+							#{producto.idProducto}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+							#{producto.nombre}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Marca</f:facet>
+							#{producto.marca}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Categoria</f:facet>
+							#{producto.categoria}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Stock</f:facet>
+							#{producto.stock}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Precio</f:facet>
+							#{producto.precio}						
+						</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
 </body>
 </html>
