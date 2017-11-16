@@ -9,4 +9,6 @@ package cl.accenture.curso_java.sistema_ventas.controlador;
  */
 public class UsuarioControlador {
 
+	
+	
 }
