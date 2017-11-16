@@ -15,14 +15,12 @@ import org.apache.commons.codec.digest.MessageDigestAlgorithms;
  */
 public class SHAServices {
 
-	
-	
-	public String servicio(String texto) throws NoSuchAlgorithmException{
-	
-	MessageDigest md = MessageDigest.getInstance(MessageDigestAlgorithms.SHA_256);
-	md.update(texto.getBytes());
-	byte [] digest = md.digest();
-	byte [] encoded = Base64.encodeBase64(digest);
-	return new String(encoded);
+	public static String encriptacion(String texto) throws NoSuchAlgorithmException {
+
+		MessageDigest md = MessageDigest.getInstance(MessageDigestAlgorithms.SHA_256);
+		md.update(texto.getBytes());
+		byte[] digest = md.digest();
+		byte[] encoded = Base64.encodeBase64(digest);
+		return new String(encoded);
 	}
 }
