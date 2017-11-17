@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<title>Recuperar contraseña</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+<link rel="stylesheet" type="text/css" href="css/estilos.css"></link>
+<STYLE type="text/css">
+body {
+	background-image: url(imagenes/fondo4.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</STYLE>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<div class="text-center">
+					<h1>Recuperar cuenta</h1>
+				</div>
+				<div class="bg-info" style="padding: 20px;">
+					<h1>Ingrese correo</h1>
+					<h:form>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+							<h:inputText id="email" value="#{LoginControlador.nombreUsuario}"
+								type="text" class="form-control" name="email">
+								<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+							</h:inputText>
+						</div>
+
+						<br />
+						<div class="form-group">
+							<h:commandButton value="buscar"
+								action="#{LoginControlador.iniciarSesion}"
+								styleClass="btn btn-primary btn-block"></h:commandButton>
+						</div>
+
+					</h:form>
+					<h:outputText value="#{LoginControlador.mensaje}"></h:outputText>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
