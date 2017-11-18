@@ -3,6 +3,7 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +40,19 @@ public class Sucursal {
 		this.usuarios = usuarios;
 	}
 
-	
+	/**
+	 * @param idSucursal
+	 * @param nombre
+	 * @param direccion
+	 */
+	public Sucursal(int idSucursal, String nombre, String direccion) {
+		this.idSucursal = idSucursal;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.usuarios = new ArrayList<Usuario>();
+	}
+
+
 
 	/**
 	 * @return the idSucursal
