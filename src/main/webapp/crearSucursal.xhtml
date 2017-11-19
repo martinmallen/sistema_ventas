@@ -9,7 +9,7 @@
 <title>Crear Sucursal</title>
 <style type="text/css">
 body { 
-	background: url('imagenes/logoSmallAccenture.png') repeat;
+	background: url('imagenes/accentureS.png') repeat;
 	
 	
 }
@@ -25,22 +25,22 @@ body {
 					<div class="form-group">
 					<H1>Datos de Nueva Sucursal</H1>
 					<LABEL>Codigo</LABEL>
-						<h:inputText value="#{idSucursalCtrl}"
+						<h:inputText value="#{crearSucursalCtrl.idSucursal}"
 							styleClass="form-control"></h:inputText>
 						<LABEL>Nombre</LABEL>
-						<h:inputText value="#{nombreSucursalCtrl}"
+						<h:inputText value="#{crearSucursalCtrl.nombre}"
 							styleClass="form-control"></h:inputText>
 							<LABEL>Direccion</LABEL>
-						<h:inputText value="#{direccionSucursalCtrl}"
+						<h:inputText value="#{crearSucursalCtrl.direccion}"
 							styleClass="form-control"></h:inputText>
 							<BR />
 							<h:commandButton value="Crear"
-							action="#{agregarSucursalCtrl}"
+							action="#{crearSucursalCtrl.guardar}"
 							styleClass="btn btn-success btn-block"></h:commandButton>
 							
 							
-							<h:commandButton value="Cancelar"
-							action="#{limpiarSucursalCtrl}"
+							<h:commandButton value="Cancelar" actionListener="#{crearSucursalCtrl.limpiar}"
+							action="#{crearSucursalCtrl.cancelar}"
 							styleClass="btn btn-default btn-block"></h:commandButton>
 							
 					
@@ -51,11 +51,6 @@ body {
 		</div>
 </div>
 
-<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -21,9 +21,9 @@ public class Conexion {
 	 */
 	public Conexion() {
 		this.host = "127.0.0.1"; // o "localhost"
-		this.baseDeDatos = "ejercicios";
-		this.nombre = "alumnos";
-		this.password = "java123";
+		this.baseDeDatos = "sisinventario";
+		this.nombre = "root";
+		this.password = "m4l3np1wk3";
 		this.puerto = 3306;
 	}
 
