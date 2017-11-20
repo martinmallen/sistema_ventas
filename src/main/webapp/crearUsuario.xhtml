@@ -40,7 +40,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Nombre</LABEL>
-								<h:inputText id="nombre" value="#{loginCtrl.nombre}"
+								<h:inputText id="nombre" value="#{crearUsuarioCtrl.nombre}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -50,7 +50,7 @@ body {
 							<div class="form-group">
 								<LABEL>Apellido </LABEL>
 								<h:inputText id="apellido"
-									value="#{loginCtrl.apellido}"
+									value="#{crearUsuarioCtrl.apellido}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -59,7 +59,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Rut</LABEL>
-								<h:inputText id="rut" value="#{loginCtrl.rut}"
+								<h:inputText id="rut" value="#{crearUsuarioCtrl.rut}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -68,7 +68,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Codigo Sucursal</LABEL>
-								<h:inputText id="sucursal" value="#{loginCtrl.idSucursal}"
+								<h:inputText id="sucursal" value="#{crearUsuarioCtrl.idSucursal}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -77,7 +77,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>E-mail</LABEL>
-								<h:inputText value="#{loginCtrl.email}"
+								<h:inputText value="#{crearUsuarioCtrl.email}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100">complete el campo señado</f:validateLength>
 								</h:inputText>
