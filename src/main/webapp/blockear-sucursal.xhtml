@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="ISO-8859-1"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"></link>
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	background: url('imagenes/accentureS.png') repeat;
+}
+</style>
+</head>
+<body>
+<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<div class="container-fluid">
+		<div class="row col-md-6 col-md-offset-3">
+			<div class="bg-info" style="padding: 10px;">
+				<h:form>
+					<div class="form-group">
+						<H1>Blockear Sucursal</H1>
+						<LABEL>Ingrese Id Sucursal</LABEL>
+						<h:inputText styleClass="form-control"></h:inputText>
+						<h:commandButton styleClass="btn btn-primary"
+							value="Blockear" action="#{blockearSucursalControlador.link}"  ></h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
