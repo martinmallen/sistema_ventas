@@ -2,78 +2,126 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
 <title>Busqueda</title>
 </head>
 <style type="text/css">
-#Content div {
-	margin: 5px 0;
-	width: 120px;
-	border: 1px #03f solid;
-	border-top-width: 8px;
+body {
+	margin-top: 0px;
+	padding: 0px;
 }
 </style>
 <body>
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
-		<div class="row col-md-6 col-md-offset-3">
-			<div class="bg-info" style="padding: 10px;">
-				<h:form>
-					<div class="form-group">
-						<h:inputText value="#{buscarProductoControlador}"
-							styleClass="form-control"></h:inputText>
-						<hr></hr>
-						<h:commandButton value="Buscar Producto"
-							action="#{buscarProductoControlador}"
-							styleClass="btn btn-primary btn-block"></h:commandButton>
-						<h:commandButton value="Listar Productos"
-							action="#{listarProductoControlador}"
-							styleClass="btn btn-primary btn-block"></h:commandButton>
-					</div>
-				</h:form>
-			</div>
-		</div>
-		<hr></hr>
 		<div class="row">
-			<h:form>
-				<h:dataTable value="#{listarProductosControlador.producto}"
-					var="Productos" styleClass="table table-bordered">
-
-					<h:column>
-						<f:facet name="header">Id</f:facet>
-							#{producto.idProducto}						
+			<div class="col-md-3 text-left">
+				<LABEL>Busqueda</LABEL>
+				<hr></hr>
+				<div class="bg-info" style="padding: 10px;">
+					<h:form>
+						<h:inputText id="search" value="#{buscarProductoControlador}"></h:inputText>
+						<h:commandButton action="#{buscarProductoControlador.Producto}"
+							style="display: none">
+							<button type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</h:commandButton>
+					</h:form>
+					<hr></hr>
+					<h:form>
+						<h:commandButton action="#{listarProductoControlador.Producto}"
+							style="display: none">
+							<button type="button" class="btn btn-primary btn-block">Listar</button>
+						</h:commandButton>
+						<p></p>
+						<h:commandButton value="Refrescar"
+							styleClass="btn btn-default btn-block">
+						</h:commandButton>
+					</h:form>
+				</div>
+				<hr></hr>
+				<div class="row" style="padding: 15px;">
+					<label>Transacciones</label>
+					<div class="bg-info text-center" style="padding: 10px;">
+						<h:form>
+							<h:commandButton action="#{listarProductoControlador.Producto}"
+								style="display: none">
+								<button type="button" class="btn btn-success btn-block">Agregar
+									Producto</button>
+							</h:commandButton>
+							<p></p>
+							<h:commandButton action="#{listarProductoControlador.Producto}"
+								style="display: none">
+								<button type="button" class="btn btn-danger btn-block">Eliminar
+									Producto</button>
+							</h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 text-center">
+				<label>Lista de Productos</label>
+				<hr></hr>
+				<h:form id="tabla">
+					<h:dataTable value="#{ordenarProductosControlador.producto}"
+						var="Productos" styleClass="table table-responsive order-table"
+						headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+						<h:column>
+							<f:facet name="header"><h:commandLink action="#{order.sortByOrderNo}">
+    							ID
+    			   				</h:commandLink></f:facet>
+							#{producto.id}
 						</h:column>
-					<h:column>
-						<f:facet name="header">Nombre</f:facet>
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
 							#{producto.nombre}						
 						</h:column>
-					<h:column>
-						<f:facet name="header">Marca</f:facet>
+						<h:column>
+							<f:facet name="header">Marca</f:facet>
 							#{producto.marca}						
 						</h:column>
-					<h:column>
-						<f:facet name="header">Categoria</f:facet>
+						<h:column>
+							<f:facet name="header">Categoria</f:facet>
 							#{producto.categoria}						
 						</h:column>
-					<h:column>
-						<f:facet name="header">Stock</f:facet>
+						<h:column>
+							<f:facet name="header">Stock</f:facet>
 							#{producto.stock}						
 						</h:column>
-					<h:column>
-						<f:facet name="header">Precio</f:facet>
+						<h:column>
+							<f:facet name="header">Precio</f:facet>
 							#{producto.precio}						
 						</h:column>
-				</h:dataTable>
-			</h:form>
+					</h:dataTable>
+				</h:form>
+			</div>
+			<div class="col-md-3 text-center">
+				<label>Carro de Compra</label>
+				<hr></hr>
+				<div class="bg-info" style="padding: 10px;">
+					<h:form>
+						<hr></hr>
+						<h:commandButton action="#{listarProductoControlador.Producto}"
+							style="display: none">
+							<button type="button" class="btn btn-success btn-block">Confirmar</button>
+						</h:commandButton>
+						<p></p>
+						<h:commandButton value="Refrescar"
+							styleClass="btn btn-default btn-block">
+						</h:commandButton>
+					</h:form>
+				</div>
+			</div>
 		</div>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
+	<hr></hr>
 </body>
+<script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </html>

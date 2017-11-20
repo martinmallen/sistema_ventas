@@ -8,48 +8,54 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"></link>
 <title>Crear Sucursal</title>
 <style type="text/css">
-body { 
+body {
 	background: url('imagenes/accentureS.png') repeat;
-	
-	
 }
-
 </style>
 </head>
 <body>
-<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-<div class="container-fluid">
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<div class="container-fluid">
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="bg-info" style="padding: 10px;">
 				<h:form>
 					<div class="form-group">
-					<H1>Datos de Nueva Sucursal</H1>
-					<LABEL>Codigo</LABEL>
+						<H1>Datos de Nueva Sucursal</H1>
+						<LABEL>Codigo</LABEL>
 						<h:inputText value="#{crearSucursalCtrl.idSucursal}"
-							styleClass="form-control"></h:inputText>
+							styleClass="form-control">
+							<f:validateLength minimum="1" maximum="5"></f:validateLength>
+						</h:inputText>
+
 						<LABEL>Nombre</LABEL>
 						<h:inputText value="#{crearSucursalCtrl.nombre}"
-							styleClass="form-control"></h:inputText>
-							<LABEL>Direccion</LABEL>
+							styleClass="form-control">
+							<f:validateLength minimum="5" maximum="20"></f:validateLength>
+						</h:inputText>
+
+						<LABEL>Direccion</LABEL>
 						<h:inputText value="#{crearSucursalCtrl.direccion}"
-							styleClass="form-control"></h:inputText>
-							<BR />
-							<h:commandButton value="Crear"
+							styleClass="form-control">
+							<f:validateLength minimum="5" maximum="50"></f:validateLength>
+						</h:inputText>
+
+						<BR />
+						<h:commandButton value="Crear"
 							action="#{crearSucursalCtrl.guardar}"
 							styleClass="btn btn-success btn-block"></h:commandButton>
-							
-							
-							<h:commandButton value="Cancelar" actionListener="#{crearSucursalCtrl.limpiar}"
+
+
+						<h:commandButton value="Cancelar"
 							action="#{crearSucursalCtrl.cancelar}"
 							styleClass="btn btn-default btn-block"></h:commandButton>
-							
-					
-						
+
+
+
 					</div>
 				</h:form>
 			</div>
 		</div>
-</div>
+	</div>
 
 
 </body>

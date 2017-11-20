@@ -6,6 +6,11 @@
 <head>
 <meta charset="ISO-8859-1"></meta>
 <title></title>
+<STYLE type="text/css">
+#userName {
+color: green;
+}
+</STYLE>
 </head>
 <body>
 	<nav>
@@ -26,7 +31,7 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Productos<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Buscar</a></li>
+						<li><a href="buscarProducto.xhtml">Buscar</a></li>
 						<li><a href="cargarProductos.xhtml">Agregar</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -48,18 +53,18 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Bloquear<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Usuario</a></li>
-						<li><a href="#">Producto</a></li>
-						<li><a href="#">Sucursal</a></li>
+						<li><a href="blockear-usuario.xhtml">Usuario</a></li>
+						<li><a href="blockear-producto.xhtml">Producto</a></li>
+						<li><a href="blockear-sucursal.xhtml">Sucursal</a></li>
 					</ul></li>
 			</ul>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="navbar-text">(USUARIO)</div>
-					<div class="form-group text-right">
+					<div class="text-right">
+					<div id="userName" class="navbar-text"><STRONG>#{loginCtrl.nombre}  #{loginCtrl.apellido}</STRONG></div>
 						<h:form>
 							<h:commandButton value="Cerrar Sesion"
-								action="#{usuarioControlador.cerrarSesion}"
+								action="#{loginCtrl.cerrarSesion}"
 								styleClass="btn btn-danger navbar-btn"></h:commandButton>
 						</h:form>
 					</div>

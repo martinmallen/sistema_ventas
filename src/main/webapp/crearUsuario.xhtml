@@ -29,72 +29,118 @@ body {
 </head>
 <body>
 
-<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6">
-				<div class="text-center">
-					
-				</div>
+				<div class="text-center"></div>
 				<div class="bg-info" style="padding: 20px;">
 					<h1>Datos del Nuevo Usuario</h1>
 					<h:form>
-						<div class="form-group">
-							<LABEL>Nombre</LABEL>
-							<h:inputText id="nombre"
-								value="#{loginControlador.nombreUsuario}"
-								styleClass="form-control">
-								<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
-							</h:inputText>
-						</div>
-						<div class="form-group">
-							<LABEL>Apellido </LABEL>
-							<h:inputText id="apellido"
-								value="#{loginControlador.nombreUsuario}"
-								styleClass="form-control">
-								<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
-							</h:inputText>
-						</div>
-						<div class="form-group">
-							<LABEL>E-mail</LABEL>
-							<h:inputText value="#{loginControlador.nombreUsuario}"
-								styleClass="form-control">
-								<f:validateLength minimum="1" maximum="100">complete el campo señado</f:validateLength>
-							</h:inputText>
-						</div>
-						<div class="form-group">
-							<LABEL>Confirmar E-mail</LABEL>
-							<h:inputText value="#{loginControlador.nombreUsuario }"
-								styleClass="form-control">
-								<f:validateLength minimum="1" maximum="100"> el E-mail no conside</f:validateLength>
-							</h:inputText>
-						</div>
-						<div class="form-group">
-							<LABEL>Password</LABEL>
-							<h:inputSecret value="#{loginControlador.password}"
-								styleClass="form-control">
-								<f:validateLength minimum="6" maximum="30">la contrasela debe ser 6 a 30</f:validateLength>
-							</h:inputSecret>
-						</div>
-						<div class="form-group">
-							<LABEL>Confirmar Password</LABEL>
-							<h:inputSecret value="#{loginControlador.password}"
-								styleClass="form-control">
-								<f:validateLength minimum="6" maximum="30">la contraseña coincide</f:validateLength>
-							</h:inputSecret>
-						</div>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Nombre</LABEL>
+								<h:inputText id="nombre" value="#{loginCtrl.nombre}"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Apellido </LABEL>
+								<h:inputText id="apellido"
+									value="#{loginCtrl.apellido}"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Rut</LABEL>
+								<h:inputText id="rut" value="#{loginCtrl.rut}"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Codigo Sucursal</LABEL>
+								<h:inputText id="sucursal" value="#{loginCtrl.idSucursal}"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>E-mail</LABEL>
+								<h:inputText value="#{loginCtrl.email}"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100">complete el campo señado</f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Confirmar E-mail</LABEL>
+								<h:inputText value="#"
+									styleClass="form-control">
+									<f:validateLength minimum="1" maximum="100"> el E-mail no conside</f:validateLength>
+								</h:inputText>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Password</LABEL>
+								<h:inputSecret value="#{loginCtrl.password}"
+									styleClass="form-control">
+									<f:validateLength minimum="6" maximum="30">la contraseña debe ser 6 a 30</f:validateLength>
+								</h:inputSecret>
+							</div>
+						</DIV>
+						<DIV class="col-md-6">
+							<div class="form-group">
+								<LABEL>Confirmar Password</LABEL>
+								<h:inputSecret value="#"
+									styleClass="form-control">
+									<f:validateLength minimum="6" maximum="30">la contraseña coincide</f:validateLength>
+								</h:inputSecret>
+							</div>
+						</DIV>
+						<DIV class="col-md-12">
+							<div class="form-group">
+								<LABEL>Perfil</LABEL>
+								<div class="input-group">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false">
+											Tipo <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#{loginCtrl.perfil_nombre}">Vendedor</a></li>
+											<li><a href="#{loginCtrl.perfil_nombre}">Jefe Sucursal</a></li>
+											<li><a href="#{loginCtrl.perfil_nombre}">Administrador</a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</DIV>
 						<div class="row">
 							<DIV class="col-md-6">
 								<div class="form-group">
-									<h:commandButton value="Crear"
-										action="#{loginControlador.iniciarSesion}"
-										styleClass="btn btn-primary btn-block"></h:commandButton>
+									<h:commandButton value="Crear" action="#{loginCtrl.guardarUsuario}"
+										styleClass="btn btn-success btn-block"></h:commandButton>
 								</div>
 							</DIV>
 							<DIV class="col-md-6">
 								<div class="form-group text-right">
 									<h:commandButton value="Cancelar"
-										action="#{loginControlador.iniciarSesion}"
+										action="#{loginCtrl.cancelar}"
 										styleClass="btn btn-default btn-block"></h:commandButton>
 								</div>
 
@@ -106,7 +152,7 @@ body {
 
 
 					</h:form>
-					<h:outputText value="#{loginControlador.mensaje}"></h:outputText>
+					<h:outputText value="#{loginCtrl.mensaje}"></h:outputText>
 				</div>
 			</div>
 		</div>

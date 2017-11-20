@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import cl.accenture.curso_java.sistema_ventas.dao.SucursalDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
@@ -21,7 +21,7 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
  *
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CrearSucursalCtrl implements Serializable {
 
 	/**
@@ -129,15 +129,16 @@ public class CrearSucursalCtrl implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String cancelar() {
+		limpiar();
 		return "principal.xhtml";
 	}
-	
+
 	public void limpiar() {
 		this.idSucursal = 0;
 		this.nombre = "";
 		this.direccion = "";
 	}
-	
+
 }
