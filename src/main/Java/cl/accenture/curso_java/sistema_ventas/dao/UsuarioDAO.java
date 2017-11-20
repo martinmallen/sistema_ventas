@@ -11,7 +11,7 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
- * @author Juan Mendoza
+ * @author Martin Cuevas
  *
  */
 public class UsuarioDAO {
@@ -49,7 +49,19 @@ public class UsuarioDAO {
 	
 	public void ingresarUsuario(Usuario usuario) throws SQLException, SinConexionException{
 		
-		PreparedStatement ps = conexion.obtenerConexion().prepareStatement("INSERT INTO Usuario(?,?,?,?,?,?)");
+		PreparedStatement psInsert = conexion.obtenerConexion().prepareStatement("INSERT INTO Usuario (nombre, apellido, password, email, rut, estado, perfil_nombre, Sucursal_idSucursal)" 
+				+ "VALUES (?,?,?,?,?,?,?,?);");
+		psInsert.setString(1, usuario.getNombre());
+		psInsert.setString(2, usuario.getApellido());
+		psInsert.setString(3, usuario.getPassword());
+		psInsert.setString(4, usuario.getEmail());
+		psInsert.setString(5, usuario.getRut());
+		psInsert.setBoolean(6, usuario.isEstado());
+		psInsert.setString(7, usuario.getPerfil().getNombre());
+		psInsert.setInt(8, usuario.getIdSucursal());
+		psInsert.executeUpdate();
+		
+		
 		
 				
 	}

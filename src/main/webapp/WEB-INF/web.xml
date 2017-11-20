@@ -13,8 +13,18 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>UploadFileCSV</servlet-name>
+		<display-name>UploadFileCSV</display-name>
+		<description></description>
+		<servlet-class>cl.accenture.curso_java.sistema_ventas.servlet.UploadFileCSV</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadFileCSV</servlet-name>
+		<url-pattern>/servlet/UploadFileCSV</url-pattern>
 	</servlet-mapping>
 </web-app>

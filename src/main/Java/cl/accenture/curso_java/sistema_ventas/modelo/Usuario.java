@@ -13,10 +13,12 @@ public class Usuario {
 	
 	private String rut;
 	private String nombre;
+	private String apellido;
 	private String password;
 	private String email;
-	private Date fechaDeNacimiento;
 	private Perfil perfil;
+	private boolean estado;
+	private int idSucursal;
 	/**
 	 * 
 	 */
@@ -27,16 +29,27 @@ public class Usuario {
 	 * @param nombre
 	 * @param password
 	 * @param email
-	 * @param fechaDeNacimiento
 	 * @param perfil
 	 */
-	public Usuario(String rut, String nombre, String password, String email, Date fechaDeNacimiento, Perfil perfil) {
+	public Usuario(String rut, String nombre, String password, String email, Perfil perfil, String apellido, boolean estado, int idsucursal) {
 		this.rut = rut;
 		this.nombre = nombre;
 		this.password = password;
 		this.email = email;
-		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.perfil = perfil;
+		this.apellido = apellido;
+		this.estado = true;
+		this.idSucursal = idsucursal;
+	}
+	public Usuario(String rut2, String nombre2, String password2, String email2, String perfil_nombre, String apellido2,
+			int sucursal_idSucursal) {
+		this.rut = rut2;
+		this.nombre = nombre2;
+		this.password = password2;
+		this.email = email2;
+		this.perfil = new Perfil(perfil_nombre);
+		this.apellido = apellido2;
+		this.idSucursal = sucursal_idSucursal;
 	}
 	/**
 	 * @return the rut
@@ -62,6 +75,44 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	/**
+	 * @return the apellido
+	 */
+	public String getApellido() {
+		return apellido;
+	}
+	/**
+	 * @param apellido the apellido to set
+	 */
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	
+	/**
+	 * @return the estado
+	 */
+	public boolean isEstado() {
+		return estado;
+	}
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	/**
+	 * @return the idSucursal
+	 */
+	public int getIdSucursal() {
+		return idSucursal;
+	}
+	/**
+	 * @param idSucursal the idSucursal to set
+	 */
+	public void setIdSucursal(int idSucursal) {
+		this.idSucursal = idSucursal;
+	}
 	/**
 	 * @return the password
 	 */
@@ -85,18 +136,6 @@ public class Usuario {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	/**
-	 * @return the fechaDeNacimiento
-	 */
-	public Date getFechaDeNacimiento() {
-		return fechaDeNacimiento;
-	}
-	/**
-	 * @param fechaDeNacimiento the fechaDeNacimiento to set
-	 */
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 	/**
 	 * @return the perfil
