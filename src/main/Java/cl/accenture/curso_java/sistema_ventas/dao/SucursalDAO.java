@@ -11,6 +11,7 @@ import java.util.List;
 
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Sucursal;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 

@@ -14,11 +14,7 @@
 <link rel="stylesheet" type="text/css" href="css/estilos.css"></link>
 <STYLE type="text/css">
 body {
- background-image: url(imagenes/accenture-wallpaper.png);
-	background-position: center center;	  
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
+	background: url(imagenes/accentureS.png) repeat;
 }
 </STYLE>
 
@@ -53,8 +49,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Apellido </LABEL>
-								<h:inputText id="apellido"
-									value="#{crearUsuarioCtrl.apellido}"
+								<h:inputText id="apellido" value="#{crearUsuarioCtrl.apellido}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -72,7 +67,8 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Codigo Sucursal</LABEL>
-								<h:inputText id="sucursal" value="#{crearUsuarioCtrl.idSucursal}"
+								<h:inputText id="sucursal"
+									value="#{crearUsuarioCtrl.idSucursal}"
 									styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
 								</h:inputText>
@@ -90,8 +86,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Confirmar E-mail</LABEL>
-								<h:inputText value="#"
-									styleClass="form-control">
+								<h:inputText value="#" styleClass="form-control">
 									<f:validateLength minimum="1" maximum="100"> el E-mail no conside</f:validateLength>
 								</h:inputText>
 							</div>
@@ -99,7 +94,7 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Password</LABEL>
-								<h:inputSecret value="#{loginCtrl.password}"
+								<h:inputSecret value="#{crearUsuarioCtrl.password}"
 									styleClass="form-control">
 									<f:validateLength minimum="6" maximum="30">la contraseña debe ser 6 a 30</f:validateLength>
 								</h:inputSecret>
@@ -108,43 +103,41 @@ body {
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>Confirmar Password</LABEL>
-								<h:inputSecret value="#"
-									styleClass="form-control">
+								<h:inputSecret value="#" styleClass="form-control">
 									<f:validateLength minimum="6" maximum="30">la contraseña coincide</f:validateLength>
 								</h:inputSecret>
 							</div>
 						</DIV>
 						<DIV class="col-md-12">
+
 							<div class="form-group">
-								<LABEL>Perfil</LABEL>
-								<div class="input-group">
-									<div class="input-group-btn">
-										<button type="button" class="btn btn-default dropdown-toggle"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false">
-											Tipo <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a href="#{loginCtrl.perfil_nombre}">Vendedor</a></li>
-											<li><a href="#{loginCtrl.perfil_nombre}">Jefe Sucursal</a></li>
-											<li><a href="#{loginCtrl.perfil_nombre}">Administrador</a></li>
-										</ul>
-									</div>
-								</div>
+								<LABEL for="sel1">Tipo Perfil</LABEL>
+
+								<h:selectOneMenu styleClass="form-control"
+									value="#{crearUsuarioCtrl.perfil_nombre}">
+									<f:selectItem itemValue="Vendedor" itemLabel="Vendedor" />
+									<f:selectItem itemValue="Jefe Sucursal"
+										itemLabel="Jefe Sucursal" />
+									<f:selectItem itemValue="Administrador"
+										itemLabel="Administrador" />
+								</h:selectOneMenu>
 
 							</div>
+
+
 						</DIV>
 						<div class="row">
 							<DIV class="col-md-6">
 								<div class="form-group">
-									<h:commandButton value="Crear" action="#{loginCtrl.guardarUsuario}"
+									<h:commandButton value="Crear"
+										action="#{crearUsuarioCtrl.guardarUsuario}"
 										styleClass="btn btn-success btn-block"></h:commandButton>
 								</div>
 							</DIV>
 							<DIV class="col-md-6">
 								<div class="form-group text-right">
 									<h:commandButton value="Cancelar"
-										action="#{loginCtrl.cancelar}"
+										action="#{crearUsuarioCtrl.cancelar}"
 										styleClass="btn btn-default btn-block"></h:commandButton>
 								</div>
 
