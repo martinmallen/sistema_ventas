@@ -16,6 +16,7 @@ public class Sucursal {
 	private String nombre;
 	private String direccion;
 	private List<Usuario> usuarios;
+	private List<Producto> productos;
 	
 	
 	
@@ -32,12 +33,14 @@ public class Sucursal {
 	 * @param nombre
 	 * @param direccion
 	 * @param usuarios
+	 * @param productos
 	 */
-	public Sucursal(int idSucursal, String nombre, String direccion, List<Usuario> usuarios) {
+	public Sucursal(int idSucursal, String nombre, String direccion, List<Usuario> usuarios, List<Producto> productos) {
 		this.idSucursal = idSucursal;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.usuarios = usuarios;
+		this.productos = productos;
 	}
 
 	/**
@@ -50,6 +53,7 @@ public class Sucursal {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.usuarios = new ArrayList<Usuario>();
+		this.productos = new ArrayList<Producto>();
 	}
 
 
@@ -123,7 +127,21 @@ public class Sucursal {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+	/**
+	 * @return the productos
+	 */
+	public List<Producto> getProductos() {
+		return productos;
+	}
 
+
+
+	/**
+	 * @param productos the productos to set
+	 */
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
 
 
 	@Override
