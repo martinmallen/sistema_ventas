@@ -3,7 +3,7 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
-import java.util.Date;
+
 
 /**
  * @author Juan Mendoza
@@ -51,6 +51,7 @@ public class Usuario {
 		this.apellido = apellido2;
 		this.idSucursal = sucursal_idSucursal;
 	}
+	
 	/**
 	 * @return the rut
 	 */
