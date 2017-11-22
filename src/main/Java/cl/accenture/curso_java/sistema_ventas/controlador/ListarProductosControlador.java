@@ -35,7 +35,8 @@ public class ListarProductosControlador implements Serializable{
 		private String mensaje;
 		
 		public ListarProductosControlador() {
-<<<<<<< HEAD
+			
+			obtenerProductos();
 			
 		}
 		
@@ -48,14 +49,8 @@ public class ListarProductosControlador implements Serializable{
 
 		public List<Producto> getProductos() {
 			return productos;
-=======
-			obtenerProductos();
-			ordenarPorIdProducto();
-			ordenarPorNombre();
-			ordenarPorPrecio();
-			ordenarPorStock();
-			ordenarPorMarca();
-			ordenarPorCategoria();
+
+			
 		}
 		
 		
@@ -138,7 +133,7 @@ public class ListarProductosControlador implements Serializable{
 				}
 			
 			});
->>>>>>> 79cf573bfbe503467cd12257c9a4bd9f4a499b35
+
 		}
 
 
@@ -181,14 +176,15 @@ public class ListarProductosControlador implements Serializable{
 
 
 		public void obtenerProductosSucursal(){
+			List<Producto> productos = new ArrayList<Producto>();
+			
 			try{
 				ProductoDAO dao = new ProductoDAO();
-				this.setProductos(dao.obtenerProductosSucursal(this.idSucursal));
-				
+			productos =	dao.obtenerProductosSucursal(this.idSucursal);
+				this.productos = productos;
 				this.setMensaje("");
 			}catch (Exception e) {
 				this.setMensaje("Ocurrio un error al obtener los productos.");
-						this.setProductos(new ArrayList<Producto>());
 			}
 		}
 

@@ -74,12 +74,7 @@ public class SucursalDAO {
 					rs.getString("email"), perfil, rs.getString("apellido"), rs.getBoolean("estado"),
 					rs.getInt("Sucursal_idSucursal")));
 
-<<<<<<< HEAD
-=======
-		
-		
 
->>>>>>> 79cf573bfbe503467cd12257c9a4bd9f4a499b35
 		}
 
 		return usuarios;
