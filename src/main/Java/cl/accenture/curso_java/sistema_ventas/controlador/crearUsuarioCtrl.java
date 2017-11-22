@@ -4,6 +4,7 @@
 package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
@@ -13,6 +14,7 @@ import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
+import cl.accenture.curso_java.sistema_ventas.servicios.SHAServices;
 
 /**
  * @author Martin Cuevas
@@ -182,7 +184,14 @@ public class crearUsuarioCtrl implements Serializable {
 	}
 	
 	public void guardarUsuario() {
-		Usuario usuario = new Usuario(this.rut, this.nombre, this.password, this.email,new Perfil(this.perfil_nombre) ,
+		String encriptado = "";
+		try {
+			encriptado = SHAServices.encriptacion(this.password);
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Usuario usuario = new Usuario(this.rut, this.nombre, encriptado, this.email,new Perfil(this.perfil_nombre) ,
 				this.apellido, this.idSucursal);
 		UsuarioDAO dao = new UsuarioDAO();
 

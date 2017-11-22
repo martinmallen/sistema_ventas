@@ -4,10 +4,12 @@
 package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,7 +17,9 @@ import cl.accenture.curso_java.sistema_ventas.dao.SucursalDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
+import cl.accenture.curso_java.sistema_ventas.servicios.SHAServices;
 
 /**
  * @author Martin Cuevas
@@ -232,20 +236,19 @@ public class LoginCtrl implements Serializable {
 	}
 
 	public String ingresar() {
+		String encriptado = "";
 		try {
-			PreparedStatement psSelect = conexion.obtenerConexion()
-					.prepareStatement("SELECT * FROM usuario Where rut = ?;");
-			psSelect.setString(1, this.rut);
-			ResultSet rs = psSelect.executeQuery();
-			while (rs.next()) {
-				if (rs.getString("password").equals(this.password)) {
-					this.nombre = rs.getString("nombre");
-					this.apellido = rs.getString("apellido");
-					this.email = rs.getString("email");
-					this.perfil_nombre = rs.getString("perfil_nombre");
-					this.idSucursal = rs.getInt("Sucursal_idSucursal");
-					return "principal.xhtml";
-				}
+			encriptado =SHAServices.encriptacion(password);
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Usuario user = new Usuario(this.rut, this.nombre, encriptado , this.email,new Perfil(this.perfil_nombre), this.apellido, this.estado, this.idSucursal);
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		try {
+			if(dao.ingresar(user) == true){
+						return "principal.xhtml";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -254,6 +257,7 @@ public class LoginCtrl implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		this.mensaje = "ACCESO DENEGADO, rut o password Incorrectos.";
 		return mensaje;
 	}
