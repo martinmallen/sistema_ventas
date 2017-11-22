@@ -6,8 +6,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
+import org.apache.log4j.Logger;
 
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
@@ -26,6 +29,7 @@ public class ListarProductosControlador implements Serializable{
 
 
 		private static final long serialVersionUID = -4669809923772737328L;
+		private static final Logger LOGGER = Logger.getLogger(ListarProductosControlador.class);
 		private List<Producto> productos;
 		private String mensaje;
 		
@@ -41,6 +45,7 @@ public class ListarProductosControlador implements Serializable{
 		}
 		
 		
+		
 		public void obtenerProductos(){
 			try{
 				ProductoDAO dao = new ProductoDAO();
@@ -48,8 +53,10 @@ public class ListarProductosControlador implements Serializable{
 				this.setMensaje("");
 			}catch (Exception e) {
 				this.setMensaje("Ocurrio un error al obtener los productos.");
-						this.setProductos(new ArrayList<Producto>());
+				this.setProductos(new ArrayList<Producto>());
+				LOGGER.error("Error al obtener los productos",e);
 			}
+			
 		}
 		public void ordenarPorIdProducto(){
 			Collections.sort(this.getProductos(), new Comparator<Producto>(){
