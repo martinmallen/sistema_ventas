@@ -2,6 +2,8 @@ package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,12 @@ public class ListarProductosControlador implements Serializable{
 		
 		public ListarProductosControlador() {
 			obtenerProductos();
+			ordenarPorIdProducto();
+			ordenarPorNombre();
+			ordenarPorPrecio();
+			ordenarPorStock();
+			ordenarPorMarca();
+			ordenarPorCategoria();
 		}
 		
 		
@@ -42,6 +50,73 @@ public class ListarProductosControlador implements Serializable{
 				this.setMensaje("Ocurrio un error al obtener los productos.");
 						this.setProductos(new ArrayList<Producto>());
 			}
+		}
+		public void ordenarPorIdProducto(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					if( p1.getIdProducto() > p2.getIdProducto() )
+							return 1;
+					if( p1.getIdProducto() < p2.getIdProducto() )	
+						return -1;
+					return 0;
+				}
+			
+			});
+		}
+		public void ordenarPorNombre(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					return p1.getNombre().toLowerCase().compareTo(p2.getNombre().toLowerCase());
+				}
+			
+			});
+		}
+
+		public void ordenarPorCategoria(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					return p1.getCategoria().toLowerCase().compareTo(p2.getCategoria().toLowerCase());
+				}
+			
+			});
+		}
+		public void ordenarPorMarca(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					return p1.getMarca().toLowerCase().compareTo(p2.getMarca().toLowerCase());
+				}
+			
+			});
+		}
+		public void ordenarPorPrecio(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					if( p1.getPrecio() > p2.getPrecio() )
+							return 1;
+					if( p1.getPrecio() < p2.getPrecio() )
+						return -1;
+					return 0;
+				}
+			
+			});
+		}
+		public void ordenarPorStock(){
+			Collections.sort(this.getProductos(), new Comparator<Producto>(){
+				
+				public int compare(Producto p1, Producto p2) {
+					if( p1.getStock() > p2.getStock() )
+							return 1;
+					if( p1.getStock() < p2.getStock() )
+						return -1;
+					return 0;
+				}
+			
+			});
 		}
 
 
