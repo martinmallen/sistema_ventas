@@ -6,14 +6,20 @@ package cl.accenture.curso_java.sistema_ventas.controlador;
 import java.io.Serializable;
 import java.sql.SQLException;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
+import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
  * @author Martin Cuevas
  *
  */
+@ManagedBean
+@RequestScoped
 public class crearUsuarioCtrl implements Serializable {
 
 	/**
@@ -176,7 +182,7 @@ public class crearUsuarioCtrl implements Serializable {
 	}
 	
 	public void guardarUsuario() {
-		Usuario usuario = new Usuario(this.rut, this.nombre, this.password, this.email, this.perfil_nombre,
+		Usuario usuario = new Usuario(this.rut, this.nombre, this.password, this.email,new Perfil(this.perfil_nombre) ,
 				this.apellido, this.idSucursal);
 		UsuarioDAO dao = new UsuarioDAO();
 
@@ -189,6 +195,23 @@ public class crearUsuarioCtrl implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String cancelar() {
+		limpiar();
+		return "principal.xhtml";
+	}
+
+	public void limpiar() {
+		this.nombre = "";
+		this.apellido = "";
+		this.password = "";
+		this.email = "";
+		this.rut = "";
+		this.estado = true;
+		this.perfil_nombre = "";
+		this.idSucursal = 0;
+		this.mensaje = "";
 	}
 
 }
