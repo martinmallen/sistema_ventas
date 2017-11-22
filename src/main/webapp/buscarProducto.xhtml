@@ -68,39 +68,61 @@ body {
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 text-center">
+			<div class="col-md-6 text-center bg-info">
 				<label>Lista de Productos</label>
 				<hr></hr>
 				<h:form id="tabla">
 					<h:dataTable value="#{ordenarProductosControlador.producto}"
-						var="Productos" styleClass="table table-responsive order-table"
+						var="productos" styleClass="table table-responsive order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 						<h:column>
-							<f:facet name="header"><h:commandLink action="#{order.sortByOrderNo}">
+							<f:facet name="header">
+								<h:commandLink action="#{order.sortByOrderNo}">
     							ID
-    			   				</h:commandLink></f:facet>
-							#{producto.id}
+    			   				</h:commandLink>
+							</f:facet>
+							#{productos.idProducto}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							#{producto.nombre}						
+							<f:facet name="header">
+								<h:commandLink action="#{order.sort}">
+							Nombre
+							</h:commandLink>
+							</f:facet>
+							#{productos.nombre}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">Marca</f:facet>
-							#{producto.marca}						
+							<f:facet name="header">
+								<h:commandLink action="#{order.sort}">
+							Marca
+							</h:commandLink>
+							</f:facet>
+							#{productos.marca}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">Categoria</f:facet>
-							#{producto.categoria}						
+							<f:facet name="header">
+								<h:commandLink action="#{order.sort}">
+							Categoria
+							</h:commandLink>
+							</f:facet>
+							#{productos.categoria}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">Stock</f:facet>
-							#{producto.stock}						
+							<f:facet name="header">
+								<h:commandLink action="#{order.sort}">
+							Stock
+							</h:commandLink>
+							</f:facet>
+							#{productos.stock}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">Precio</f:facet>
-							#{producto.precio}						
+							<f:facet name="header">
+								<h:commandLink action="#{order.sort}">
+							Precio
+							</h:commandLink>
+							</f:facet>
+							#{productos.precio}						
 						</h:column>
 					</h:dataTable>
 				</h:form>

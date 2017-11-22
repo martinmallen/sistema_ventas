@@ -3,7 +3,7 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
-
+import java.util.Date;
 
 /**
  * @author Juan Mendoza
@@ -41,17 +41,17 @@ public class Usuario {
 		this.estado = true;
 		this.idSucursal = idsucursal;
 	}
-	public Usuario(String rut2, String nombre2, String password2, String email2, String perfil_nombre, String apellido2,
-			int sucursal_idSucursal) {
+
+	public Usuario(String rut2, String nombre2, String password2, String email2, Perfil perfil2, String apellido2,
+			int idSucursal2) {
 		this.rut = rut2;
 		this.nombre = nombre2;
 		this.password = password2;
 		this.email = email2;
-		this.perfil = new Perfil(perfil_nombre);
+		this.perfil = perfil2;
 		this.apellido = apellido2;
-		this.idSucursal = sucursal_idSucursal;
+		this.idSucursal = idSucursal2;
 	}
-	
 	/**
 	 * @return the rut
 	 */

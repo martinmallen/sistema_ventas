@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Lista de Usuarios</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
+</head>
+<style type="text/css">
+body {
+	background-image: url(imagenes/accenture-wallpaper.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+<body>
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<div class="container-fluid">
+		<div class="col-md-6 col-md-offset-3 text-center bg-info">
+			<H1>Personal de Sucursal</H1>
+			<hr></hr>
+			<h:form id="tabla">
+				<h:dataTable value="#{ordenarProductosControlador.producto}"
+					var="Productos" styleClass="table table-responsive order-table"
+					headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink action="#{order.sortByOrderNo}">
+    							Rut
+    			   				</h:commandLink>
+						</f:facet>
+							#{usuario.rut}
+						</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+							#{usuario.nombre}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Apellido</f:facet>
+							#{usuario.apellido}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Perfil</f:facet>
+							#{usuario.perfil_nombre}						
+						</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+							#{usuario.email}						
+						</h:column>
+					
+				</h:dataTable>
+			</h:form>
+		</div>
+	</div>
+</body>
+</html>
