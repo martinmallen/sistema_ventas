@@ -22,7 +22,7 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
 public class ProductoDAO {
 
 	private Conexion conexion;
-
+	
 	private List<Producto> productos;
 
 	/**
@@ -72,6 +72,12 @@ public class ProductoDAO {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	
+	/**
+	 * @return the idSucursal
+	 */
+	
 
 	public void guardarProductos(List<Producto> productos) throws SQLException, SinConexionException {
 		Connection conec = conexion.obtenerConexion();
@@ -100,6 +106,27 @@ public class ProductoDAO {
 		
 		PreparedStatement st = conexion.obtenerConexion().prepareStatement("select * from producto;");
 		ResultSet rs = st.executeQuery();
+		while( rs.next() ){
+			Producto producto = new Producto();
+			producto.setIdProducto( rs.getInt("idProducto") );
+			producto.setNombre( rs.getString("nombre") );
+			producto.setPrecio( rs.getInt("precio") );
+			producto.setMarca( rs.getString("marca") );
+			producto.setStock( rs.getInt("stock") );
+			producto.setCategoria( rs.getString("categoria") );
+			producto.setMinstock( rs.getInt("minstock") );
+			
+			productos.add(producto);
+		}
+		return productos;
+	}
+	
+	public List<Producto> obtenerProductosSucursal(int idSucursal) throws SQLException, SinConexionException {
+		List<Producto> productos = new ArrayList<Producto>();
+		
+		PreparedStatement psSelect = conexion.obtenerConexion().prepareStatement("SELECT * FROM producto WHERE sucursal_idSucursal = ?;");
+		psSelect.setInt(1, idSucursal);
+		ResultSet rs = psSelect.executeQuery();
 		while( rs.next() ){
 			Producto producto = new Producto();
 			producto.setIdProducto( rs.getInt("idProducto") );

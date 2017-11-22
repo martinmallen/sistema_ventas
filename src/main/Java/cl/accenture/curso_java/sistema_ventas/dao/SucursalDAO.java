@@ -74,12 +74,6 @@ public class SucursalDAO {
 					rs.getString("email"), perfil, rs.getString("apellido"), rs.getBoolean("estado"),
 					rs.getInt("Sucursal_idSucursal")));
 
-		
-		while (rs.next()){
-			usuarios.add(new Usuario(rs.getString("rut"),rs.getString("nombre"),rs.getString("password"),rs.getString("email"),new Perfil(rs.getString("perfil_nombre")),rs.getString("apellido"),rs.getBoolean("estado"), rs.getInt("Sucursal_idSucursal")));
-			
-			
-
 		}
 
 		return usuarios;
@@ -91,6 +85,9 @@ public class SucursalDAO {
 		
 		ps.executeUpdate();
 		
+		
+	}
+	public void listarSucursales() {
 		
 	}
 

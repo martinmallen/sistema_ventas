@@ -22,39 +22,47 @@ body {
 <body>
 <ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
-	<div class="col-md-6 col-md-offset-3 text-center bg-info">
+	<div class="col-md-6 col-md-offset-3 text-center bg-info form-group">
 				<H1>Lista de Productos</H1>
 				<hr></hr>
 				<h:form id="tabla">
-					<h:dataTable value="#{ordenarProductosControlador.producto}"
-						var="Productos" styleClass="table table-responsive order-table"
+				<h:selectOneMenu styleClass="form-control"
+									value="#{listarProductosControlador.idSucursal}">
+									<f:selectItem itemValue="idSucursal" itemLabel="" />
+									<f:selectItem itemValue="Jefe Sucursal"
+										itemLabel="Jefe Sucursal" />
+									<f:selectItem itemValue="Administrador"
+										itemLabel="Administrador" />
+								</h:selectOneMenu>
+					<h:dataTable value="#{listarProductosControlador.obtenerProductosSucursal}"
+						var="p" styleClass="table table-responsive order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 						<h:column>
 							<f:facet name="header"><h:commandLink action="#{order.sortByOrderNo}">
     							ID
     			   				</h:commandLink></f:facet>
-							#{producto.id}
+							#{p.id}
 						</h:column>
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							#{producto.nombre}						
+							#{p.nombre}						
 						</h:column>
 						<h:column>
 							<f:facet name="header">Marca</f:facet>
-							#{producto.marca}						
+							#{p.marca}						
 						</h:column>
 						<h:column>
 							<f:facet name="header">Categoria</f:facet>
-							#{producto.categoria}						
+							#{p.categoria}						
 						</h:column>
 						<h:column>
 							<f:facet name="header">Stock</f:facet>
-							#{producto.stock}						
+							#{p.stock}						
 						</h:column>
 						<h:column>
 							<f:facet name="header">Precio</f:facet>
-							#{producto.precio}						
+							#{p.precio}						
 						</h:column>
 					</h:dataTable>
 				</h:form>
