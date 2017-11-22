@@ -2,6 +2,7 @@ package cl.accenture.curso_java.sistema_ventas.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
+import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.servicios.CVSServices;
 
 /**
@@ -50,7 +53,10 @@ public class UploadFileCSV extends HttpServlet {
 		                String fileName = FilenameUtils.getName(item.getName());
 		                InputStream fileContent = item.getInputStream();
 		                
-		                CVSServices.cargarArchivo(fileContent);
+		                
+		                ProductoDAO dao = new ProductoDAO();
+		    		 	dao.guardarProductos(CVSServices.cargarArchivo(fileContent));
+		                
 		                
 		                System.out.println( fieldName );
 		                System.out.println( fileName );
@@ -60,8 +66,14 @@ public class UploadFileCSV extends HttpServlet {
 
 		    } catch (FileUploadException e) {
 		        throw new ServletException("Cannot parse multipart request.", e);
-		    }
-
+		    } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SinConexionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 	
 	}
 
 }

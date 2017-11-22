@@ -25,7 +25,7 @@ public class CargarProductosCtrl implements Serializable {
 	 */
 	private static final long serialVersionUID = 4303635517281305238L;
 	private Conexion conexion;
-	private FileReader archivo;
+	
 
 	/**
 	 * 
@@ -40,7 +40,6 @@ public class CargarProductosCtrl implements Serializable {
 	 */
 	public CargarProductosCtrl(Conexion conexion, FileReader archivo) {
 		this.conexion = conexion;
-		this.archivo = archivo;
 	}
 
 	/**
@@ -58,27 +57,12 @@ public class CargarProductosCtrl implements Serializable {
 		this.conexion = conexion;
 	}
 
-	/**
-	 * @return the archivo
-	 */
-	public FileReader getArchivo() {
-		return archivo;
-	}
 
-	/**
-	 * @param archivo
-	 *            the archivo to set
-	 */
-	public void setArchivo(FileReader archivo) {
-		this.archivo = archivo;
-	}
-
-	public void readCsvUsingLoad() {
+	public void cargarArchivoProductos() {
 
 		try {
 
-			PreparedStatement psLoad = conexion.obtenerConexion().prepareStatement("LOAD DATA LOCAL INFILE '" + archivo
-					+ "' INTO TABLE producto FIELDS TERMINATED BY ','"
+			PreparedStatement psLoad = conexion.obtenerConexion().prepareStatement("LOAD DATA INFILE  INTO TABLE producto FIELDS TERMINATED BY ','"
 					+ " LINES TERMINATED BY '\n' (idProducto, nombre, precio, marca, stock, categoria, minstock); ");
 
 		} catch (Exception e) {

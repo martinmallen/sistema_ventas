@@ -67,8 +67,7 @@ public class SucursalDAO {
 		ResultSet rs = ps.executeQuery();
 		
 		while (rs.next()){
-			Perfil perfil = PerfilDAO.obtenerPerfil( rs.getString("perfil_nombre") );
-			usuarios.add(new Usuario(rs.getString("rut"),rs.getString("nombre"),rs.getString("password"),rs.getString("email"),null,rs.getString("apellido"),rs.getBoolean("estado"), rs.getInt("Sucursal_idSucursal")));
+			usuarios.add(new Usuario(rs.getString("rut"),rs.getString("nombre"),rs.getString("password"),rs.getString("email"),new Perfil(rs.getString("perfil_nombre")),rs.getString("apellido"),rs.getBoolean("estado"), rs.getInt("Sucursal_idSucursal")));
 			
 			
 		}

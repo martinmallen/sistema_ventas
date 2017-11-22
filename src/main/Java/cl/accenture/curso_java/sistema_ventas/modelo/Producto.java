@@ -16,6 +16,7 @@ public class Producto {
 	private int stock;
 	private String categoria;
 	private int minstock;
+	private int Sucursal_idSucursal;
 
 	/**
 	 * 
@@ -36,7 +37,7 @@ public class Producto {
 	 * @param minstock
 	 */
 	public Producto(int idProducto, String nombre, int precio, String marca, int stock, String categoria,
-			int minstock) {
+			int minstock, int Sucursal_idSucursal) {
 		this.idProducto = idProducto;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -44,6 +45,7 @@ public class Producto {
 		this.stock = stock;
 		this.categoria = categoria;
 		this.minstock = minstock;
+		this.Sucursal_idSucursal = Sucursal_idSucursal;
 	}
 
 	/**
@@ -150,5 +152,21 @@ public class Producto {
 	public void setMinstock(int minstock) {
 		this.minstock = minstock;
 	}
+
+	/**
+	 * @return the sucursal_idSucursal
+	 */
+	public int getSucursal_idSucursal() {
+		return Sucursal_idSucursal;
+	}
+
+	/**
+	 * @param sucursal_idSucursal the sucursal_idSucursal to set
+	 */
+	public void setSucursal_idSucursal(int sucursal_idSucursal) {
+		Sucursal_idSucursal = sucursal_idSucursal;
+	}
+	
+	
 
 }
