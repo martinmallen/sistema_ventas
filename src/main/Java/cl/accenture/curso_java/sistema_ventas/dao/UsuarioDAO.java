@@ -4,6 +4,7 @@
 package cl.accenture.curso_java.sistema_ventas.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
@@ -66,6 +67,19 @@ public class UsuarioDAO {
 		
 	}
 
+	public boolean ingresar(Usuario usuario) throws SQLException, SinConexionException{
+		
+		PreparedStatement psSelect = conexion.obtenerConexion()
+				.prepareStatement("SELECT password FROM usuario Where rut = ?;");
+		psSelect.setString(1, usuario.getRut());
+		ResultSet rs = psSelect.executeQuery();
+		while (rs.next()) {
+			if (rs.getString("password").equals(usuario.getPassword())) {
+				
+				return true;
+			}}
+		return false;
+	}
 	
 	
 }
