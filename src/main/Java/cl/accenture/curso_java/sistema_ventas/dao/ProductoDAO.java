@@ -3,9 +3,10 @@
  */
 package cl.accenture.curso_java.sistema_ventas.dao;
 
-import java.io.FileReader;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
 
 /**
- * @author Martin Cuevas
+ * @author Mauricio
  *
  */
 public class ProductoDAO {
+
 	private Conexion conexion;
+
 	private List<Producto> productos;
 
 	/**
@@ -42,17 +45,18 @@ public class ProductoDAO {
 	/**
 	 * @return the conexion
 	 */
+
+
+	
 	public Conexion getConexion() {
 		return conexion;
 	}
 
-	/**
-	 * @param conexion
-	 *            the conexion to set
-	 */
+
 	public void setConexion(Conexion conexion) {
 		this.conexion = conexion;
 	}
+
 
 	/**
 	 * @return the productos
@@ -87,6 +91,27 @@ public class ProductoDAO {
 			psInsert.executeUpdate();
 		}
 		
+	}
+
+
+
+	public List<Producto> obtenerProductos() throws SQLException, SinConexionException {
+		List<Producto> productos = new ArrayList<Producto>();
+		
+		PreparedStatement st = conexion.obtenerConexion().prepareStatement("select * from producto;");
+		ResultSet rs = st.executeQuery();
+		while( rs.next() ){
+			Producto producto = new Producto();
+			producto.setIdProducto( rs.getInt("idProducto") );
+			producto.setNombre( rs.getString("nombre") );
+			producto.setPrecio( rs.getInt("precio") );
+			producto.setMarca( rs.getString("marca") );
+			producto.setStock( rs.getInt("stock") );
+			producto.setCategoria( rs.getString("categoria") );
+			producto.setMinstock( rs.getInt("minstock") );
+			productos.add(producto);
+		}
+		return productos;
 	}
 
 }
