@@ -11,6 +11,7 @@ import java.util.List;
 
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Sucursal;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
@@ -59,20 +60,31 @@ public class SucursalDAO {
 		psInsert.executeUpdate();
 	}
 
-	public List<Usuario> buscarUsuarioSucursal(Sucursal sucursal) throws SQLException, SinConexionException{
-		
+	public List<Usuario> buscarUsuarioSucursal(Sucursal sucursal) throws SQLException, SinConexionException {
+
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		PreparedStatement ps = conexion.obtenerConexion().prepareStatement("Select * into Usuario where Sucursal_idSucursal ="+sucursal.getIdSucursal()+";");
+		PreparedStatement ps = conexion.obtenerConexion()
+				.prepareStatement("Select * into Usuario where Sucursal_idSucursal =" + sucursal.getIdSucursal() + ";");
 		ResultSet rs = ps.executeQuery();
-		
-		while (rs.next()){
-			Perfil perfil = PerfilDAO.obtenerPerfil( rs.getString("perfil_nombre") );
-			usuarios.add(new Usuario(rs.getString("rut"),rs.getString("nombre"),rs.getString("password"),rs.getString("email"),null,rs.getString("apellido"),rs.getBoolean("estado"), rs.getInt("Sucursal_idSucursal")));
-			
-			
+
+		while (rs.next()) {
+			Perfil perfil = new Perfil(rs.getString("Perfil_nombre"));
+			usuarios.add(new Usuario(rs.getString("rut"), rs.getString("nombre"), rs.getString("password"),
+					rs.getString("email"), perfil, rs.getString("apellido"), rs.getBoolean("estado"),
+					rs.getInt("Sucursal_idSucursal")));
+
 		}
-		
+
 		return usuarios;
+	}
+
+	public void blockear(Sucursal sucursal) throws SQLException, SinConexionException {
+		PreparedStatement ps = conexion.obtenerConexion()
+				.prepareStatement("Update Sucursal SET estado = false WHERE idSucursal =" + sucursal.getIdSucursal()+";");
+		
+		ps.executeUpdate();
+		
+		
 	}
 
 }
