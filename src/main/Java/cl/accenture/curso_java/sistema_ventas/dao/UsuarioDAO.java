@@ -16,14 +16,14 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
  *
  */
 public class UsuarioDAO {
-	
+
 	private Conexion conexion;
 
 	/**
 	 * 
 	 */
 	public UsuarioDAO() {
-		
+
 		conexion = new Conexion();
 	}
 
@@ -42,16 +42,18 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * @param conexion the conexion to set
+	 * @param conexion
+	 *            the conexion to set
 	 */
 	public void setConexion(Conexion conexion) {
 		this.conexion = conexion;
 	}
-	
-	public void ingresarUsuario(Usuario usuario) throws SQLException, SinConexionException{
-		
-		PreparedStatement psInsert = conexion.obtenerConexion().prepareStatement("INSERT INTO Usuario (nombre, apellido, password, email, rut, estado, perfil_nombre, Sucursal_idSucursal)" 
-				+ "VALUES (?,?,?,?,?,?,?,?);");
+
+	public void ingresarUsuario(Usuario usuario) throws SQLException, SinConexionException {
+
+		PreparedStatement psInsert = conexion.obtenerConexion().prepareStatement(
+				"INSERT INTO Usuario (nombre, apellido, password, email, rut, estado, perfil_nombre, Sucursal_idSucursal)"
+						+ "VALUES (?,?,?,?,?,?,?,?);");
 		psInsert.setString(1, usuario.getNombre());
 		psInsert.setString(2, usuario.getApellido());
 		psInsert.setString(3, usuario.getPassword());
@@ -61,25 +63,35 @@ public class UsuarioDAO {
 		psInsert.setString(7, usuario.getPerfil().getNombre());
 		psInsert.setInt(8, usuario.getIdSucursal());
 		psInsert.executeUpdate();
-		
-		
-		
-		
+
 	}
 
-	public boolean ingresar(Usuario usuario) throws SQLException, SinConexionException{
-		
+	public boolean ingresar(Usuario usuario) throws SQLException, SinConexionException {
+
 		PreparedStatement psSelect = conexion.obtenerConexion()
-				.prepareStatement("SELECT password FROM usuario Where rut = ?;");
+				.prepareStatement("SELECT nombre, apellido, password FROM usuario Where rut = ?;");
 		psSelect.setString(1, usuario.getRut());
 		ResultSet rs = psSelect.executeQuery();
 		while (rs.next()) {
 			if (rs.getString("password").equals(usuario.getPassword())) {
-				
+
 				return true;
-			}}
+			}
+		}
 		return false;
 	}
+
+	public void datosUsuario(Usuario usuario) throws SQLException, SinConexionException {
+
+		PreparedStatement psSelect = conexion.obtenerConexion()
+				.prepareStatement("SELECT nombre, apellido, Sucursal_idSucursal FROM usuario Where rut = ?;");
+		psSelect.setString(1, usuario.getRut());
+		ResultSet rs = psSelect.executeQuery();
+		while (rs.next()) {
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setIdSucursal(rs.getInt("Sucursal_idSucursal"));
+		}
 	
-	
+	}
 }

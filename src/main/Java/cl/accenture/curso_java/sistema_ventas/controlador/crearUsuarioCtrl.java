@@ -197,11 +197,12 @@ public class crearUsuarioCtrl implements Serializable {
 
 		try {
 			dao.ingresarUsuario(usuario);
+			this.mensaje = "Usuario Creado Correctamente";
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			this.mensaje = "Error en la busqueda";
 			e.printStackTrace();
 		} catch (SinConexionException e) {
-			// TODO Auto-generated catch block
+			this.mensaje = "Error en la conexion";
 			e.printStackTrace();
 		}
 	}

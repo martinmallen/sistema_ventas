@@ -12,61 +12,59 @@
 </head>
 <style type="text/css">
 body {
- background-image: url(imagenes/accenture-wallpaper.png);
-	background-position: center center;	  
+	background-image: url(imagenes/accenture-wallpaper.png);
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
 </style>
 <body>
-<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
-	<div class="col-md-6 col-md-offset-3 text-center bg-info form-group">
-				<H1>Lista de Productos</H1>
-				<hr></hr>
-				<h:form id="tabla">
-				<h:selectOneMenu styleClass="form-control"
-									value="#{listarProductosControlador.idSucursal}">
-									<f:selectItem itemValue="idSucursal" itemLabel="" />
-									<f:selectItem itemValue="Jefe Sucursal"
-										itemLabel="Jefe Sucursal" />
-									<f:selectItem itemValue="Administrador"
-										itemLabel="Administrador" />
-								</h:selectOneMenu>
-					<h:dataTable value="#{listarProductosControlador.obtenerProductosSucursal}"
-						var="p" styleClass="table table-responsive order-table"
-						headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row">
-						<h:column>
-							<f:facet name="header"><h:commandLink action="#{order.sortByOrderNo}">
+		<div class="col-md-6 col-md-offset-3 text-center bg-info form-group">
+			<H1>Lista de Productos</H1>
+			<hr></hr>
+			
+			<h:form id="tabla">
+				<h:commandButton value="Actualizar"
+							action="#{listarProductosControlador.obtenerUsuarios}"
+							styleClass="btn btn-default btn-block"></h:commandButton>
+				
+				<h:dataTable value="#{listarProductosControlador.productosSucursal}" var="p"
+					styleClass="table table-responsive order-table"
+					headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+					<h:column>
+						<f:facet name="header">
     							ID
-    			   				</h:commandLink></f:facet>
-							#{p.id}
+    							
+    			   				</f:facet>
+							#{p.idProducto}
 						</h:column>
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
 							#{p.nombre}						
 						</h:column>
-						<h:column>
-							<f:facet name="header">Marca</f:facet>
+					<h:column>
+						<f:facet name="header">Marca</f:facet>
 							#{p.marca}						
 						</h:column>
-						<h:column>
-							<f:facet name="header">Categoria</f:facet>
+					<h:column>
+						<f:facet name="header">Categoria</f:facet>
 							#{p.categoria}						
 						</h:column>
-						<h:column>
-							<f:facet name="header">Stock</f:facet>
+					<h:column>
+						<f:facet name="header">Stock</f:facet>
 							#{p.stock}						
 						</h:column>
-						<h:column>
-							<f:facet name="header">Precio</f:facet>
+					<h:column>
+						<f:facet name="header">Precio</f:facet>
 							#{p.precio}						
 						</h:column>
-					</h:dataTable>
-				</h:form>
-			</div>
+				</h:dataTable>
+			</h:form>
+		</div>
 	</div>
 </body>
 </html>

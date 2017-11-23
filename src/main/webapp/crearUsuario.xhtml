@@ -124,6 +124,8 @@ body {
 										itemLabel="Jefe Sucursal" />
 									<f:selectItem itemValue="Administrador"
 										itemLabel="Administrador" />
+										<f:selectItem itemValue="Root"
+										itemLabel="Root" />
 								</h:selectOneMenu>
 
 							</div>
@@ -153,7 +155,8 @@ body {
 
 
 					</h:form>
-					<h:outputText value="#{loginCtrl.mensaje}"></h:outputText>
+					
+					<h:outputText  value="#{crearUsuarioCtrl.mensaje}"></h:outputText>
 				</div>
 			</div>
 		</div>
