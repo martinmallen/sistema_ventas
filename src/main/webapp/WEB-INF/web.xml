@@ -27,4 +27,7 @@
 		<servlet-name>UploadFileCSV</servlet-name>
 		<url-pattern>/servlet/UploadFileCSV</url-pattern>
 	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>login_.xhtml</welcome-file>
+	</welcome-file-list>
 </web-app>

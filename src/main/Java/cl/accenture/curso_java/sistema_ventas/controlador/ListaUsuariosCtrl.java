@@ -36,7 +36,7 @@ public class ListaUsuariosCtrl implements Serializable {
 	 */
 	public ListaUsuariosCtrl() {
 		this.usuarios = new ArrayList<Usuario>();
-		obtenerUsuarios();
+		
 	}
 	/**
 	 * @param usuarios
