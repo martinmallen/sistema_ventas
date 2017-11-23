@@ -47,9 +47,7 @@ public class ListarProductosControlador implements Serializable {
 	 * @return the productos
 	 */
 	public List<Producto> getProductos() {
-		
-		return productos;
-	}
+	
 
 
 
@@ -100,20 +98,6 @@ public class ListarProductosControlador implements Serializable {
 
 
 
-	public void obtenerProductos() {
-
-		try {
-			ProductoDAO dao = new ProductoDAO();
-			this.setProductos(dao.obtenerProductos());
-			this.setMensaje("");
-
-		} catch (Exception e) {
-			this.setMensaje("Ocurrio un error al obtener los productos.");
-			this.setProductos(new ArrayList<Producto>());
-			LOGGER.error("Error al obtener los productos", e);
-		}
-
-	}
 
 	public void obtenerProductosSucursal() {
 
@@ -123,12 +107,18 @@ public class ListarProductosControlador implements Serializable {
 			ProductoDAO dao = new ProductoDAO();
 			this.setProductosSucursal(dao.obtenerProductosSucursal(user.getIdSucursal()));
 
+		public List<Producto> getProductos() {
+			return productos;
+
+			
+
 			this.setMensaje("");
 			
 		} catch (Exception e) {
 			this.setMensaje("Ocurrio un error al obtener los productos.");
 			this.setProductosSucursal(new ArrayList<Producto>());
 			LOGGER.error("Error al obtener los productos por sucursal", e);
+
 		}
 		
 	}
@@ -143,9 +133,6 @@ public class ListarProductosControlador implements Serializable {
 					return -1;
 				return 0;
 			}
-
-		});
-	}
 
 	public void ordenarPorNombre() {
 		Collections.sort(this.productos, new Comparator<Producto>() {
@@ -180,12 +167,25 @@ public class ListarProductosControlador implements Serializable {
 	public void ordenarPorPrecio() {
 		Collections.sort(this.productos, new Comparator<Producto>() {
 
+
+		public void obtenerProductosSucursal(){
+			List<Producto> productos = new ArrayList<Producto>();
+			
+			try{
+				ProductoDAO dao = new ProductoDAO();
+			productos =	dao.obtenerProductosSucursal(this.idSucursal);
+				this.productos = productos;
+				this.setMensaje("");
+			}catch (Exception e) {
+				this.setMensaje("Ocurrio un error al obtener los productos.");
+
 			public int compare(Producto p1, Producto p2) {
 				if (p1.getPrecio() > p2.getPrecio())
 					return 1;
 				if (p1.getPrecio() < p2.getPrecio())
 					return -1;
 				return 0;
+
 			}
 
 		});

@@ -72,6 +72,7 @@ public class SucursalDAO {
 			usuarios.add(new Usuario(rs.getString("rut"), rs.getString("nombre"), rs.getString("password"),
 					rs.getString("email"), new Perfil(rs.getString("perfil_nombre")), rs.getString("apellido"), rs.getBoolean("estado"),
 					rs.getInt("Sucursal_idSucursal")));
+
 		}
 
 		return usuarios;
