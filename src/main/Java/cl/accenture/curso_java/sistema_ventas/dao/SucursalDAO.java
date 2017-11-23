@@ -64,14 +64,13 @@ public class SucursalDAO {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		PreparedStatement ps = conexion.obtenerConexion()
-				.prepareStatement("SELECT * INTO usuario WHERE Sucursal_idSucursal = ? ");
+				.prepareStatement("SELECT * FROM usuario WHERE Sucursal_idSucursal = ? ");
 		ps.setInt(1, idSucursal);
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
-			Perfil perfil = new Perfil(rs.getString("Perfil_nombre"));
 			usuarios.add(new Usuario(rs.getString("rut"), rs.getString("nombre"), rs.getString("password"),
-					rs.getString("email"), perfil, rs.getString("apellido"), rs.getBoolean("estado"),
+					rs.getString("email"), new Perfil(rs.getString("perfil_nombre")), rs.getString("apellido"), rs.getBoolean("estado"),
 					rs.getInt("Sucursal_idSucursal")));
 		}
 

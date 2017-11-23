@@ -27,11 +27,11 @@ body {
 			<hr></hr>
 			
 			<h:form id="tabla">
-				<h:commandButton value="Actualizar"
-							action="#{listarProductosControlador.obtenerUsuarios}"
-							styleClass="btn btn-default btn-block"></h:commandButton>
+				<h:commandButton for="Tproductos" value="Actualizar"
+							action="#{listarProductosControlador.obtenerProductosSucursal}"
+							styleClass="btn btn-success"></h:commandButton>
 				
-				<h:dataTable value="#{listarProductosControlador.productosSucursal}" var="p"
+				<h:dataTable id="Tproductos" value="#{listarProductosControlador.productosSucursal}" var="p"
 					styleClass="table table-responsive order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">

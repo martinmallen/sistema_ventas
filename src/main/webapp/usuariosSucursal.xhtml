@@ -26,10 +26,10 @@ body {
 			<H1>Personal de Sucursal</H1>
 			<hr></hr>
 			<h:form id="tabla">
-			<h:commandButton value="Actualizar"
+			<h:commandButton for="Tusuarios" value="Actualizar"
 							action="#{listaUsuariosCtrl.obtenerUsuarios}"
-							styleClass="btn btn-default btn-block"></h:commandButton>
-				<h:dataTable value="#{listaUsuariosCtrl.usuarios}"
+							styleClass="btn btn-success"></h:commandButton>
+				<h:dataTable id="Tusuarios" value="#{listaUsuariosCtrl.usuarios}"
 					var="u" styleClass="table table-responsive order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
