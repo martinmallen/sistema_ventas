@@ -24,12 +24,12 @@ body {
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3 text-left">
-				<LABEL>Busqueda</LABEL>
+				<LABEL>Buscar</LABEL>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
 						<h:inputText id="search" value="#{buscarProductoControlador}"></h:inputText>
-						<h:commandButton action="#{buscarProductoControlador.Producto}"
+						<h:commandButton action="#{listarProductosControlador.obtenerProductosSucursal}"
 							style="display: none">
 							<button type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -38,7 +38,7 @@ body {
 					</h:form>
 					<hr></hr>
 					<h:form>
-						<h:commandButton action="#{listarProductoControlador.Producto}"
+						<h:commandButton action="#{listarProductoControlador.obtenerProductosSucursal}"
 							style="display: none">
 							<button type="button" class="btn btn-primary btn-block">Listar</button>
 						</h:commandButton>

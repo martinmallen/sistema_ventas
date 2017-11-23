@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Usuario
+ * @author Mauricio
  *
  */
 public class Transaccion {
@@ -16,6 +16,7 @@ public class Transaccion {
 	private int valor;
 	private Date fecha;
 	private List<DetalleTransaccion> detalle;
+	private int Sucursal_idSucursal;
 	/**
 	 * 
 	 */
@@ -90,5 +91,11 @@ public class Transaccion {
 			return transaccion.getIdTransaccion() == this.idTransaccion;
 		}
 		return false;
+	}
+	public int getSucursal_idSucursal() {
+		return Sucursal_idSucursal;
+	}
+	public void setSucursal_idSucursal(int sucursal_idSucursal) {
+		Sucursal_idSucursal = sucursal_idSucursal;
 	}
 }
