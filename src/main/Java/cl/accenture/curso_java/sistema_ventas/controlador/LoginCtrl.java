@@ -5,15 +5,12 @@ package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
-import cl.accenture.curso_java.sistema_ventas.dao.SucursalDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
@@ -42,7 +39,7 @@ public class LoginCtrl implements Serializable {
 	private String perfil_nombre;
 	private int idSucursal;
 	private String mensaje;
-	private Conexion conexion;
+	
 
 	/**
 	 * 
@@ -57,7 +54,6 @@ public class LoginCtrl implements Serializable {
 		this.perfil_nombre = "";
 		this.idSucursal = 0;
 		this.mensaje = "";
-		this.conexion = new Conexion();
 	}
 
 	/**
@@ -72,7 +68,7 @@ public class LoginCtrl implements Serializable {
 	 * @param conexion
 	 */
 	public LoginCtrl(String nombre, String apellido, String password, String email, String rut, boolean estado,
-			String perfil_nombre, int sucursal_idSucursal, String mensaje, Conexion conexion) {
+			String perfil_nombre, int sucursal_idSucursal, String mensaje) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.password = password;
@@ -82,7 +78,6 @@ public class LoginCtrl implements Serializable {
 		this.perfil_nombre = perfil_nombre;
 		this.idSucursal = sucursal_idSucursal;
 		this.mensaje = mensaje;
-		this.conexion = conexion;
 	}
 
 	/**
@@ -220,20 +215,6 @@ public class LoginCtrl implements Serializable {
 		this.mensaje = mensaje;
 	}
 
-	/**
-	 * @return the conexion
-	 */
-	public Conexion getConexion() {
-		return conexion;
-	}
-
-	/**
-	 * @param conexion
-	 *            the conexion to set
-	 */
-	public void setConexion(Conexion conexion) {
-		this.conexion = conexion;
-	}
 
 	public String ingresar() {
 		String encriptado = "";
@@ -248,6 +229,11 @@ public class LoginCtrl implements Serializable {
 		
 		try {
 			if(dao.ingresar(user) == true){
+				dao.datosUsuario(user);
+				
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
+				this.nombre = user.getNombre();
+				this.apellido = user.getApellido();
 						return "principal.xhtml";
 			}
 		} catch (SQLException e) {
@@ -257,9 +243,9 @@ public class LoginCtrl implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		this.mensaje = "ACCESO DENEGADO, rut o password Incorrectos.";
 		return mensaje;
+		
 	}
 
 	public String cerrarSesion() {
@@ -272,7 +258,6 @@ public class LoginCtrl implements Serializable {
 		this.perfil_nombre = "";
 		this.idSucursal = 0;
 		this.mensaje = "";
-		this.conexion = new Conexion();
 		return "login_.xhtml";
 	}
 

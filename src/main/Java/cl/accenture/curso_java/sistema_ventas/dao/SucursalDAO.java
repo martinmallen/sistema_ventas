@@ -60,41 +60,43 @@ public class SucursalDAO {
 		psInsert.executeUpdate();
 	}
 
-	public List<Usuario> buscarUsuarioSucursal(Sucursal sucursal) throws SQLException, SinConexionException {
+	public List<Usuario> buscarUsuarioSucursal(int idSucursal) throws SQLException, SinConexionException {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		PreparedStatement ps = conexion.obtenerConexion()
-				.prepareStatement("Select * into Usuario where Sucursal_idSucursal =" + sucursal.getIdSucursal() + ";");
+				.prepareStatement("SELECT * INTO usuario WHERE Sucursal_idSucursal = ? ");
+		ps.setInt(1, idSucursal);
 		ResultSet rs = ps.executeQuery();
-
 
 		while (rs.next()) {
 			Perfil perfil = new Perfil(rs.getString("Perfil_nombre"));
 			usuarios.add(new Usuario(rs.getString("rut"), rs.getString("nombre"), rs.getString("password"),
 					rs.getString("email"), perfil, rs.getString("apellido"), rs.getBoolean("estado"),
 					rs.getInt("Sucursal_idSucursal")));
-
-<<<<<<< HEAD
-=======
-		
-		
-
->>>>>>> 79cf573bfbe503467cd12257c9a4bd9f4a499b35
 		}
 
 		return usuarios;
 	}
 
 	public void blockear(Sucursal sucursal) throws SQLException, SinConexionException {
-		PreparedStatement ps = conexion.obtenerConexion()
-				.prepareStatement("Update Sucursal SET estado = false WHERE idSucursal =" + sucursal.getIdSucursal()+";");
-		
+		PreparedStatement ps = conexion.obtenerConexion().prepareStatement(
+				"Update Sucursal SET estado = false WHERE idSucursal =" + sucursal.getIdSucursal() + ";");
+
 		ps.executeUpdate();
-		
-		
+
 	}
-	public void listarSucursales() {
-		
+
+	public List<Sucursal> obtenerSucursales() throws SQLException, SinConexionException {
+		List<Sucursal> sucursales = new ArrayList<Sucursal>();
+		PreparedStatement psSelect = conexion.obtenerConexion()
+				.prepareStatement("SELECT idSucursal, nombre INTO sucursal;");
+		ResultSet rs = psSelect.executeQuery();
+
+		while (rs.next()) {
+			sucursales.add(new Sucursal(rs.getInt("idSucursal"), rs.getString("nombre"), rs.getString("direccion")));
+		}
+		return sucursales;
+
 	}
 
 }

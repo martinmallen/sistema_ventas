@@ -26,33 +26,34 @@ body {
 			<H1>Personal de Sucursal</H1>
 			<hr></hr>
 			<h:form id="tabla">
-				<h:dataTable value="#{ordenarProductosControlador.producto}"
-					var="Productos" styleClass="table table-responsive order-table"
+			<h:commandButton value="Actualizar"
+							action="#{listaUsuariosCtrl.obtenerUsuarios}"
+							styleClass="btn btn-default btn-block"></h:commandButton>
+				<h:dataTable value="#{listaUsuariosCtrl.usuarios}"
+					var="u" styleClass="table table-responsive order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
 					<h:column>
 						<f:facet name="header">
-							<h:commandLink action="#{order.sortByOrderNo}">
     							Rut
-    			   				</h:commandLink>
 						</f:facet>
-							#{usuario.rut}
+							#{u.rut}
 						</h:column>
 					<h:column>
 						<f:facet name="header">Nombre</f:facet>
-							#{usuario.nombre}						
+							#{u.nombre}						
 						</h:column>
 					<h:column>
 						<f:facet name="header">Apellido</f:facet>
-							#{usuario.apellido}						
+							#{u.apellido}						
 						</h:column>
 					<h:column>
 						<f:facet name="header">Perfil</f:facet>
-							#{usuario.perfil_nombre}						
+							#{u.perfil_nombre}						
 						</h:column>
 					<h:column>
 						<f:facet name="header">Email</f:facet>
-							#{usuario.email}						
+							#{u.email}						
 						</h:column>
 					
 				</h:dataTable>
