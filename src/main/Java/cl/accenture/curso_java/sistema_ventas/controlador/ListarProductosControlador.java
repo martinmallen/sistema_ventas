@@ -201,5 +201,9 @@ public class ListarProductosControlador implements Serializable {
 		});
 
 	}
+	
+	public String volver() {
+		return "principal.xhtml";
+	}
 
 }

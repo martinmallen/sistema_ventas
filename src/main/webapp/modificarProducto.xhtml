@@ -9,8 +9,36 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
+<style type="text/css">
+body {
+	background-image: url(imagenes/accenture-wallpaper.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
 <body>
-<DIV class="container-fluid">
-</DIV>
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<DIV class="container-fluid">
+		<DIV class="row text-center">
+			<DIV class="col-md-6 col-md-offset-3 bg-info">
+				<H1>Modificar Producto</H1>
+				<H6>Ingresa el Nombre del Producto a Modificar.</H6>
+				
+					<h:form class="form-group text-center">
+
+						<h:inputText id="search"  value="#"></h:inputText>
+						
+						<h:commandButton for="search" value="Buscar"
+							action="#{listarProductosControlador.obtenerProductosSucursal}"
+							styleClass="btn btn-primary text-right">
+						</h:commandButton>
+					</h:form>
+				
+				
+			</DIV>
+		</DIV>
+	</DIV>
 </body>
 </html>

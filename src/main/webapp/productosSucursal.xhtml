@@ -30,7 +30,9 @@ body {
 				<h:commandButton for="Tproductos" value="Actualizar"
 							action="#{listarProductosControlador.obtenerProductosSucursal}"
 							styleClass="btn btn-success"></h:commandButton>
-				
+				<h:commandButton  value="Volver"
+					action="#{listarProductosControlador.volver}"
+					styleClass="btn btn-default"></h:commandButton>
 				<h:dataTable id="Tproductos" value="#{listarProductosControlador.productosSucursal}" var="p"
 					styleClass="table table-responsive text-center"
 					headerClass=" text-center"
