@@ -6,14 +6,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
 <title>Busqueda</title>
 </head>
 <style type="text/css">
 body {
- background-image: url(imagenes/accenture-wallpaper.png);
-	background-position: center center;	  
+	/*  background-image: url(imagenes/accenture-wallpaper.png); */
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -28,8 +29,9 @@ body {
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
-						<h:inputText id="search" value="#{buscarProductoControlador}"></h:inputText>
-						<h:commandButton action="#{listarProductosControlador.obtenerProductosSucursal}"
+						<h:inputText id="search" value="#{listarProductosControlador.nombreP}"></h:inputText>
+						<h:commandButton
+							action="#{listarProductosControlador.buscarPorNombre}"
 							style="display: none">
 							<button type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -38,7 +40,8 @@ body {
 					</h:form>
 					<hr></hr>
 					<h:form>
-						<h:commandButton action="#{listarProductoControlador.obtenerProductosSucursal}"
+						<h:commandButton
+							action="#{listarProductosControlador.obtenerProductos}"
 							style="display: none">
 							<button type="button" class="btn btn-primary btn-block">Listar</button>
 						</h:commandButton>
@@ -53,14 +56,12 @@ body {
 					<label>Transacciones</label>
 					<div class="bg-info text-center" style="padding: 10px;">
 						<h:form>
-							<h:commandButton action="#{listarProductoControlador.Producto}"
-								style="display: none">
+							<h:commandButton style="display: none">
 								<button type="button" class="btn btn-success btn-block">Agregar
 									Producto</button>
 							</h:commandButton>
 							<p></p>
-							<h:commandButton action="#{listarProductoControlador.Producto}"
-								style="display: none">
+							<h:commandButton style="display: none">
 								<button type="button" class="btn btn-danger btn-block">Eliminar
 									Producto</button>
 							</h:commandButton>
@@ -71,58 +72,73 @@ body {
 			<div class="col-md-6 text-center bg-info">
 				<label>Lista de Productos</label>
 				<hr></hr>
-				<h:form id="tabla">
+				<h:form>
 					<h:dataTable value="#{listarProductosControlador.productos}"
 						var="productos" styleClass="table table-responsive order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorIdProducto}">
+							<f:facet id="idProducto" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorIdProducto}">
     							ID
     			   				</h:commandLink>
 							</f:facet>
 							#{productos.idProducto}
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorNombre}">
+							<f:facet id="nombre" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorNombre}">
 							Nombre
 							</h:commandLink>
 							</f:facet>
 							#{productos.nombre}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorMarca}">
+							<f:facet id="marca" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorMarca}">
 							Marca
 							</h:commandLink>
 							</f:facet>
 							#{productos.marca}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorCategoria}">
+							<f:facet id="categoria" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorCategoria}">
 							Categoria
 							</h:commandLink>
 							</f:facet>
 							#{productos.categoria}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorStock}">
+							<f:facet id="stock" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorStock}">
 							Stock
 							</h:commandLink>
 							</f:facet>
 							#{productos.stock}						
 						</h:column>
 						<h:column>
-							<f:facet name="header">
-								<h:commandLink action="#{listarProductosControlador.ordenarPorPrecio}">
+							<f:facet id="precio" name="header">
+								<h:commandLink
+									action="#{listarProductosControlador.ordenarPorPrecio}">
 							Precio
 							</h:commandLink>
 							</f:facet>
 							#{productos.precio}						
+						</h:column>
+						<h:column>
+							<f:facet id="sucursal" name="header">
+							<h:commandLink
+									action="#{listarProductosControlador.ordenarPorSucursal}"> 
+							Sucursal
+							</h:commandLink>
+							</f:facet>
+							#{productos.sucursal_idSucursal}						
 						</h:column>
 					</h:dataTable>
 				</h:form>
@@ -147,7 +163,7 @@ body {
 		</div>
 	</div>
 
-	
+
 
 
 
