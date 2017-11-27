@@ -89,4 +89,8 @@ public class ListaUsuariosCtrl implements Serializable {
 		this.mensaje = "Error al obtener Sucursales";
 		
 	}
+	
+	public String volver() {
+		return "principal.xhtml";
+	}
 }

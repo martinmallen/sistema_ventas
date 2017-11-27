@@ -120,10 +120,27 @@ public class ProductoDAO {
 		}
 		return productos;
 	}
+	public List<Producto> buscarProductos(String nombre) throws SQLException, SinConexionException {
+		List<Producto> productos = new ArrayList<Producto>();
+		PreparedStatement pst = conexion.obtenerConexion().prepareStatement("select * from producto WHERE nombre = ?;");
+		pst.setString(1, nombre);
+		ResultSet rs = pst.executeQuery();
+		while( rs.next() ){
+			Producto producto = new Producto();
+			producto.setIdProducto( rs.getInt("idProducto") );
+			producto.setNombre( rs.getString("nombre") );
+			producto.setPrecio( rs.getInt("precio") );
+			producto.setMarca( rs.getString("marca") );
+			producto.setStock( rs.getInt("stock") );
+			producto.setCategoria( rs.getString("categoria") );
+			producto.setMinstock( rs.getInt("minstock") );
+			productos.add(producto);
+		}
+		return productos;
+	}
 	
 	public List<Producto> obtenerProductosSucursal(int idSucursal) throws SQLException, SinConexionException {
 		List<Producto> productos = new ArrayList<Producto>();
-		
 		PreparedStatement psSelect = conexion.obtenerConexion().prepareStatement("SELECT * FROM producto WHERE sucursal_idSucursal = ?;");
 		psSelect.setInt(1, idSucursal);
 		ResultSet rs = psSelect.executeQuery();

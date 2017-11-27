@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
@@ -22,7 +22,7 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
  */
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 
 public class ListarProductosControlador implements Serializable {
 
@@ -31,33 +31,35 @@ public class ListarProductosControlador implements Serializable {
 	private List<Producto> productos;
 	private List<Producto> productosSucursal;
 	private String mensaje;
-	
+	private String nombreP;
 
 	public ListarProductosControlador() {
-		this.productos = new ArrayList<Producto>();
+
 	}
 
-	
+	public String getNombreP() {
+		return nombreP;
+	}
+
+	public void setNombreP(String nombreP) {
+		this.nombreP = nombreP;
+	}
 
 	/**
 	 * @return the productos
 	 */
 	public List<Producto> getProductos() {
-		
+
 		return productos;
 	}
 
-
-
 	/**
-	 * @param productos the productos to set
+	 * @param productos
+	 *            the productos to set
 	 */
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
-
-
-
 
 	/**
 	 * @return the mensaje
@@ -66,17 +68,13 @@ public class ListarProductosControlador implements Serializable {
 		return mensaje;
 	}
 
-
-
 	/**
-	 * @param mensaje the mensaje to set
+	 * @param mensaje
+	 *            the mensaje to set
 	 */
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
-
-
 
 	/**
 	 * @return the productosSucursal
@@ -85,16 +83,31 @@ public class ListarProductosControlador implements Serializable {
 		return productosSucursal;
 	}
 
-
-
 	/**
-	 * @param productosSucursal the productosSucursal to set
+	 * @param productosSucursal
+	 *            the productosSucursal to set
 	 */
 	public void setProductosSucursal(List<Producto> productosSucursal) {
 		this.productosSucursal = productosSucursal;
 	}
 
+	public void limpiar(){
+		this.productos= new ArrayList<Producto>();
+	}
+	public void buscarPorNombre() {
 
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			this.setProductos(dao.buscarProductos(this.nombreP));
+			this.setMensaje("");
+
+		} catch (Exception e) {
+			this.setMensaje("Ocurrio un error al obtener los productos.");
+			this.setProductos(new ArrayList<Producto>());
+			LOGGER.error("Error al obtener los productos", e);
+		}
+
+	}
 
 	public void obtenerProductos() {
 
@@ -120,16 +133,17 @@ public class ListarProductosControlador implements Serializable {
 			this.setProductosSucursal(dao.obtenerProductosSucursal(user.getIdSucursal()));
 
 			this.setMensaje("");
-			
+
 		} catch (Exception e) {
 			this.setMensaje("Ocurrio un error al obtener los productos.");
 			this.setProductosSucursal(new ArrayList<Producto>());
 			LOGGER.error("Error al obtener los productos por sucursal", e);
 		}
-		
+
 	}
 
 	public void ordenarPorIdProducto() {
+
 		Collections.sort(this.productos, new Comparator<Producto>() {
 
 			public int compare(Producto p1, Producto p2) {
@@ -200,6 +214,25 @@ public class ListarProductosControlador implements Serializable {
 
 		});
 
+	}
+
+	public void ordenarPorSucursal() {
+		Collections.sort(this.productos, new Comparator<Producto>() {
+
+			public int compare(Producto p1, Producto p2) {
+				if (p1.getSucursal_idSucursal() > p2.getSucursal_idSucursal())
+					return 1;
+				if (p1.getSucursal_idSucursal() < p2.getSucursal_idSucursal())
+					return -1;
+				return 0;
+			}
+
+		});
+
+	}
+
+	public String volver() {
+		return "principal.xhtml";
 	}
 
 }

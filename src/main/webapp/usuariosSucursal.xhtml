@@ -26,13 +26,15 @@ body {
 			<H1>Personal de Sucursal</H1>
 			<hr></hr>
 			<h:form id="tabla">
-			<h:commandButton for="Tusuarios" value="Actualizar"
-							action="#{listaUsuariosCtrl.obtenerUsuarios}"
-							styleClass="btn btn-success"></h:commandButton>
+				<h:commandButton for="Tusuarios" value="Actualizar"
+					action="#{listaUsuariosCtrl.obtenerUsuarios}"
+					styleClass="btn btn-success"></h:commandButton>
+				<h:commandButton  value="Volver"
+					action="#{listaUsuariosCtrl.volver}"
+					styleClass="btn btn-default"></h:commandButton>
 				<h:dataTable id="Tusuarios" value="#{listaUsuariosCtrl.usuarios}"
 					var="u" styleClass="table table-responsive text-center"
-					headerClass="text-center"
-					rowClasses="text-center">
+					headerClass="text-center" rowClasses="text-center">
 					<h:column>
 						<f:facet name="header">
     							Rut
@@ -55,7 +57,7 @@ body {
 						<f:facet name="header">Email</f:facet>
 							#{u.email}						
 						</h:column>
-					
+
 				</h:dataTable>
 			</h:form>
 		</div>
