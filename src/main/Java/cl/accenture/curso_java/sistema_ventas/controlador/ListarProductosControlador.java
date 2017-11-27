@@ -91,6 +91,9 @@ public class ListarProductosControlador implements Serializable {
 		this.productosSucursal = productosSucursal;
 	}
 
+	public void limpiar(){
+		this.productos= new ArrayList<Producto>();
+	}
 	public void buscarPorNombre() {
 
 		try {
