@@ -15,6 +15,7 @@ import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
+import cl.accenture.curso_java.sistema_ventas.modelo.Permiso;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 import cl.accenture.curso_java.sistema_ventas.servicios.SHAServices;
 
@@ -30,85 +31,24 @@ public class LoginCtrl implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8167310269289072882L;
-	private String nombre;
-	private String apellido;
 	private String password;
-	private String email;
 	private String rut;
 	private boolean estado;
-	private String perfil_nombre;
-	private int idSucursal;
 	private String mensaje;
+	private Usuario usuario;
 	
 
 	/**
 	 * 
 	 */
 	public LoginCtrl() {
-		this.nombre = "";
-		this.apellido = "";
 		this.password = "";
-		this.email = "";
 		this.rut = "";
 		this.estado = true;
-		this.perfil_nombre = "";
-		this.idSucursal = 0;
 		this.mensaje = "";
 	}
 
-	/**
-	 * @param nombre
-	 * @param apellido
-	 * @param password
-	 * @param email
-	 * @param rut
-	 * @param estado
-	 * @param perfil_nombre
-	 * @param sucursal_idSucursal
-	 * @param conexion
-	 */
-	public LoginCtrl(String nombre, String apellido, String password, String email, String rut, boolean estado,
-			String perfil_nombre, int sucursal_idSucursal, String mensaje) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.password = password;
-		this.email = email;
-		this.rut = rut;
-		this.estado = estado;
-		this.perfil_nombre = perfil_nombre;
-		this.idSucursal = sucursal_idSucursal;
-		this.mensaje = mensaje;
-	}
 
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre
-	 *            the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the apellido
-	 */
-	public String getApellido() {
-		return apellido;
-	}
-
-	/**
-	 * @param apellido
-	 *            the apellido to set
-	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
 
 	/**
 	 * @return the password
@@ -125,20 +65,8 @@ public class LoginCtrl implements Serializable {
 		this.password = password;
 	}
 
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
 
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 
 	/**
 	 * @return the rut
@@ -170,35 +98,6 @@ public class LoginCtrl implements Serializable {
 		this.estado = estado;
 	}
 
-	/**
-	 * @return the perfil_nombre
-	 */
-	public String getPerfil_nombre() {
-		return perfil_nombre;
-	}
-
-	/**
-	 * @param perfil_nombre
-	 *            the perfil_nombre to set
-	 */
-	public void setPerfil_nombre(String perfil_nombre) {
-		this.perfil_nombre = perfil_nombre;
-	}
-
-	/**
-	 * @return the sucursal_idSucursal
-	 */
-	public int getidSucursal() {
-		return idSucursal;
-	}
-
-	/**
-	 * @param sucursal_idSucursal
-	 *            the sucursal_idSucursal to set
-	 */
-	public void setidSucursal(int sucursal_idSucursal) {
-		idSucursal = sucursal_idSucursal;
-	}
 
 	/**
 	 * @return the mensaje
@@ -217,48 +116,43 @@ public class LoginCtrl implements Serializable {
 
 
 	public String ingresar() {
-		String encriptado = "";
 		try {
-			encriptado =SHAServices.encriptacion(password);
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Usuario user = new Usuario(this.rut, this.nombre, encriptado , this.email,new Perfil(this.perfil_nombre), this.apellido, this.estado, this.idSucursal);
-		UsuarioDAO dao = new UsuarioDAO();
-		
-		try {
-			if(dao.ingresar(user) == true){
-				dao.datosUsuario(user);
-				
+			String encriptado =SHAServices.encriptacion(password);
+			Usuario user = new Usuario(this.rut, encriptado);
+			UsuarioDAO dao = new UsuarioDAO();
+			if(dao.ingresar(user)){
+//				dao.datosUsuario(user);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
-				this.nombre = user.getNombre();
-				this.apellido = user.getApellido();
-						return "principal.xhtml";
+				this.usuario = user;
+				return "principal.xhtml";
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			else {
+				this.mensaje = "ACCESO DENEGADO, rut o password Incorrectos.";
+				return "";
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (SinConexionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.mensaje = "Ocurrio un error desconocido";
+			return "";
 		}
-		this.mensaje = "ACCESO DENEGADO, rut o password Incorrectos.";
-		return mensaje;
-		
+	}
+	
+	
+	public boolean tienePermiso( String tipo ) {
+		return this.usuario.getPerfil().getPermisos().contains( new Permiso( tipo ) );
 	}
 
 	public String cerrarSesion() {
-		this.nombre = "";
-		this.apellido = "";
-		this.password = "";
-		this.email = "";
-		this.rut = "";
-		this.estado = true;
-		this.perfil_nombre = "";
-		this.idSucursal = 0;
-		this.mensaje = "";
+		//TODO: Matar sesion facecontext
 		return "login_.xhtml";
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	

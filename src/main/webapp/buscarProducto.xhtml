@@ -72,16 +72,10 @@ body {
 			<div class="col-md-6 text-center bg-info">
 				<label>Lista de Productos</label>
 				<hr></hr>
-<<<<<<< HEAD
+
 				<h:form id="tabla">
-					<h:dataTable value="#{listarProductosControlador.productosSucursal}"
-=======
-				<h:form>
-					<h:dataTable value="#{listarProductosControlador.productos}"
->>>>>>> a6853ece978710da21c14cf1c8554920b7109eb9
-						var="productos" styleClass="table table-responsive order-table"
-						headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row">
+					<h:dataTable value="#{listarProductosControlador.productos}">
+
 						<h:column>
 							<f:facet id="idProducto" name="header">
 								<h:commandLink
