@@ -2,9 +2,7 @@
     <wb-module deploy-name="sistema_ventas">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/Java"/>
         <property name="context-root" value="sistema_ventas"/>
         <property name="java-output-path" value="/sistema_ventas/target/classes"/>
     </wb-module>
