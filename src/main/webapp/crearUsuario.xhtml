@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
 <meta charset="UTF-8"></meta>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -46,7 +47,7 @@ body {
 								<LABEL>Nombre</LABEL>
 								<h:inputText id="nombre" value="#{crearUsuarioCtrl.nombre}"
 									styleClass="form-control">
-									<f:validateLength minimum="1" maximum="15"> Maximo de Largo 15 para el Nombre</f:validateLength>
+									<f:validateLength minimum="1" maximum="15"> 15 caracteres maximo</f:validateLength>
 								</h:inputText>
 							</div>
 						</DIV>
@@ -55,7 +56,7 @@ body {
 								<LABEL>Apellido </LABEL>
 								<h:inputText id="apellido" value="#{crearUsuarioCtrl.apellido}"
 									styleClass="form-control">
-									<f:validateLength minimum="1" maximum="15"> Maximo de Largo</f:validateLength>
+									<f:validateLength minimum="1" maximum="15"> 15 caracteres maximo</f:validateLength>
 								</h:inputText>
 							</div>
 						</DIV>
@@ -64,7 +65,7 @@ body {
 								<LABEL>Rut</LABEL>
 								<h:inputText id="rut" value="#{crearUsuarioCtrl.rut}"
 									styleClass="form-control">
-									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
+									<f:validateLength minimum="7" maximum="10">Minimo 7 y Maximo 10 caracteres</f:validateLength>
 								</h:inputText>
 							</div>
 						</DIV>
@@ -100,7 +101,7 @@ body {
 								<LABEL>Password</LABEL>
 								<h:inputSecret value="#{crearUsuarioCtrl.password}"
 									styleClass="form-control">
-									<f:validateLength minimum="6" maximum="30">la contraseña debe ser 6 a 30</f:validateLength>
+									<f:validateLength minimum="6" maximum="30">Minimo 6 Maximo 30 caracteres</f:validateLength>
 								</h:inputSecret>
 							</div>
 						</DIV>
@@ -108,14 +109,30 @@ body {
 							<div class="form-group">
 								<LABEL>Confirmar Password</LABEL>
 								<h:inputSecret value="#" styleClass="form-control">
-									<f:validateLength minimum="6" maximum="30">la contraseña coincide</f:validateLength>
+									<f:validateLength minimum="6" maximum="30">Minimo 6 Maximo 30 caracteres</f:validateLength>
 								</h:inputSecret>
 							</div>
 						</DIV>
 						<DIV class="col-md-12">
 
 							<div class="form-group">
-								<LABEL for="sel1">Tipo Perfil</LABEL>
+								<LABEL>Codigo Sucursal</LABEL>
+
+								<h:selectOneMenu styleClass="form-control"
+									value="#{crearUsuarioCtrl.idSucursal}">
+									<c:forEach var="idS" items="#{crearUsuarioCtrl.idSucursales}">
+										<f:selectItem itemValue="idS" itemLabel="idS" />
+									</c:forEach>
+								</h:selectOneMenu>
+
+							</div>
+
+
+						</DIV>
+						<DIV class="col-md-12">
+
+							<div class="form-group">
+								<LABEL>Tipo Perfil</LABEL>
 
 								<h:selectOneMenu styleClass="form-control"
 									value="#{crearUsuarioCtrl.perfil_nombre}">
@@ -124,8 +141,7 @@ body {
 										itemLabel="Jefe Sucursal" />
 									<f:selectItem itemValue="Administrador"
 										itemLabel="Administrador" />
-										<f:selectItem itemValue="Root"
-										itemLabel="Root" />
+									<f:selectItem itemValue="Root" itemLabel="Root" />
 								</h:selectOneMenu>
 
 							</div>
@@ -155,8 +171,8 @@ body {
 
 
 					</h:form>
-					
-					<h:outputText  value="#{crearUsuarioCtrl.mensaje}"></h:outputText>
+
+					<h:outputText value="#{crearUsuarioCtrl.mensaje}"></h:outputText>
 				</div>
 			</div>
 		</div>

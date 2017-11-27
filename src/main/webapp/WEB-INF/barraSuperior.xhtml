@@ -25,87 +25,65 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Transacciones<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-<<<<<<< HEAD
-					<c:if test="#{loginCtrl.tienePermiso('nueva transaccion') }">
+						<c:if test="#{loginCtrl.tienePermiso('nueva transaccion') }">
 							<li><a href="#">Nueva</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('lista productos') }">
-							<li><a href="#">Listar</a></li>
 						</c:if>
 						<c:if test="#{loginCtrl.tienePermiso('anular transaccion') }">
 							<li><a href="#">Anular</a></li>
 						</c:if>
-
-
-=======
-						<li><a href="nuevaTransaccion.xhtml">Nueva</a></li>
-						<li><a href="#">Listar</a></li>
-						<li><a href="#">Anular</a></li>
->>>>>>> cf27d105d65d65ae7773a14f57329810e7e65910
 					</ul></li>
+				<c:if test="#{loginCtrl.tienePermiso('datos productos') }">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Productos<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<c:if test="#{loginCtrl.tienePermiso('cargar productos') }">
+								<li><a href="cargarProductos.xhtml">Agregar</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('modificar producto') }">
+								<li><a href="modificarProductos.xhtml">Modificar</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('bloquear producto') }">
+								<li><a href="blockear-producto.xhtml">Bloquear</a></li>
+							</c:if>
+						</ul></li>
+				</c:if>
+				<c:if test="#{loginCtrl.tienePermiso('datos sucursal') }">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Sucursal<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<c:if test="#{loginCtrl.tienePermiso('crear sucursal') }">
+								<li><a href="crearSucursal.xhtml">Crear</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('personal sucursal') }">
+								<li><a href="usuariosSucursal.xhtml">Personal</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('bloquear sucursal') }">
+								<li><a href="blockear-sucursal.xhtml">Bloquear</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('generar reporteGanancia') }">
+								<li><a href="reporte-ganancias.xhtml">Reporte Ganancias</a></li>
+							</c:if>
+							<c:if test="#{loginCtrl.tienePermiso('generar reporteVenta') }">
+								<li><a href="reporte-venta.xhtml">Reporte Ventas</a></li>
+							</c:if>
+						</ul></li>
+				</c:if>
+				<c:if test="#{loginCtrl.tienePermiso('datos usuario') }">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Productos<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<c:if test="#{loginCtrl.tienePermiso('buscar producto') }">
-							<li><a href="buscarProducto.xhtml">Buscar</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('cargar productos') }">
-							<li><a href="cargarProductos.xhtml">Agregar</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('modificar producto') }">
-							<li><a href="cargarProductos.xhtml">Modificar</a></li>
-						</c:if>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Sucursal<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<c:if test="#{loginCtrl.tienePermiso('productos sucursal') }">
-							<li><a href="productosSucursal.xhtml">Productos</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('personal sucursal') }">
-							<li><a href="usuariosSucursal.xhtml">Personal</a></li>
-						</c:if>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Crear<span class="caret"></span></a>
+					aria-expanded="false">Usuario<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<c:if test="#{loginCtrl.tienePermiso('crear usuario') }">
-							<li><a href="crearUsuario.xhtml">Usuario</a></li>
+							<li><a href="crearUsuario.xhtml">Crear</a></li>
 						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('crear sucursal') }">
-							<li><a href="crearSucursal.xhtml">Sucursal</a></li>
-						</c:if>
-
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Bloquear<span class="caret"></span></a>
-					<ul class="dropdown-menu">
 						<c:if test="#{loginCtrl.tienePermiso('bloquear usuario') }">
-							<li><a href="blockear-usuario.xhtml">Usuario</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('bloquear producto') }">
-							<li><a href="blockear-producto.xhtml">Producto</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('bloquear sucursal') }">
-							<li><a href="blockear-sucursal.xhtml">Sucursal</a></li>
-						</c:if>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Reportes<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<c:if test="#{loginCtrl.tienePermiso('generar reporteGanancia') }">
-							<li><a href="crearUsuario.xhtml">Ventas</a></li>
-						</c:if>
-						<c:if test="#{loginCtrl.tienePermiso('generar reporteVenta') }">
-							<li><a href="crearSucursal.xhtml">Ganancias</a></li>
+							<li><a href="blockear-usuario.xhtml">Bloquear</a></li>
 						</c:if>
 
 					</ul></li>
+				</c:if>
 			</ul>
 			<div class="container-fluid">
 				<div class="row">
