@@ -29,25 +29,25 @@ body {
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
-						<h:inputText id="search" value="#{listarProductosControlador.nombreP}"></h:inputText>
+						<h:inputText id="search"
+							value="#{listarProductosControlador.nombreP}"></h:inputText>
 						<h:commandButton
-							action="#{listarProductosControlador.buscarPorNombre}"
-							style="display: none">
-							<button type="submit">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
+							action="#{listarProductosControlador.buscarPorNombre}">
+							<f:attribute name="value" value="Buscar">
+								<!-- 								<i class="glyphicon glyphicon-search"></i> -->
+							</f:attribute>
+
 						</h:commandButton>
 					</h:form>
 					<hr></hr>
 					<h:form>
 						<h:commandButton
 							action="#{listarProductosControlador.obtenerProductos}"
-							style="display: none">
-							<button type="button" class="btn btn-primary btn-block">Listar</button>
+							styleClass="btn btn-primary btn-block" value="Listar">
 						</h:commandButton>
 						<p></p>
-						<h:commandButton value="Refrescar"
-							styleClass="btn btn-default btn-block">
+						<h:commandButton styleClass="btn btn-default btn-block"
+							value="Limpiar" action="#{listarProductosControlador.obtenerProductos}">
 						</h:commandButton>
 					</h:form>
 				</div>
@@ -72,13 +72,8 @@ body {
 			<div class="col-md-6 text-center bg-info">
 				<label>Lista de Productos</label>
 				<hr></hr>
-<<<<<<< HEAD
 				<h:form id="tabla">
-					<h:dataTable value="#{listarProductosControlador.productosSucursal}"
-=======
-				<h:form>
 					<h:dataTable value="#{listarProductosControlador.productos}"
->>>>>>> a6853ece978710da21c14cf1c8554920b7109eb9
 						var="productos" styleClass="table table-responsive order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
@@ -138,7 +133,7 @@ body {
 						</h:column>
 						<h:column>
 							<f:facet id="sucursal" name="header">
-							<h:commandLink
+								<h:commandLink
 									action="#{listarProductosControlador.ordenarPorSucursal}"> 
 							Sucursal
 							</h:commandLink>
