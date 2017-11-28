@@ -69,16 +69,7 @@ body {
 								</h:inputText>
 							</div>
 						</DIV>
-						<DIV class="col-md-6">
-							<div class="form-group">
-								<LABEL>Codigo Sucursal</LABEL>
-								<h:inputText id="sucursal"
-									value="#{crearUsuarioCtrl.idSucursal}"
-									styleClass="form-control">
-									<f:validateLength minimum="1" maximum="100"> conplete el campo señalado </f:validateLength>
-								</h:inputText>
-							</div>
-						</DIV>
+						
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>E-mail</LABEL>
@@ -120,11 +111,11 @@ body {
 
 								<h:selectOneMenu styleClass="form-control"
 									value="#{crearUsuarioCtrl.idSucursal}">
-									<c:forEach var="idS" items="#{crearUsuarioCtrl.idSucursales}">
-										<f:selectItem itemValue="idS" itemLabel="idS" />
-									</c:forEach>
+									<f:selectItems value="#{crearUsuarioCtrl.sucursales}"
+										var="sucursal" itemValue="#{sucursal.idSucursal}"
+										itemLabel="#{sucursal.nombre}">
+									</f:selectItems>
 								</h:selectOneMenu>
-
 							</div>
 
 

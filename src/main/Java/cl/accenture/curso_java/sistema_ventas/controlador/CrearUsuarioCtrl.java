@@ -6,11 +6,10 @@ package cl.accenture.curso_java.sistema_ventas.controlador;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import cl.accenture.curso_java.sistema_ventas.dao.SucursalDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
@@ -25,8 +24,8 @@ import cl.accenture.curso_java.sistema_ventas.servicios.SHAServices;
  *
  */
 @ManagedBean
-@SessionScoped
-public class crearUsuarioCtrl implements Serializable {
+@RequestScoped
+public class CrearUsuarioCtrl implements Serializable {
 
 	/**
 	 * 
@@ -41,12 +40,12 @@ public class crearUsuarioCtrl implements Serializable {
 	private String perfil_nombre;
 	private int idSucursal;
 	private String mensaje;
-	private List<Integer> idSucursales;
+	private List<Sucursal> sucursales;
 
 	/**
 	 * 
 	 */
-	public crearUsuarioCtrl() {
+	public CrearUsuarioCtrl() {
 		this.nombre = "";
 		this.apellido = "";
 		this.password = "";
@@ -56,7 +55,7 @@ public class crearUsuarioCtrl implements Serializable {
 		this.perfil_nombre = "";
 		this.idSucursal = 0;
 		this.mensaje = "";
-		this.idSucursales = new ArrayList<Integer>();
+		obtenerSucursales();
 	}
 
 	/**
@@ -70,7 +69,7 @@ public class crearUsuarioCtrl implements Serializable {
 	 * @param idSucursal
 	 * @param mensaje
 	 */
-	public crearUsuarioCtrl(String nombre, String apellido, String password, String email, String rut, boolean estado,
+	public CrearUsuarioCtrl(String nombre, String apellido, String password, String email, String rut, boolean estado,
 			String perfil_nombre, int idSucursal, String mensaje) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -217,18 +216,20 @@ public class crearUsuarioCtrl implements Serializable {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
+
 	/**
-	 * @return the idSucursales
+	 * @return the sucursales
 	 */
-	public List<Integer> getIdSucursales() {
-		return idSucursales;
+	public List<Sucursal> getSucursales() {
+		return sucursales;
 	}
 
 	/**
-	 * @param idSucursales the idSucursales to set
+	 * @param sucursales
+	 *            the sucursales to set
 	 */
-	public void setIdSucursales(List<Integer> idSucursales) {
-		this.idSucursales = idSucursales;
+	public void setSucursales(List<Sucursal> sucursales) {
+		this.sucursales = sucursales;
 	}
 
 	public void guardarUsuario() {
@@ -255,14 +256,12 @@ public class crearUsuarioCtrl implements Serializable {
 		}
 	}
 
-	public void obtenerIdSucursales() {
-		List<Sucursal> sucursalesDisp = new ArrayList<Sucursal>();
+	public void obtenerSucursales() {
+		
 		SucursalDAO sdao = new SucursalDAO();
 		try {
-			sucursalesDisp = sdao.obtenerSucursales();
-			for (Sucursal sucursal : sucursalesDisp) {
-				idSucursales.add(sucursal.getIdSucursal());
-			}
+			this.setSucursales(sdao.obtenerSucursales());
+			this.mensaje = "";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
