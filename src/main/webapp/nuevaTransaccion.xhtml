@@ -24,8 +24,8 @@ body {
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3 text-left">
-				<LABEL>Buscar</LABEL>
+			<div class="col-md-8 text-left">
+				<LABEL>Lista de Productos</LABEL>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
@@ -40,6 +40,86 @@ body {
 						</h:commandButton>
 					</h:form>
 					<hr></hr>
+					<div>
+						<h:form id="tabla">
+							<h:dataTable value="#{listarProductosControlador.productos}"
+								var="productos" styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+								headerClass="order-table-header text-center"
+								rowClasses="order-table-odd-row,order-table-even-row">
+								<h:column>
+									<f:facet id="idProducto" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorIdProducto}">
+    							ID
+    			   				</h:commandLink>
+									</f:facet>
+							#{productos.idProducto}
+						</h:column>
+								<h:column>
+									<f:facet id="nombre" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorNombre}">
+							Nombre
+							</h:commandLink>
+									</f:facet>
+							#{productos.nombre}						
+						</h:column>
+								<h:column>
+									<f:facet id="marca" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorMarca}">
+							Marca
+							</h:commandLink>
+									</f:facet>
+							#{productos.marca}						
+						</h:column>
+								<h:column>
+									<f:facet id="categoria" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorCategoria}">
+							Categoria
+							</h:commandLink>
+									</f:facet>
+							#{productos.categoria}						
+						</h:column>
+								<h:column>
+									<f:facet id="stock" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorStock}">
+							Stock
+							</h:commandLink>
+									</f:facet>
+							#{productos.stock}						
+						</h:column>
+								<h:column>
+									<f:facet id="precio" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorPrecio}">
+							Precio
+							</h:commandLink>
+									</f:facet>
+							#{productos.precio}						
+						</h:column>
+								<h:column>
+									<f:facet id="sucursal" name="header">
+										<h:commandLink
+											action="#{listarProductosControlador.ordenarPorSucursal}"> 
+							Sucursal
+							</h:commandLink>
+									</f:facet>
+							#{productos.sucursal_idSucursal}						
+						</h:column>
+						<h:column>
+								<f:facet id="agregar" name="header">
+								<h:commandLink
+									styleClass="btn btn-primary"
+									value="Agregar"/>
+									</f:facet>
+        						<input type="checkbox"/>
+						</h:column>
+						</h:dataTable>
+						</h:form>
+					</div>
 					<h:form>
 						<h:commandButton
 							action="#{listarProductosControlador.obtenerProductos}"
@@ -52,98 +132,9 @@ body {
 					</h:form>
 				</div>
 				<hr></hr>
-				<div class="row" style="padding: 15px;">
-					<label>Transacciones</label>
-					<div class="bg-info text-center" style="padding: 10px;">
-						<h:form>
-							<h:commandButton style="display: none">
-								<button type="button" class="btn btn-success btn-block">Agregar
-									Producto</button>
-							</h:commandButton>
-							<p></p>
-							<h:commandButton style="display: none">
-								<button type="button" class="btn btn-danger btn-block">Eliminar
-									Producto</button>
-							</h:commandButton>
-						</h:form>
-					</div>
-				</div>
 			</div>
-			<div class="col-md-6 text-center bg-info">
-				<label>Lista de Productos</label>
-				<hr></hr>
-				<h:form id="tabla">
-					<h:dataTable value="#{listarProductosControlador.productos}"
-						var="productos" styleClass="table table-responsive order-table"
-						headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row">
-						<h:column>
-							<f:facet id="idProducto" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorIdProducto}">
-    							ID
-    			   				</h:commandLink>
-							</f:facet>
-							#{productos.idProducto}
-						</h:column>
-						<h:column>
-							<f:facet id="nombre" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorNombre}">
-							Nombre
-							</h:commandLink>
-							</f:facet>
-							#{productos.nombre}						
-						</h:column>
-						<h:column>
-							<f:facet id="marca" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorMarca}">
-							Marca
-							</h:commandLink>
-							</f:facet>
-							#{productos.marca}						
-						</h:column>
-						<h:column>
-							<f:facet id="categoria" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorCategoria}">
-							Categoria
-							</h:commandLink>
-							</f:facet>
-							#{productos.categoria}						
-						</h:column>
-						<h:column>
-							<f:facet id="stock" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorStock}">
-							Stock
-							</h:commandLink>
-							</f:facet>
-							#{productos.stock}						
-						</h:column>
-						<h:column>
-							<f:facet id="precio" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorPrecio}">
-							Precio
-							</h:commandLink>
-							</f:facet>
-							#{productos.precio}						
-						</h:column>
-						<h:column>
-							<f:facet id="sucursal" name="header">
-								<h:commandLink
-									action="#{listarProductosControlador.ordenarPorSucursal}"> 
-							Sucursal
-							</h:commandLink>
-							</f:facet>
-							#{productos.sucursal_idSucursal}						
-						</h:column>
-					</h:dataTable>
-				</h:form>
-			</div>
-			<div class="col-md-3 text-center">
+
+			<div class="col-md-4 text-center">
 				<label>Carro de Compra</label>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
