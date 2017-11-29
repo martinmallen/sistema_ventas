@@ -13,19 +13,20 @@
 </head>
 <style type="text/css">
 body {
-	/*  background-image: url(imagenes/accenture-wallpaper.png); */
+	  background-image: url(imagenes/accenture-wallpaper.png); 
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
+
 </style>
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3 text-left">
-				<LABEL>Buscar</LABEL>
+				<LABEL style="color: white;">Buscar</LABEL>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
@@ -53,7 +54,7 @@ body {
 				</div>
 				<hr></hr>
 				<div class="row" style="padding: 15px;">
-					<label>Transacciones</label>
+					<label style="color: white;">Transacciones</label>
 					<div class="bg-info text-center" style="padding: 10px;">
 						<h:form>
 							<h:commandButton style="display: none">
@@ -70,7 +71,7 @@ body {
 				</div>
 			</div>
 			<div class="col-md-6 text-center bg-info">
-				<label>Lista de Productos</label>
+				<h1>Lista de Productos</h1>
 				<hr></hr>
 
 
@@ -148,7 +149,7 @@ body {
 				</h:form>
 			</div>
 			<div class="col-md-3 text-center">
-				<label>Carro de Compra</label>
+				<label style="color: white;">Carro de Compra</label>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
 					<h:form>
