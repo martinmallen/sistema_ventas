@@ -72,11 +72,15 @@ body {
 			<div class="col-md-6 text-center bg-info">
 				<label>Lista de Productos</label>
 				<hr></hr>
+
+
+		
 				<h:form id="tabla">
 					<h:dataTable value="#{listarProductosControlador.productos}"
 						var="productos" styleClass="table table-responsive order-table"
 						headerClass="order-table-header"
 						rowClasses="order-table-odd-row,order-table-even-row">
+
 						<h:column>
 							<f:facet id="idProducto" name="header">
 								<h:commandLink

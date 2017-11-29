@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import cl.accenture.curso_java.sistema_ventas.excepciones.NoSeEncuentraPerfilException;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
@@ -66,17 +68,21 @@ public class UsuarioDAO {
 
 	}
 
-	public boolean ingresar(Usuario usuario) throws SQLException, SinConexionException {
+	public boolean ingresar(Usuario usuario) throws SQLException, SinConexionException, NoSeEncuentraPerfilException {
 
 		PreparedStatement psSelect = conexion.obtenerConexion()
-				.prepareStatement("SELECT nombre, apellido, password FROM usuario Where rut = ?;");
+				.prepareStatement("SELECT * FROM usuario Where rut = ? AND password = ?;");
 		psSelect.setString(1, usuario.getRut());
+		psSelect.setString(2, usuario.getPassword());
 		ResultSet rs = psSelect.executeQuery();
-		while (rs.next()) {
-			if (rs.getString("password").equals(usuario.getPassword())) {
-
-				return true;
-			}
+		PerfilDAO pfdao = new PerfilDAO();
+		if (rs.next()) {
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setIdSucursal(rs.getInt("Sucursal_idSucursal"));
+			Perfil perfil = pfdao.obtenerPerfil(rs.getString("perfil_nombre"));
+			usuario.setPerfil(perfil);
+			return true;
 		}
 		return false;
 	}
@@ -91,6 +97,8 @@ public class UsuarioDAO {
 			usuario.setNombre(rs.getString("nombre"));
 			usuario.setApellido(rs.getString("apellido"));
 			usuario.setIdSucursal(rs.getInt("Sucursal_idSucursal"));
+			Perfil perfil = new Perfil(rs.getString("perfil_nombre"));
+			usuario.setPerfil(perfil);
 		}
 	
 	}

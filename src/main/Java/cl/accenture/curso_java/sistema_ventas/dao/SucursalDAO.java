@@ -89,7 +89,7 @@ public class SucursalDAO {
 	public List<Sucursal> obtenerSucursales() throws SQLException, SinConexionException {
 		List<Sucursal> sucursales = new ArrayList<Sucursal>();
 		PreparedStatement psSelect = conexion.obtenerConexion()
-				.prepareStatement("SELECT idSucursal, nombre INTO sucursal;");
+				.prepareStatement("SELECT * FROM sucursal;");
 		ResultSet rs = psSelect.executeQuery();
 
 		while (rs.next()) {

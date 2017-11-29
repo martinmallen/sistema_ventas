@@ -3,8 +3,6 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
-import java.util.Date;
-
 /**
  * @author Juan Mendoza
  *
@@ -24,6 +22,17 @@ public class Usuario {
 	 */
 	public Usuario() {
 	}
+	
+	/**
+	 * 
+	 * @param rut
+	 * @param password
+	 */
+	public Usuario(String rut,  String password) {
+		this.rut = rut;
+		this.password = password;
+	}
+	
 	/**
 	 * @param rut
 	 * @param nombre

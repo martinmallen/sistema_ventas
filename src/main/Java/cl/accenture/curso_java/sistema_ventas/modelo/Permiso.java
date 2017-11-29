@@ -24,6 +24,9 @@ public class Permiso {
 		this.idPermiso = idPermiso;
 		this.tipo = tipo;
 	}
+	public Permiso(String tipo) {
+		this.tipo = tipo;
+	}
 	/**
 	 * @return the idPermiso
 	 */
@@ -53,7 +56,7 @@ public class Permiso {
 	public boolean equals(Object obj) {
 		if (obj instanceof Permiso) {
 			Permiso permiso = (Permiso)obj;
-			return permiso.getIdPermiso()== this.idPermiso;
+			return permiso.getTipo().equals(this.getTipo());
 			
 		}
 		return false;
