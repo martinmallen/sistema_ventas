@@ -26,7 +26,7 @@
 					aria-expanded="false">Transacciones<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<c:if test="#{loginCtrl.tienePermiso('nueva transaccion') }">
-							<li><a href="#">Nueva</a></li>
+							<li><a href="buscarProducto.xhtml">Nueva</a></li>
 						</c:if>
 						<c:if test="#{loginCtrl.tienePermiso('anular transaccion') }">
 							<li><a href="#">Anular</a></li>
@@ -41,7 +41,7 @@
 								<li><a href="cargarProductos.xhtml">Agregar</a></li>
 							</c:if>
 							<c:if test="#{loginCtrl.tienePermiso('modificar producto') }">
-								<li><a href="modificarProductos.xhtml">Modificar</a></li>
+								<li><a href="modificarProducto.xhtml">Modificar</a></li>
 							</c:if>
 							<c:if test="#{loginCtrl.tienePermiso('bloquear producto') }">
 								<li><a href="blockear-producto.xhtml">Bloquear</a></li>

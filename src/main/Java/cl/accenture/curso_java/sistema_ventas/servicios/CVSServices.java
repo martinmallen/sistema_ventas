@@ -95,5 +95,9 @@ public class CVSServices {
 		prod.setSucursal_idSucursal(Integer.parseInt(columnas[7].contains("\r") ? columnas[7].split("\r")[0] :  columnas[7] ));
 		return prod;
 	}
+	
+	public String volver() {
+		return "principal.xhtml";
+	}
 
 }
