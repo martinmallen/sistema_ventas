@@ -50,7 +50,6 @@ public class TransaccionDAO {
 		this.transacciones = transacciones;
 	}
 	
-			
 	
 	public void guardarTransaccion(List<Transaccion> transacciones) throws SQLException, SinConexionException{
 		Connection conec = conexion.obtenerConexion();
