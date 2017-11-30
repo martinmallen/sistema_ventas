@@ -10,9 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Transaccion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
  * @author Mauricio
@@ -50,20 +53,21 @@ public class TransaccionDAO {
 		this.transacciones = transacciones;
 	}
 	
-			
 	
-	public void guardarTransaccion(List<Transaccion> transacciones) throws SQLException, SinConexionException{
+	public void guardarTransaccion(Transaccion transaccion) throws SQLException, SinConexionException{
 		Connection conec = conexion.obtenerConexion();
-		for(Transaccion transaccion : transacciones){
-			PreparedStatement psInsert = conec.prepareStatement("INSERT INTO transaccion(idTransaccion, valor, fecha, detalle, sucursal_idSucursal)"+"VALUES (?, ?, ?, ?, ?);");
+		Usuario user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuario");
+			PreparedStatement psInsert = conec.prepareStatement("INSERT INTO transaccion(idTransaccion, valor, fecha, usuario_rut, usuario_prefil_nombre)"+"VALUES (?, ?, ?, ?, ?);");
 			
 			psInsert.setInt(1, transaccion.getIdTransaccion());
 			psInsert.setInt(2, transaccion.getValor());
 			psInsert.setDate(3, new java.sql.Date( transaccion.getFecha().getTime() ));
-			psInsert.setInt(5,  transaccion.getSucursal_idSucursal());
+			psInsert.setString(4, user.getRut());
+			psInsert.setString(5, user.getNombre());
 			
 			psInsert.executeUpdate();
-		}
+		
 	}
 	
 	public List<Transaccion> obtenerTransacciones() throws SQLException, SinConexionException {

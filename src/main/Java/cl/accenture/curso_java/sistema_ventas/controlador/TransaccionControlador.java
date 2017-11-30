@@ -30,45 +30,43 @@ public class TransaccionControlador implements Serializable{
 
 	private static final long serialVersionUID = 8473957408103867560L;
 	private static final Logger LOGGER = Logger.getLogger(TransaccionControlador.class);
-	private List<Producto> productos;
-	private List<DetalleTransaccion> detalles;
-	private List<Transaccion> transacciones;
+	private Producto producto;
+	private DetalleTransaccion detalle;
+	private Transaccion transaccion;
 	private String mensaje;
 	
 	
 	public TransaccionControlador() {
+	
+		this.producto = new Producto();
+		this.detalle = new DetalleTransaccion();
+		this.transaccion = new Transaccion();
+	
 	}
 
-
-	public List<Producto> getProductos() {
-		return productos;
+	public Producto getProducto() {
+		return producto;
 	}
 
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
-
-	public List<DetalleTransaccion> getDetalles() {
-		return detalles;
+	public DetalleTransaccion getDetalle() {
+		return detalle;
 	}
 
-
-	public void setDetalles(List<DetalleTransaccion> detalles) {
-		this.detalles = detalles;
+	public void setDetalle(DetalleTransaccion detalle) {
+		this.detalle = detalle;
 	}
 
-
-	public List<Transaccion> getTransacciones() {
-		return transacciones;
+	public Transaccion getTransaccion() {
+		return transaccion;
 	}
 
-
-	public void setTransacciones(List<Transaccion> transacciones) {
-		this.transacciones = transacciones;
+	public void setTransaccion(Transaccion transaccion) {
+		this.transaccion = transaccion;
 	}
-
 
 	public String getMensaje() {
 		return mensaje;
@@ -83,19 +81,17 @@ public class TransaccionControlador implements Serializable{
 	
 	public void nuevaTransaccion(){
 		
-			
+		
 		
 	}
 	public void confirmarTransaccion(){
 		
 		try {
 			TransaccionDAO dao = new TransaccionDAO();
-			this.setTransacciones(dao.getTransacciones());
-			this.setMensaje("");
-
+			dao.guardarTransaccion(transacciones);
 		} catch (Exception e) {
 			this.setMensaje("Ocurrio un error al guardar la transaccion.");
-			this.setTransacciones(new ArrayList<Transaccion>());
+			
 			LOGGER.error("Error al confirmar la transaccion", e);
 		}
 	}
