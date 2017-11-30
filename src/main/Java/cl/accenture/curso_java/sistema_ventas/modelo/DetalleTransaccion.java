@@ -3,7 +3,6 @@
  */
 package cl.accenture.curso_java.sistema_ventas.modelo;
 
-import java.util.List;
 
 /**
  * @author Usuario
@@ -14,7 +13,7 @@ public class DetalleTransaccion {
 	private int idDetalleTransaccion;
 	private int unidades;
 	private int subtotal;
-	private List<Producto> productos;
+	private Producto producto;
 	/**
 	 * 
 	 */
@@ -26,11 +25,11 @@ public class DetalleTransaccion {
 	 * @param subtotal
 	 * @param productos
 	 */
-	public DetalleTransaccion(int idDetalleTransaccion, int unidades, int subtotal, List<Producto> productos) {
+	public DetalleTransaccion(int idDetalleTransaccion, int unidades, int subtotal, Producto producto) {
 		this.idDetalleTransaccion = idDetalleTransaccion;
 		this.unidades = unidades;
 		this.subtotal = subtotal;
-		this.productos = productos;
+		this.producto = producto;
 	}
 	/**
 	 * @return the idDetalleTransaccion
@@ -71,14 +70,14 @@ public class DetalleTransaccion {
 	/**
 	 * @return the productos
 	 */
-	public List<Producto> getProductos() {
-		return productos;
+	public Producto getProducto() {
+		return producto;
 	}
 	/**
 	 * @param productos the productos to set
 	 */
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	public void setProductos(Producto producto) {
+		this.producto = producto;
 	}
 	
 	

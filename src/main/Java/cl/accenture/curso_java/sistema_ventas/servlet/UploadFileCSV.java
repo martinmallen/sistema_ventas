@@ -15,7 +15,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 
+import cl.accenture.curso_java.sistema_ventas.controlador.ListarProductosControlador;
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.servicios.CVSServices;
@@ -25,6 +27,8 @@ import cl.accenture.curso_java.sistema_ventas.servicios.CVSServices;
  */
 public class UploadFileCSV extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(UploadFileCSV.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,14 +68,9 @@ public class UploadFileCSV extends HttpServlet {
 		        }
 		        response.sendRedirect("../cargarProductos.xhtml");
 
-		    } catch (FileUploadException e) {
-		        throw new ServletException("Cannot parse multipart request.", e);
-		    } catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SinConexionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		    } catch (Exception e) {
+		    	response.sendRedirect("../cargarProductosError.xhtml");
+		    	LOGGER.error( "Ocurrio un error desconocido", e );
 			}
 		 	
 	}
