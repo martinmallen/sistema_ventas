@@ -4,15 +4,16 @@
 package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
+import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
@@ -21,7 +22,7 @@ import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
  *
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ModificarProductoCtrl implements Serializable {
 
 	/**
@@ -90,6 +91,15 @@ public class ModificarProductoCtrl implements Serializable {
 	
 	public void modificarProducto() {
 		ProductoDAO dao = new ProductoDAO();
+		try {
+			dao.modificarPrecio(this.producto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SinConexionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

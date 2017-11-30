@@ -171,4 +171,33 @@ public class ProductoDAO {
 
 	}
 
+	public Producto buscarProducto(int idSucursal, String nombreP) throws SQLException, SinConexionException {
+		Producto producto = new Producto();
+		PreparedStatement psSelect = conexion.obtenerConexion()
+				.prepareStatement("SELECT * FROM producto WHERE sucursal_idSucursal = ? AND nombre = ? ;");
+		psSelect.setInt(1, idSucursal);
+		psSelect.setString(2, nombreP);
+		ResultSet rs = psSelect.executeQuery();
+		if (rs.next()) {
+			producto.setIdProducto(rs.getInt("idProducto"));
+			producto.setNombre(rs.getString("nombre"));
+			producto.setPrecio(rs.getInt("precio"));
+			producto.setMarca(rs.getString("marca"));
+			producto.setStock(rs.getInt("stock"));
+			producto.setCategoria(rs.getString("categoria"));
+			producto.setMinstock(rs.getInt("minstock"));
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+		}
+		return producto;
+	}
+
+	public void modificarPrecio(Producto producto) throws SQLException, SinConexionException {
+		PreparedStatement psUpdate = conexion.obtenerConexion().prepareStatement(
+				"UPDATE producto SET precio = ? AND stock = ? AND minstock = ? WHERE idProducto = ? ;");
+		psUpdate.setInt(1, producto.getPrecio());
+		psUpdate.setInt(2, producto.getStock());
+		psUpdate.setInt(3, producto.getMinstock());
+		psUpdate.setInt(4, producto.getIdProducto());
+		psUpdate.executeUpdate();
+	}
 }
