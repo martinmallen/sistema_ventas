@@ -28,13 +28,25 @@ body {
 				
 					<h:form class="form-group text-center">
 
-						<h:inputText id="search"  value="#"></h:inputText>
+						<h:inputText id="search"  value="#{modificarProductoCtrl.producto.nombre}"></h:inputText>
 						
 						<h:commandButton for="search" value="Buscar"
-							action="#{listarProductosControlador.obtenerProductosSucursal}"
+							action="#{modificarProductoCtrl.buscarPorNombre}"
 							styleClass="btn btn-primary text-right">
 						</h:commandButton>
 					</h:form>
+					
+					<div class="cont-alumno" align="center">
+						
+						<div>
+							<h1>#{alumno.nombre}</h1>
+							<p>#{alumno.apellido} #{alumno.apellidoMaterno}</p>
+							<h4>
+								<h:outputText value="#{alumno.edad}"></h:outputText>
+								A&#xf1;os
+							</h4>
+						</div>
+					</div>
 				
 				
 			</DIV>
