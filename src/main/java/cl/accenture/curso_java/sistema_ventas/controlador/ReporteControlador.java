@@ -24,7 +24,7 @@ public class ReporteControlador implements Serializable{
 	private static final long serialVersionUID = -947383428088157806L;
 	private Date fecha1;
 	private Date fecha2;
-	private List<>
+//	private List<>
 	
 	
 	
