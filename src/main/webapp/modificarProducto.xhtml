@@ -22,7 +22,7 @@ body {
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<DIV class="container-fluid">
 		<DIV class="row text-center">
-			<DIV class="col-md-6 col-md-offset-3 bg-primary">
+			<DIV class="col-md-8 col-md-offset-2 bg-primary">
 				<H1>Modificar Producto</H1>
 				<H6>Ingresa el Nombre del Producto a Modificar.</H6>
 
@@ -40,7 +40,7 @@ body {
 
 
 
-			<div class="col-md-6 col-md-offset-3 bg-info">
+			<div class="col-md-8 col-md-offset-2 bg-info">
 				<h:form>
 					<h:dataTable id="table" value="#{modificarProductoCtrl.producto}" var="p"
 						styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
@@ -74,29 +74,51 @@ body {
 							<f:facet id="stock" name="header">
 										Stock
 									</f:facet>
-							#{p.stock}	
-							<br/>
-							<h:commandButton value="Modificar" styleClass="btn btn-success btn-xs"></h:commandButton>					
+							<h:outputText value="#{p.stock}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
+							<h:inputText value="#{p.stock}" required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>		
 						</h:column>
 						<h:column>
 							<f:facet id="precio" name="header">
 										Precio
 									</f:facet>
-							#{p.precio}	
-							<br/>
-							<h:commandButton value="Modificar" styleClass="btn btn-success btn-xs"></h:commandButton>					
+							<h:outputText value="#{p.precio}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
+							<h:inputText value="#{p.precio}"  required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>
+											
 						</h:column>
 						<h:column>
 							<f:facet id="minstock" name="header">
 										Stock Minimo
 									</f:facet>
-							#{p.minstock}
-							<br/>
-							<h:commandButton value="Modificar" styleClass="btn btn-success btn-xs"></h:commandButton>
+							
+							<h:outputText value="#{p.minstock}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
+							<h:inputText value="#{p.minstock}" required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>
+							
+						</h:column>
+						<h:column>
+							<f:facet id="botones" name="header">
+							</f:facet>
+							<h:commandButton value="Modificar"
+								rendered="#{!modificarProductoCtrl.flag}"
+								action="#{modificarProductoCtrl.habilitarModificar}"
+								styleClass="btn btn-success"></h:commandButton>
+							
+							<h:commandButton value="Guardar"
+								rendered="#{modificarProductoCtrl.flag}"
+								action="#{modificarProductoCtrl.modificarProducto}"
+								styleClass="btn btn-success"></h:commandButton>	
+							
+							<h:commandButton value="Cancelar"
+								rendered="#{modificarProductoCtrl.flag}"
+								action="#{modificarProductoCtrl.cancelarModificar}"
+								styleClass="btn btn-default"></h:commandButton>	
+							
 						</h:column>
 
 					</h:dataTable>
-					<a href="principal.xhtml" class="btn btn-default btn-lg align-right" >Volver</a>
+					<H1><h:outputText value="#{modificarProductoCtrl.mensaje}"/> </H1>
+					<h:commandButton value="Volver"
+								action="#{modificarProductoCtrl.volver}"
+								styleClass="btn btn-default"></h:commandButton>
 				</h:form>
 			</div>
 		</DIV>

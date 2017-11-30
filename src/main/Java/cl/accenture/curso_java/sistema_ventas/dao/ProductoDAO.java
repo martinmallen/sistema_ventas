@@ -191,9 +191,9 @@ public class ProductoDAO {
 		return producto;
 	}
 
-	public void modificarPrecio(Producto producto) throws SQLException, SinConexionException {
+	public void modificarProducto(Producto producto) throws SQLException, SinConexionException {
 		PreparedStatement psUpdate = conexion.obtenerConexion().prepareStatement(
-				"UPDATE producto SET precio = ? AND stock = ? AND minstock = ? WHERE idProducto = ? ;");
+				"UPDATE producto SET precio = ?, stock = ?, minstock = ? WHERE idProducto = ? ;");
 		psUpdate.setInt(1, producto.getPrecio());
 		psUpdate.setInt(2, producto.getStock());
 		psUpdate.setInt(3, producto.getMinstock());
