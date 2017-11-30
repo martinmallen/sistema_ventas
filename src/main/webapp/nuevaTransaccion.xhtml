@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
-<title>Busqueda</title>
+<title>Transaccion</title>
 </head>
 <style type="text/css">
 body {
@@ -24,7 +24,7 @@ body {
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-8 text-left">
+			<div class="col-md-7">
 				<LABEL>Lista de Productos</LABEL>
 				<hr></hr>
 				<div class="bg-info" style="padding: 10px;">
@@ -43,7 +43,8 @@ body {
 					<div>
 						<h:form id="tabla">
 							<h:dataTable value="#{listarProductosControlador.productos}"
-								var="productos" styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+								var="producto"
+								styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
 								headerClass="order-table-header text-center"
 								rowClasses="order-table-odd-row,order-table-even-row">
 								<h:column>
@@ -53,7 +54,7 @@ body {
     							ID
     			   				</h:commandLink>
 									</f:facet>
-							#{productos.idProducto}
+							#{producto.idProducto}
 						</h:column>
 								<h:column>
 									<f:facet id="nombre" name="header">
@@ -62,7 +63,7 @@ body {
 							Nombre
 							</h:commandLink>
 									</f:facet>
-							#{productos.nombre}						
+							#{producto.nombre}						
 						</h:column>
 								<h:column>
 									<f:facet id="marca" name="header">
@@ -71,7 +72,7 @@ body {
 							Marca
 							</h:commandLink>
 									</f:facet>
-							#{productos.marca}						
+							#{producto.marca}						
 						</h:column>
 								<h:column>
 									<f:facet id="categoria" name="header">
@@ -80,7 +81,7 @@ body {
 							Categoria
 							</h:commandLink>
 									</f:facet>
-							#{productos.categoria}						
+							#{producto.categoria}						
 						</h:column>
 								<h:column>
 									<f:facet id="stock" name="header">
@@ -89,7 +90,7 @@ body {
 							Stock
 							</h:commandLink>
 									</f:facet>
-							#{productos.stock}						
+							#{producto.stock}						
 						</h:column>
 								<h:column>
 									<f:facet id="precio" name="header">
@@ -98,26 +99,17 @@ body {
 							Precio
 							</h:commandLink>
 									</f:facet>
-							#{productos.precio}						
+							#{producto.precio}						
 						</h:column>
 								<h:column>
-									<f:facet id="sucursal" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorSucursal}"> 
-							Sucursal
-							</h:commandLink>
+									<f:facet id="agregar" name="header">
+
 									</f:facet>
-							#{productos.sucursal_idSucursal}						
-						</h:column>
-						<h:column>
-								<f:facet id="agregar" name="header">
-								<h:commandLink
-									styleClass="btn btn-primary"
-									value="Agregar"/>
-									</f:facet>
-        						<input type="checkbox"/>
-						</h:column>
-						</h:dataTable>
+									<h:commandLink styleClass="btn btn-sm btn-primary"
+										action="#{listarProductosControlador.agregarProducto( producto )}"
+										value="Agregar" />
+								</h:column>
+							</h:dataTable>
 						</h:form>
 					</div>
 					<h:form>
@@ -134,20 +126,50 @@ body {
 				<hr></hr>
 			</div>
 
-			<div class="col-md-4 text-center">
+			<div class="col-md-5 text-center">
 				<label>Carro de Compra</label>
 				<hr></hr>
-				<div class="bg-info" style="padding: 10px;">
+				<div class="bg-success" style="padding: 10px;">
 					<h:form>
+						<h:dataTable value="#{listarProductosControlador.carroDeCompra}"
+							var="producto"
+							styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+							headerClass="order-table-header text-center"
+							rowClasses="order-table-odd-row,order-table-even-row">
+							<h:column>
+								<f:facet id="id2" name="header">
+									ID
+								</f:facet>
+								#{producto.idProducto}
+							</h:column>
+							<h:column>
+								<f:facet id="nombre2" name="header">
+									Nombre
+								</f:facet>
+								#{producto.nombre}
+							</h:column>
+
+							<h:column>
+								<f:facet id="precio2" name="header">
+									Precio
+								</f:facet>
+								#{producto.precio}
+							</h:column>
+
+							<h:column>
+								<f:facet id="Eliminar" name="header">
+									Eliminar
+								</f:facet>
+								<h:commandButton
+									action="#{listarProductosControlador.eliminarProducto(producto)}"
+									styleClass="btn btn-xs btn-danger" value="X" />
+							</h:column>
+						</h:dataTable>
 						<hr></hr>
-						<h:commandButton action="#{listarProductoControlador.Producto}"
-							style="display: none">
-							<button type="button" class="btn btn-success btn-block">Confirmar</button>
-						</h:commandButton>
-						<p></p>
-						<h:commandButton value="Refrescar"
-							styleClass="btn btn-default btn-block">
-						</h:commandButton>
+						<h:commandButton
+							action="#{listarProductoControlador.confirmarCompra()}"
+							styleClass="btn btn-success btn-block" value="Confirmar" />
+						<br></br>
 					</h:form>
 				</div>
 			</div>

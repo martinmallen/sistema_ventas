@@ -30,11 +30,20 @@ public class ListarProductosControlador implements Serializable {
 	private static final Logger LOGGER = Logger.getLogger(ListarProductosControlador.class);
 	private List<Producto> productos;
 	private List<Producto> productosSucursal;
+	private List<Producto> carroDeCompra;
 	private String mensaje;
 	private String nombreP;
 
 	public ListarProductosControlador() {
+		this.carroDeCompra = new ArrayList<Producto>();
+	}
 
+	public List<Producto> getCarroDeCompra() {
+		return carroDeCompra;
+	}
+
+	public void setCarroDeCompra(List<Producto> carroDeCompra) {
+		this.carroDeCompra = carroDeCompra;
 	}
 
 	public String getNombreP() {
@@ -230,7 +239,14 @@ public class ListarProductosControlador implements Serializable {
 		});
 
 	}
+	
+	public void agregarProducto( Producto producto ) {
+		this.carroDeCompra.add(producto);
+	}
 
+	public void eliminarProducto(Producto producto) {
+		this.carroDeCompra.remove(producto);
+	}
 	public String volver() {
 		return "principal.xhtml";
 	}
