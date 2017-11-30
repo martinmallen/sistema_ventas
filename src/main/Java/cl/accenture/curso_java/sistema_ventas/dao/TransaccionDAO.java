@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -84,6 +85,24 @@ public class TransaccionDAO {
 			transacciones.add(transaccion);
 		}
 		return transacciones;
+	}
+	
+	
+	public List<Transaccion> obtenerTransaccionesFecha(Date fecha1, Date fecha2) throws SQLException, SinConexionException{
+		List<Transaccion> tran = new ArrayList<Transaccion>();
+		PreparedStatement ps = conexion.obtenerConexion().prepareStatement("SELECT * FROM transaccion WHERE fecha BETWEEN "+fecha1+" AND "+fecha2+";");
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()){
+			Transaccion transaccion = new Transaccion();
+			transaccion.setIdTransaccion(rs.getInt("idTransaccion"));
+			transaccion.setValor(rs.getInt("valor"));
+			transaccion.setFecha(rs.getDate("fecha"));
+			transaccion.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+			tran.add(transaccion);
+			
+		}
+		
+		return tran;
 	}
 	
 }

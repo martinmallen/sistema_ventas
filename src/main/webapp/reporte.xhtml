@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+<title>Insert title here</title>
+</head>
+<style type="text/css">
+body {
+	background-image: url(imagenes/accenture-wallpaper.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+<body>
+<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<div class="container-fluid">
+		<div class="row col-md-6 col-md-offset-3">
+			<div class="bg-info" style="padding: 10px;">
+				<h:form name="formReporteVenta" id="formReporteVenta" >
+					<div class="form-group">
+						<H1>Reporte Productos Vendidos</H1>
+						<H4>Fechas</H4>
+						<DIV class=" col-md-4">
+						<h:inputText styleClass="form-control" id="fecha" name="fecha" value=""></h:inputText>
+						</DIV>
+						<DIV class=" col-md-4">
+						<h:inputText styleClass="form-control" id="fecha2" name="fecha2" value=""></h:inputText></DIV>
+						<DIV class=" col-md-4">
+						<h:commandButton for="report" value="Buscar" action="#"
+							styleClass="btn btn-success"></h:commandButton></DIV>
+					</div>
+				</h:form>
+				<DIV>
+					<h:dataTable value="#" var="reporte"
+						styleClass="table table-bordered" id="report">
+						<h:column>
+							<f:facet name="header">ID Transaccion</f:facet>#{reporte.idTransaccion}</h:column>
+						<h:column>
+							<f:facet name="header">Producto</f:facet>#{reporte.valor}</h:column>
+						<h:column>
+							<f:facet name="header">Cantidad</f:facet>#{reporte.fecha}</h:column>
+
+					</h:dataTable>
+
+
+				</DIV>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+		crossorigin="anonymous"></script>
+	<SCRIPT type="text/javascript" src="js/bootstrap-datepicker.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/reporteVenta.js"></SCRIPT>
+</body>
+</html>
