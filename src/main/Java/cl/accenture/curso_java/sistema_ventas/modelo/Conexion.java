@@ -5,6 +5,7 @@ package cl.accenture.curso_java.sistema_ventas.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Map;
 
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 
@@ -15,6 +16,7 @@ import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 public class Conexion {
 	private String host, baseDeDatos, nombre, password;
 	private int puerto;
+	private static final String VAR_HOST_MYSQL = "MYSQL_SISINVENTARIO_PORT_3306_TCP_ADDR";
 
 	/**
 	 * 
@@ -25,6 +27,18 @@ public class Conexion {
 		this.nombre = "root";
 		this.password = "m4l3np1wk3";
 		this.puerto = 3306;
+		
+		Map<String, String> env = System.getenv();
+        for (String envName : env.keySet()) {
+            System.out.format("%s=%s%n",
+                              envName,
+                              env.get(envName));
+        }
+		
+		String hostOpenShift = System.getenv(VAR_HOST_MYSQL);
+		if( hostOpenShift != null ){
+			this.host = hostOpenShift;
+		}
 	}
 
 	/**
