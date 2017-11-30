@@ -39,6 +39,8 @@ public class Conexion {
 		if( hostOpenShift != null ){
 			this.host = hostOpenShift;
 		}
+		
+		
 	}
 
 	/**
