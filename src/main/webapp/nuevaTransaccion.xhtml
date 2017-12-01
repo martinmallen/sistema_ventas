@@ -9,151 +9,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
-<title>Busqueda</title>
+<title>Transaccion</title>
 </head>
 <style type="text/css">
-body {
-	/*  background-image: url(imagenes/accenture-wallpaper.png); */
+
+body{
+	background-image: url(imagenes/Accenture3.png); 
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
+h4{
+	color: black;
+}
 </style>
+<h:body>
 <body>
-	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-8 text-left">
-				<LABEL>Lista de Productos</LABEL>
-				<hr></hr>
-				<div class="bg-info" style="padding: 10px;">
-					<h:form>
-						<h:inputText id="search"
-							value="#{listarProductosControlador.nombreP}"></h:inputText>
-						<h:commandButton
-							action="#{listarProductosControlador.buscarPorNombre}">
-							<f:attribute name="value" value="Buscar">
-								<!-- 								<i class="glyphicon glyphicon-search"></i> -->
-							</f:attribute>
-
-						</h:commandButton>
-					</h:form>
+	<header>
+				<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+				<br /> <br /> <br /> <br/>
+	</header>
+		<div id="transaccion" class="container-fluid">
+			<div class="row">
+				<div class="col-md-7 text-center">
+					<div class="bg-info" style="padding: 10px;">
+					<h4>Lista de Productos</h4>
 					<hr></hr>
-					<div>
-						<h:form id="tabla">
-							<h:dataTable value="#{listarProductosControlador.productos}"
-								var="productos" styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+						<h:form>
+							<h:inputText id="search"
+								value="#{listarProductosControlador.nombreP}"></h:inputText>
+							<h:commandButton
+								action="#{listarProductosControlador.buscarPorNombre}">
+								<f:attribute name="value" value="Buscar">
+									<!-- <i class="glyphicon glyphicon-search"></i> -->
+								</f:attribute>
+							</h:commandButton>
+						</h:form>
+						<hr></hr>
+						<div>
+							<h:form id="tabla">
+								<h:dataTable value="#{listarProductosControlador.productos}"
+									var="producto"
+									styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+									headerClass="order-table-header text-center"
+									rowClasses="order-table-odd-row,order-table-even-row">
+									<h:column>
+										<f:facet id="idProducto" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorIdProducto}">
+    							ID
+    			   				</h:commandLink>
+										</f:facet>
+							#{producto.idProducto}
+						</h:column>
+									<h:column>
+										<f:facet id="nombre" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorNombre}">
+							Nombre
+							</h:commandLink>
+										</f:facet>
+							#{producto.nombre}						
+						</h:column>
+									<h:column>
+										<f:facet id="marca" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorMarca}">
+							Marca
+							</h:commandLink>
+										</f:facet>
+							#{producto.marca}						
+						</h:column>
+									<h:column>
+										<f:facet id="categoria" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorCategoria}">
+							Categoria
+							</h:commandLink>
+										</f:facet>
+							#{producto.categoria}						
+						</h:column>
+									<h:column>
+										<f:facet id="stock" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorStock}">
+							Stock
+							</h:commandLink>
+										</f:facet>
+							#{producto.stock}						
+						</h:column>
+									<h:column>
+										<f:facet id="precio" name="header">
+											<h:commandLink
+												action="#{listarProductosControlador.ordenarPorPrecio}">
+							Precio
+							</h:commandLink>
+										</f:facet>
+							#{producto.precio}						
+						</h:column>
+									<h:column>
+										<f:facet id="agregar" name="header">
+
+										</f:facet>
+										<h:commandLink styleClass="btn btn-sm btn-primary"
+											action="#{listarProductosControlador.agregarProducto( producto )}"
+											value="Agregar" />
+									</h:column>
+								</h:dataTable>
+							</h:form>
+						</div>
+						<h:form>
+							<h:commandButton
+								action="#{listarProductosControlador.obtenerProductos}"
+								styleClass="btn btn-primary btn-block" value="Listar">
+							</h:commandButton>
+							<p></p>
+							<h:commandButton styleClass="btn btn-default btn-block"
+								value="Limpiar" action="#{listarProductosControlador.limpiar}">
+							</h:commandButton>
+						</h:form>
+					</div>
+				</div>
+
+				<div class="col-md-5 text-center">
+					<div class="bg-success" style="padding: 10px;">
+					<h4>Carro de Compra</h4>
+					<hr></hr>
+						<h:form>
+							<h:dataTable value="#{listarProductosControlador.carroDeCompra}"
+								var="producto"
+								styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
 								headerClass="order-table-header text-center"
 								rowClasses="order-table-odd-row,order-table-even-row">
 								<h:column>
-									<f:facet id="idProducto" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorIdProducto}">
-    							ID
-    			   				</h:commandLink>
-									</f:facet>
-							#{productos.idProducto}
-						</h:column>
+									<f:facet id="id2" name="header">
+									ID
+								</f:facet>
+								#{producto.idProducto}
+							</h:column>
 								<h:column>
-									<f:facet id="nombre" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorNombre}">
-							Nombre
-							</h:commandLink>
-									</f:facet>
-							#{productos.nombre}						
-						</h:column>
+									<f:facet id="nombre2" name="header">
+									Nombre
+								</f:facet>
+								#{producto.nombre}
+							</h:column>
+
 								<h:column>
-									<f:facet id="marca" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorMarca}">
-							Marca
-							</h:commandLink>
-									</f:facet>
-							#{productos.marca}						
-						</h:column>
+									<f:facet id="precio2" name="header">
+									Precio
+								</f:facet>
+								#{producto.precio}
+							</h:column>
+
 								<h:column>
-									<f:facet id="categoria" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorCategoria}">
-							Categoria
-							</h:commandLink>
-									</f:facet>
-							#{productos.categoria}						
-						</h:column>
-								<h:column>
-									<f:facet id="stock" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorStock}">
-							Stock
-							</h:commandLink>
-									</f:facet>
-							#{productos.stock}						
-						</h:column>
-								<h:column>
-									<f:facet id="precio" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorPrecio}">
-							Precio
-							</h:commandLink>
-									</f:facet>
-							#{productos.precio}						
-						</h:column>
-								<h:column>
-									<f:facet id="sucursal" name="header">
-										<h:commandLink
-											action="#{listarProductosControlador.ordenarPorSucursal}"> 
-							Sucursal
-							</h:commandLink>
-									</f:facet>
-							#{productos.sucursal_idSucursal}						
-						</h:column>
-						<h:column>
-								<f:facet id="agregar" name="header">
-								<h:commandLink
-									styleClass="btn btn-primary"
-									value="Agregar"/>
-									</f:facet>
-        						<input type="checkbox"/>
-						</h:column>
-						</h:dataTable>
+									<f:facet id="Eliminar" name="header">
+									Eliminar
+								</f:facet>
+									<h:commandButton
+										action="#{listarProductosControlador.eliminarProducto(producto)}"
+										styleClass="btn btn-xs btn-danger" value="X" />
+								</h:column>
+							</h:dataTable>
+							<hr></hr>
+							<h:commandButton
+								action="#{listarProductoControlador.confirmarCompra()}"
+								styleClass="btn btn-success btn-block" value="Confirmar" />
+							<br></br>
 						</h:form>
 					</div>
-					<h:form>
-						<h:commandButton
-							action="#{listarProductosControlador.obtenerProductos}"
-							styleClass="btn btn-primary btn-block" value="Listar">
-						</h:commandButton>
-						<p></p>
-						<h:commandButton styleClass="btn btn-default btn-block"
-							value="Limpiar" action="#{listarProductosControlador.limpiar}">
-						</h:commandButton>
-					</h:form>
-				</div>
-				<hr></hr>
-			</div>
-
-			<div class="col-md-4 text-center">
-				<label>Carro de Compra</label>
-				<hr></hr>
-				<div class="bg-info" style="padding: 10px;">
-					<h:form>
-						<hr></hr>
-						<h:commandButton action="#{listarProductoControlador.Producto}"
-							style="display: none">
-							<button type="button" class="btn btn-success btn-block">Confirmar</button>
-						</h:commandButton>
-						<p></p>
-						<h:commandButton value="Refrescar"
-							styleClass="btn btn-default btn-block">
-						</h:commandButton>
-					</h:form>
 				</div>
 			</div>
+			<hr/>
 		</div>
-	</div>
-
-</body>
+	</body>
+</h:body>
 <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </html>

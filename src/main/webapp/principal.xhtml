@@ -5,21 +5,68 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initialscale=
+1"/>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <title>Página Principal</title>
 <style type="text/css">
 body {
- 	background-image: url(imagenes/Accenture4.jpg);
-	background-position: center center;	  
+	
+	font-family: Arial;
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
+#ww{
+	background-color: #f5f5f5;
+    padding-bottom: 70px;
+    padding-top: 70px;
+}
+#texto1{
+	color: #000000;
+	font-size: 150%;
+}
 </style>
 </head>
-
-<body>
-	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	
-</body>
+<h:body>
+	<header>
+		<ui:include src="/WEB-INF/barraSuperior.xhtml"/>
+	</header>
+	<body>
+				<div id="ww" class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<br/><br/>
+							<img id="inventario-img"
+								src="imagenes/Inventory-Control.png" class="img-responsive center-block"/>
+						</div>
+					</div>
+					<br/><br/><br/>
+					<div id="texto1" class="row">
+							<div id="i1" class="col-md-4 text-center">
+								<img id="inventory-icon" src="imagenes/inventory-icon.png" class="img-responsive center-block"
+								style="width: 60px; height: 60px" />
+							<br/>
+							<p align="justify">Consulte los productos disponibles para cada sucursal en cualquier momento. Nuestro sistema también le avisará mediante una alerta, sí hay bajo stock en algún producto. </p>
+							</div>
+							<div id="i1" class="col-md-4 text-center">
+								<img id="inventory-icon" src="imagenes/carro-de-compra.png" class="img-responsive center-block"
+								style="width: 60px; height: 60px" />
+							<br/>
+							<p align="justify">Acceda al completo sistema de ventas, el cual actualiza su inventario cada vez que se realiza una venta exitosa.</p>
+							</div>
+							<div id="i1" class="col-md-4 text-center">
+								<img id="inventory-icon" src="imagenes/report.png" class="img-responsive center-block"
+								style="width: 60px; height: 60px" />
+							<br/>
+							<p align="justify">Lleve el control total de su empresa con los reportes de ganacias y ventas totales para cada sucursal.</p>
+							</div>
+					</div>
+				</div>
+	</body>
+	<footer id="footer">
+		<ui:include src="/WEB-INF/barraInferior.xhtml"/>
+	</footer>
+</h:body>
 </html>
