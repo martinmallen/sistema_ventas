@@ -113,7 +113,7 @@ public class ProductoDAO {
 		return productos;
 	}
 
-	public List<Producto> buscarProductos(String nombre) throws SQLException, SinConexionException {
+	public List<Producto> buscarProductosNombre(String nombre) throws SQLException, SinConexionException {
 		List<Producto> productos = new ArrayList<Producto>();
 		PreparedStatement pst = conexion.obtenerConexion().prepareStatement("select * from producto WHERE nombre = ?;");
 		pst.setString(1, nombre);
