@@ -23,11 +23,7 @@ public class Conexion {
 		this.host = "127.0.0.1"; // o "localhost"
 		this.baseDeDatos = "sisinventario";
 		this.nombre = "root";
-<<<<<<< HEAD
 		this.password = "wasd231";
-=======
-		this.password = "m4l3np1wk3";
->>>>>>> 4a8d6fe343e16e52c2801ea4ea37d92e755a8f96
 		this.puerto = 3306;
 	}
 

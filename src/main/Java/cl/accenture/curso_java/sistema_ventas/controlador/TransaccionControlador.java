@@ -88,7 +88,7 @@ public class TransaccionControlador implements Serializable{
 		
 		try {
 			TransaccionDAO dao = new TransaccionDAO();
-			dao.guardarTransaccion(transacciones);
+			dao.guardarTransaccion(transaccion);
 		} catch (Exception e) {
 			this.setMensaje("Ocurrio un error al guardar la transaccion.");
 			

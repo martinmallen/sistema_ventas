@@ -33,6 +33,8 @@ public class ListarProductosControlador implements Serializable {
 	private List<Producto> carroDeCompra;
 	private String mensaje;
 	private String nombreP;
+	private String marcaP;
+	private int precioP;
 
 	public ListarProductosControlador() {
 		this.carroDeCompra = new ArrayList<Producto>();
@@ -52,6 +54,21 @@ public class ListarProductosControlador implements Serializable {
 
 	public void setNombreP(String nombreP) {
 		this.nombreP = nombreP;
+	}
+	public String getMarcaP() {
+		return marcaP;
+	}
+
+	public void setMarcaP(String marcaP) {
+		this.marcaP = marcaP;
+	}
+	
+	public int getPrecioP() {
+		return precioP;
+	}
+
+	public void setPrecioP(int precioP) {
+		this.precioP = precioP;
 	}
 
 	/**
@@ -107,7 +124,7 @@ public class ListarProductosControlador implements Serializable {
 
 		try {
 			ProductoDAO dao = new ProductoDAO();
-			this.setProductos(dao.buscarProductos(this.nombreP));
+			this.setProductos(dao.buscarProductosNombre(this.nombreP));
 			this.setMensaje("");
 
 		} catch (Exception e) {
@@ -117,6 +134,8 @@ public class ListarProductosControlador implements Serializable {
 		}
 
 	}
+	
+
 
 	public void obtenerProductos() {
 
@@ -250,5 +269,7 @@ public class ListarProductosControlador implements Serializable {
 	public String volver() {
 		return "principal.xhtml";
 	}
+
+	
 
 }
