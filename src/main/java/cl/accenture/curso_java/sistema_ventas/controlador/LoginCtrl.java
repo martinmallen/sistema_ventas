@@ -4,17 +4,12 @@
 package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import cl.accenture.curso_java.sistema_ventas.dao.UsuarioDAO;
-import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
-import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
-import cl.accenture.curso_java.sistema_ventas.modelo.Perfil;
 import cl.accenture.curso_java.sistema_ventas.modelo.Permiso;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 import cl.accenture.curso_java.sistema_ventas.servicios.SHAServices;
@@ -143,7 +138,10 @@ public class LoginCtrl implements Serializable {
 	}
 
 	public String cerrarSesion() {
-		//TODO: Matar sesion facecontext
+		this.setRut("");
+		this.setMensaje("");
+		this.usuario.setRut("");
+		this.usuario.setPassword("");
 		return "login_.xhtml";
 	}
 
