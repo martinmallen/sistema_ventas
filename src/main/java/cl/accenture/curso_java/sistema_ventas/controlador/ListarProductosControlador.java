@@ -13,7 +13,9 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
+import cl.accenture.curso_java.sistema_ventas.modelo.DetalleTransaccion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
+import cl.accenture.curso_java.sistema_ventas.modelo.Transaccion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
@@ -270,6 +272,18 @@ public class ListarProductosControlador implements Serializable {
 		return "principal.xhtml";
 	}
 
-	
+	public String confirmar(){
+		
+		
+		for (Producto producto2 : carroDeCompra) {
+			
+			
+			DetalleTransaccion det = new DetalleTransaccion(idDetalleTransaccion, unidades, subtotal, producto2);
+					TransaccionControlador trans = new Transaccion(idTransaccion, valor, fecha, detalle);
+		}
+		
+		
+		
+	}
 
 }
