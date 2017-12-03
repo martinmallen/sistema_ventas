@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></link>
 <link rel="stylesheet" type="text/css" href="css/estilos.css"></link>
 <STYLE type="text/css">
-body{
+body {
 	background-color: yellow;
 }
 </STYLE>
@@ -31,7 +31,10 @@ body{
 <body>
 
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<br/><br/><br/><br/>
+	<br />
+	<br />
+	<br />
+	<br />
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6">
@@ -66,7 +69,7 @@ body{
 								</h:inputText>
 							</div>
 						</DIV>
-						
+
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>E-mail</LABEL>
@@ -124,12 +127,20 @@ body{
 
 								<h:selectOneMenu styleClass="form-control"
 									value="#{crearUsuarioCtrl.perfil_nombre}">
-									<f:selectItem itemValue="Vendedor" itemLabel="Vendedor" />
-									<f:selectItem itemValue="Jefe Sucursal"
-										itemLabel="Jefe Sucursal" />
-									<f:selectItem itemValue="Administrador"
-										itemLabel="Administrador" />
-									<f:selectItem itemValue="Root" itemLabel="Root" />
+									<c:if test="#{loginCtrl.tienePermiso('crear vendedor') }">
+										<f:selectItem itemValue="Vendedor" itemLabel="Vendedor" />
+									</c:if>
+									<c:if test="#{loginCtrl.tienePermiso('crear jefe sucursal') }">
+										<f:selectItem itemValue="Jefe Sucursal"
+											itemLabel="Jefe Sucursal" />
+									</c:if>
+									<c:if test="#{loginCtrl.tienePermiso('crear administrador') }">
+										<f:selectItem itemValue="Administrador"
+											itemLabel="Administrador" />
+									</c:if>
+									<c:if test="#{loginCtrl.tienePermiso('crear root') }">
+										<f:selectItem itemValue="Root" itemLabel="Root" />
+									</c:if>
 								</h:selectOneMenu>
 
 							</div>
