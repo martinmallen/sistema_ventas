@@ -10,26 +10,24 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 <style type="text/css">
-body {
-	background-image: url(imagenes/accenture-wallpaper.png);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
+body{
+	background-color: yellow;
 }
 </style>
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+	<br/><br/><br/><br/>
 	<DIV class="container-fluid">
 		<DIV class="row text-center">
 			<DIV class="col-md-8 col-md-offset-2 bg-primary">
 				<H1>Modificar Producto</H1>
-				<H6>Ingresa el Nombre del Producto a Modificar.</H6>
+				<H6>Ingrese nombre del producto a modificar :</H6>
 
 				<h:form class="form-group text-center">
 
 					<h:inputText id="search"
-						value="#{modificarProductoCtrl.producto.nombre}"></h:inputText>
+						value="#{modificarProductoCtrl.producto.nombre}"
+						style="color: black;"></h:inputText>
 
 					<h:commandButton for="search" value="Buscar"
 						action="#{modificarProductoCtrl.buscarPorNombre}"
@@ -41,6 +39,7 @@ body {
 
 
 			<div class="col-md-8 col-md-offset-2 bg-info">
+			<br/><br/>
 				<h:form>
 					<h:dataTable id="table" value="#{modificarProductoCtrl.producto}" var="p"
 						styleClass="table table-striped table-bordered dt-responsive nowrap text-center"

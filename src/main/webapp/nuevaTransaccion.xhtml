@@ -110,7 +110,7 @@ h4{
 						</h:column>
 									<h:column>
 										<f:facet id="agregar" name="header">
-
+							Accion
 										</f:facet>
 										<h:commandLink styleClass="btn btn-sm btn-primary"
 											action="#{listarProductosControlador.agregarProducto( producto )}"
@@ -142,17 +142,18 @@ h4{
 								styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
 								headerClass="order-table-header text-center"
 								rowClasses="order-table-odd-row,order-table-even-row">
-								<h:column>
-									<f:facet id="id2" name="header">
-									ID
-								</f:facet>
-								#{producto.idProducto}
-							</h:column>
+								
 								<h:column>
 									<f:facet id="nombre2" name="header">
 									Nombre
 								</f:facet>
 								#{producto.nombre}
+							</h:column>
+							<h:column>
+									<f:facet id="marca2" name="header">
+									Marca
+								</f:facet>
+								#{producto.marca}
 							</h:column>
 
 								<h:column>
@@ -160,6 +161,13 @@ h4{
 									Precio
 								</f:facet>
 								#{producto.precio}
+							</h:column>
+							<h:column>
+									<f:facet id="precio2" name="header">
+									Unidades
+								</f:facet>
+								<h:inputText id="unidades"
+								value="#{listarProductosControlador.nombreP}"></h:inputText>
 							</h:column>
 
 								<h:column>
