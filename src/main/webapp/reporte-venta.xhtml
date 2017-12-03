@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
 
 <meta charset="ISO-8859-1" />
-<title>Insert title here</title>
+<title>Reporte Ganancias</title>
 <style type="text/css">
 body{
 	background-image: url(imagenes/Accenture3.png); 
@@ -24,21 +24,26 @@ body{
 	<div class="container-fluid">
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="bg-info" style="padding: 10px;">
-				<h:form name="formReporteVenta" id="formReporteVenta" >
+				<h:form name="formReporteVenta" id="formReporteVenta">
 					<div class="form-group">
 						<H1>Reporte Ganacias</H1>
 						<H4>Fechas</H4>
 						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha" name="fecha" value=""></h:inputText>
+							<h:inputText styleClass="form-control" id="fecha" name="fecha"
+								value="#{reporteControlador.fecha1}"></h:inputText>
 						</DIV>
 						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha2" name="fecha2" value=""></h:inputText></DIV>
+							<h:inputText styleClass="form-control" id="fecha2" name="fecha2"
+								value="#{reporteControlador.fecha2}"></h:inputText>
+						</DIV>
 						<DIV class=" col-md-4">
-						<h:commandButton for="report" value="Buscar" action="#"
-							styleClass="btn btn-success"></h:commandButton></DIV>
+							<h:commandButton for="report" value="Buscar"
+								action="#{reporteCotrolador.reporteGanancia}"
+								styleClass="btn btn-success"></h:commandButton>
+						</DIV>
 					</div>
 				</h:form>
-				<DIV>
+				<DIV class="col-md-12">
 					<h:dataTable value="#" var="reporte"
 						styleClass="table table-bordered" id="report">
 						<h:column>
@@ -51,6 +56,12 @@ body{
 					</h:dataTable>
 
 
+				</DIV>
+				<DIV class="col-md-4">
+					<H4>Total:</H4>
+				</DIV>
+				<DIV class="col-md-8">
+					<h:outputText value="#{reporteControlador.total}"></h:outputText>
 				</DIV>
 			</div>
 		</div>

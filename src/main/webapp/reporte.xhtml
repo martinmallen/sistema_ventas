@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
-<title>Insert title here</title>
+<title>Reporte Productos</title>
 </head>
 <style type="text/css">
 body{
@@ -28,24 +28,23 @@ body{
 						<H1>Reporte Productos Vendidos</H1>
 						<H4>Fechas</H4>
 						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha" name="fecha" value=""></h:inputText>
+						<h:inputText styleClass="form-control" id="fecha" name="fecha" value="#{reporteControlador.fecha1}"></h:inputText>
 						</DIV>
 						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha2" name="fecha2" value=""></h:inputText></DIV>
+						<h:inputText styleClass="form-control" id="fecha2" name="fecha2" value="#{reporteControlador.fecha2}"></h:inputText></DIV>
 						<DIV class=" col-md-4">
-						<h:commandButton for="report" value="Buscar" action="#"
+						<h:commandButton value="Buscar" action="#{reporteControlador.reporteProductos}"
 							styleClass="btn btn-success"></h:commandButton></DIV>
 					</div>
 				</h:form>
 				<DIV>
-					<h:dataTable value="#" var="reporte"
+					<h:dataTable value="#{reporteControlador.detalle}" var="reporte"
 						styleClass="table table-bordered" id="report">
 						<h:column>
-							<f:facet name="header">ID Transaccion</f:facet>#{reporte.idTransaccion}</h:column>
+							<f:facet name="header">ID Producto</f:facet>#{reporte.producto.idProducto}</h:column>
+						
 						<h:column>
-							<f:facet name="header">Producto</f:facet>#{reporte.valor}</h:column>
-						<h:column>
-							<f:facet name="header">Cantidad</f:facet>#{reporte.fecha}</h:column>
+							<f:facet name="header">Cantidad</f:facet>#{reporte.unidades}</h:column>
 
 					</h:dataTable>
 
