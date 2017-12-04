@@ -46,6 +46,8 @@ public class ListarProductosControlador implements Serializable {
 	private int subtotal;
 	private List<DetalleTransaccion> detalle;
 	private List<Unidades> unidad;
+	private int preciomin;
+	private int preciomax;
 
 	/**
 	 * 
@@ -56,6 +58,44 @@ public class ListarProductosControlador implements Serializable {
 		this.detalle = new ArrayList<DetalleTransaccion>();
 		this.unidad = new ArrayList<Unidades>();
 	}
+	
+	
+
+	/**
+	 * @return the preciomin
+	 */
+	public int getPreciomin() {
+		return preciomin;
+	}
+
+
+
+	/**
+	 * @param preciomin the preciomin to set
+	 */
+	public void setPreciomin(int preciomin) {
+		this.preciomin = preciomin;
+	}
+
+
+
+	/**
+	 * @return the preciomax
+	 */
+	public int getPreciomax() {
+		return preciomax;
+	}
+
+
+
+	/**
+	 * @param preciomax the preciomax to set
+	 */
+	public void setPreciomax(int preciomax) {
+		this.preciomax = preciomax;
+	}
+
+
 
 	/**
 	 * @return the unidad
@@ -407,6 +447,22 @@ public class ListarProductosControlador implements Serializable {
 		
 		this.unidad = new ArrayList<Unidades>();
 
+		
+	}
+	
+	public void buscarPrecio(){
+		
+		ProductoDAO dao = new ProductoDAO();
+		
+		try {
+			this.setProductos(dao.buscarPrecio(preciomin, preciomax));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SinConexionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

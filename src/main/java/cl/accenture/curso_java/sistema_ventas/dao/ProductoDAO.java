@@ -110,7 +110,7 @@ public class ProductoDAO {
 			producto.setStock(rs.getInt("stock"));
 			producto.setCategoria(rs.getString("categoria"));
 			producto.setMinstock(rs.getInt("minstock"));
-
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
 			productos.add(producto);
 		}
 		return productos;
@@ -130,6 +130,7 @@ public class ProductoDAO {
 			producto.setStock(rs.getInt("stock"));
 			producto.setCategoria(rs.getString("categoria"));
 			producto.setMinstock(rs.getInt("minstock"));
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
 			productos.add(producto);
 		}
 		return productos;
@@ -226,5 +227,36 @@ public class ProductoDAO {
 		psUpdate.setInt(2, id);
 		psUpdate.executeUpdate();
 
+	}
+
+	public List<Producto> buscarPrecio(int min, int max) throws SQLException, SinConexionException {
+		
+		Usuario user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		
+		
+		
+		List<Producto> pro = new ArrayList<Producto>();
+		
+		PreparedStatement ps = conexion.obtenerConexion()
+				.prepareStatement("SELECT * FROM producto WHERE precio BETWEEN ? AND ? ;");
+		ps.setInt(1, min);
+		ps.setInt(2, max);
+
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			Producto producto = new Producto();
+			producto.setIdProducto(rs.getInt("idProducto"));
+			producto.setNombre(rs.getString("nombre"));
+			producto.setPrecio(rs.getInt("precio"));
+			producto.setMarca(rs.getString("marca"));
+			producto.setStock(rs.getInt("stock"));
+			producto.setCategoria(rs.getString("categoria"));
+			producto.setMinstock(rs.getInt("minstock"));
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+
+			pro.add(producto);
+		}
+		return pro;
 	}
 }
