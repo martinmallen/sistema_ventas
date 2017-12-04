@@ -14,8 +14,12 @@
 	crossorigin="anonymous"></link>
 <link rel="stylesheet" type="text/css" href="css/estilos.css"></link>
 <STYLE type="text/css">
-body{
-	background-color: yellow;
+body {
+	background-image: url(imagenes/Accenture3.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 </STYLE>
 
@@ -31,8 +35,10 @@ body{
 <body>
 
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<br/><br/><br/><br/>
 	<div class="container-fluid">
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6">
 				<div class="text-center"></div>
@@ -66,7 +72,7 @@ body{
 								</h:inputText>
 							</div>
 						</DIV>
-						
+
 						<DIV class="col-md-6">
 							<div class="form-group">
 								<LABEL>E-mail</LABEL>
@@ -164,7 +170,13 @@ body{
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 	</div>
 
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

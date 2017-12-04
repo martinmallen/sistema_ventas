@@ -20,6 +20,16 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
+
+hr {
+	color: black;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
 </style>
 
 
@@ -36,10 +46,13 @@ body {
 
 				</div>
 				<div class="bg-info" style="padding: 10px;">
+					<div class="text-center">
 					<h1>Iniciar Sesion</h1>
 					<hr></hr>
+					</div>
 					<h:form>
 						<div class="form-group">
+						
 							<LABEL>Rut de Usuario</LABEL>
 							<h:inputText value="#{loginCtrl.rut}"
 								styleClass="form-control"></h:inputText>

@@ -10,8 +10,8 @@
 <meta charset="ISO-8859-1" />
 <title>Reporte Ganancias</title>
 <style type="text/css">
-body{
-	background-image: url(imagenes/Accenture3.png); 
+body {
+	background-image: url(imagenes/Accenture3.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -22,6 +22,9 @@ body{
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="bg-info" style="padding: 10px;">
 				<h:form name="formReporteVenta" id="formReporteVenta">
@@ -65,6 +68,9 @@ body{
 				</DIV>
 			</div>
 		</div>
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
 		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -72,4 +78,7 @@ body{
 	<SCRIPT type="text/javascript" src="js/bootstrap-datepicker.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/reporteVenta.js"></SCRIPT>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

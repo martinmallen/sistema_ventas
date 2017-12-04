@@ -4,59 +4,86 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
 <title>Reporte Productos</title>
 </head>
 <style type="text/css">
-body{
-	background-image: url(imagenes/Accenture3.png); 
-	background-position: center center;
+body {
+	background-image: url(imagenes/Accenture3.png);
+	background-position: center center; /*centrada vertical y horizontal*/
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	/*la imagen de fondo está fija en el viewport, de modo que no se mueva cuando la altura del contenido supere la altura de la imagen*/
 	background-size: cover;
+	/*la imagen se reescala cuando cambia el ancho de ventana*/
+	margin: 0;
+	height: auto;
+}
+
+#body1 {
+	
 }
 </style>
 <body>
-<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<div class="container-fluid">
+	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+
+	<div id="body1" class="container-fluid">
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="bg-info" style="padding: 10px;">
-				<h:form name="formReporteVenta" id="formReporteVenta" >
-					<div class="form-group">
+				<div class="form-group">
+					<h:form name="formReporteVenta" id="formReporteVenta">
+
 						<H1>Reporte Productos Vendidos</H1>
 						<H4>Fechas</H4>
-						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha" name="fecha" value="#{reporteControlador.fecha1}"></h:inputText>
-						</DIV>
-						<DIV class=" col-md-4">
-						<h:inputText styleClass="form-control" id="fecha2" name="fecha2" value="#{reporteControlador.fecha2}"></h:inputText></DIV>
-						<DIV class=" col-md-4">
-						<h:commandButton value="Buscar" action="#{reporteControlador.reporteProductos}"
-							styleClass="btn btn-success"></h:commandButton></DIV>
-					</div>
-				</h:form>
-				<DIV>
+						<div class=" col-md-4">
+							<h:inputText styleClass="form-control" id="fecha" name="fecha"
+								value="#{reporteControlador.fecha1}"></h:inputText>
+						</div>
+						<div class=" col-md-4">
+							<h:inputText styleClass="form-control" id="fecha2" name="fecha2"
+								value="#{reporteControlador.fecha2}"></h:inputText>
+						</div>
+						<div class=" col-md-4">
+							<h:commandButton value="Buscar"
+								action="#{reporteControlador.reporteProductos}"
+								styleClass="btn btn-success"></h:commandButton>
+						</div>
+
+					</h:form>
+				</div>
+				<div>
 					<h:dataTable value="#{reporteControlador.detalle}" var="reporte"
 						styleClass="table table-bordered" id="report">
 						<h:column>
 							<f:facet name="header">ID Producto</f:facet>#{reporte.producto.idProducto}</h:column>
-						
+
 						<h:column>
 							<f:facet name="header">Cantidad</f:facet>#{reporte.unidades}</h:column>
 
 					</h:dataTable>
 
 
-				</DIV>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid">
+	<div class="row">
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /><br/> 
+		</div>
+		</div>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
 		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 		crossorigin="anonymous"></script>
 	<SCRIPT type="text/javascript" src="js/bootstrap-datepicker.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="js/reporteVenta.js"></SCRIPT>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

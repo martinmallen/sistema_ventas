@@ -11,8 +11,8 @@
 <link rel="stylesheet" type="text/css" href="js/datatables.min.css" />
 </head>
 <style type="text/css">
-body{
-	background-image: url(imagenes/Accenture3.png); 
+body {
+	background-image: url(imagenes/Accenture3.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -22,6 +22,9 @@ body{
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
+	<div class="row">
+				<br /> <br /> <br /> <br /> <br />
+			</div>
 		<div class="col-md-6 col-md-offset-3 text-center bg-info">
 			<H1>Personal de Sucursal</H1>
 			<hr></hr>
@@ -29,8 +32,7 @@ body{
 				<h:commandButton for="Tusuarios" value="Actualizar"
 					action="#{listaUsuariosCtrl.obtenerUsuarios}"
 					styleClass="btn btn-success"></h:commandButton>
-				<h:commandButton  value="Volver"
-					action="#{listaUsuariosCtrl.volver}"
+				<h:commandButton value="Volver" action="#{listaUsuariosCtrl.volver}"
 					styleClass="btn btn-default"></h:commandButton>
 				<h:dataTable id="Tusuarios" value="#{listaUsuariosCtrl.usuarios}"
 					var="u" styleClass="table table-responsive text-center"
@@ -61,6 +63,12 @@ body{
 				</h:dataTable>
 			</h:form>
 		</div>
+		<div class="row">
+				<br /> <br /> <br /> <br /> <br />
+			</div>
 	</div>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

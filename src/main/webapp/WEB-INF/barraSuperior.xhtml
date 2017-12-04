@@ -28,10 +28,10 @@
 							aria-expanded="false">Transacciones<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<c:if test="#{loginCtrl.tienePermiso('nueva transaccion') }">
-									<li><a href="buscarProducto.xhtml">Nueva</a></li>
+									<li><a href="nuevaTransaccion.xhtml">Nueva</a></li>
 								</c:if>
 								<c:if test="#{loginCtrl.tienePermiso('anular transaccion') }">
-									<li><a href="#">Anular</a></li>
+									<li><a href="anularTransaccion.xhtml">Anular</a></li>
 								</c:if>
 							</ul></li>
 						<c:if test="#{loginCtrl.tienePermiso('datos productos') }">
@@ -39,6 +39,9 @@
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">Productos<span class="caret"></span></a>
 								<ul class="dropdown-menu">
+									<c:if test="#{loginCtrl.tienePermiso('buscar productos') }">
+										<li><a href="buscarProducto.xhtml">Buscar</a></li>
+									</c:if>
 									<c:if test="#{loginCtrl.tienePermiso('cargar productos') }">
 										<li><a href="cargarProductos.xhtml">Agregar</a></li>
 									</c:if>

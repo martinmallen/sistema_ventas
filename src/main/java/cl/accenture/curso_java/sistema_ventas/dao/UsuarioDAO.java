@@ -21,6 +21,7 @@ public class UsuarioDAO {
 
 	private Conexion conexion;
 
+
 	/**
 	 * 
 	 */
@@ -100,6 +101,7 @@ public class UsuarioDAO {
 			Perfil perfil = new Perfil(rs.getString("perfil_nombre"));
 			usuario.setPerfil(perfil);
 		}
-	
+
 	}
+
 }

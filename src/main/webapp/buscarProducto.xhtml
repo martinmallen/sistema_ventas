@@ -19,6 +19,15 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
+hr {
+	color: black;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
 
 #pmin {
 	width: 100%;
@@ -29,12 +38,11 @@ body {
 </style>
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<br />
-	<br />
-	<br />
-	<br />
 	<div class="container-fluid">
-		<div class="row">
+	<div class="row">
+				<br /> <br /> <br /> <br /> <br />
+			</div>
+		<div class="row text-center">
 			<div class="col-md-3 text-left">
 				<LABEL style="color: yellow;">Busqueda</LABEL>
 				<div class="bg-info" style="padding: 10px;">
@@ -61,19 +69,18 @@ body {
 						</h:commandButton>
 					</h:form>
 				</div>
-				<hr></hr>
-				<div class="row" style="padding: 15px;">
+				<div class="row text-left" style="padding: 15px;">
 					<label style="color: yellow;">Rango de Precio</label>
-					<div class="bg-info text-center" style="padding: 10px;">
+					<div class="bg-info text-left" style="padding: 10px;">
 						<h:form>
 							<h:inputText id="pmin"
 								style="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;">
-							</h:inputText>Precio Min.
+							</h:inputText><span>Precio Min.</span>
 									<br></br>
 							<br />
 							<h:inputText id="pmax"
 								style="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;">
-							</h:inputText>Precio Max.
+							</h:inputText><span>Precio Max.</span>
 									<br />
 							<h:commandButton
 								action="#{listarProductosControlador.obtenerProductos}"
@@ -159,6 +166,9 @@ body {
 				</h:form>
 			</div>
 		</div>
+		<div class="row">
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		</div>
 	</div>
 
 
@@ -166,5 +176,8 @@ body {
 
 
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </html>
