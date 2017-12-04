@@ -142,6 +142,7 @@ public class LoginCtrl implements Serializable {
 		this.setMensaje("");
 		this.usuario.setRut("");
 		this.usuario.setPassword("");
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "login_.xhtml";
 	}
 

@@ -24,11 +24,9 @@ public class Conexion {
 	public Conexion() {
 		this.host = "127.0.0.1"; // o "localhost"
 		this.baseDeDatos = "sisinventario";
-		this.nombre = "Juan";
-		this.password = "";
 		this.puerto = 3306;
-		//this.nombre = "root";
-		//this.password = "m4l3np1wk3";
+		this.nombre = "root";
+		this.password = "m4l3np1wk3";
 		
 		Map<String, String> env = System.getenv();
         for (String envName : env.keySet()) {
