@@ -39,7 +39,7 @@
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">Productos<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<c:if test="#{loginCtrl.tienePermiso('buscar productos') }">
+									<c:if test="#{loginCtrl.tienePermiso('buscar producto') }">
 										<li><a href="buscarProducto.xhtml">Buscar</a></li>
 									</c:if>
 									<c:if test="#{loginCtrl.tienePermiso('cargar productos') }">
