@@ -8,36 +8,61 @@
 <meta charset="ISO-8859-1" />
 <title>Insert title here</title>
 <style type="text/css">
-body{
-	background-image: url(imagenes/Accenture3.png); 
+body {
+	background-image: url(imagenes/Accenture3.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
-h1{
+
+h1 {
 	text-align: center;
+}
+hr {
+	color: black;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
 }
 </style>
 </head>
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<br/><br/><br/><br/>
 	<div class="container-fluid">
+	<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="bg-info" style="padding: 10px;">
 				<h:form>
 					<div class="form-group">
 						<H1>Bloquear Usuario</H1>
+						<hr/>
 						<LABEL>Ingrese Rut usuario</LABEL>
 						<h:inputText styleClass="form-control"></h:inputText>
-						<h:commandButton styleClass="btn btn-primary"
-							value="Blockear" action="#{blockearUsuarioControlador.link}"  ></h:commandButton>
+						<br/>
+						<h:commandButton styleClass="btn btn-primary btn-block" value="Blockear"
+							action="#{blockearUsuarioControlador.link}"></h:commandButton>
 					</div>
 				</h:form>
 			</div>
 		</div>
-
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br /><br/><br/>
+			<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
+		</div>
 	</div>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

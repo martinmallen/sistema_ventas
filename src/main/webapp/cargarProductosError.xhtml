@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="css/file-input.css"></link>
 <title>Cargar Productos</title>
 <style type="text/css">
-body{
-	background-image: url(imagenes/Accenture3.png); 
+body {
+	background-image: url(imagenes/Accenture3.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
+
 #rowFile {
 	text-align: center;
 	align-content: center;
@@ -25,17 +26,28 @@ body{
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<DIV class="container-fluid">
-
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<div class="row" id="rowFile">
 			<div class="col-md-4 col-md-offset-4 text-center bg-info">
 				<h1>Ocurrio un error inesperado, intente mas tarde por favor.</h1>
-				<IMG alt="" src="imagenes/error.png" style="width: 200px;" />
-				<a href="principal.xhtml" class="btn btn-default btn-lg align-right" >Volver</a>
+				<IMG alt="" src="imagenes/error.png" style="width: 200px;" /> <a
+					href="principal.xhtml" class="btn btn-default btn-lg align-right">Volver</a>
 			</div>
+		</div>
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
 		</div>
 	</DIV>
 
 	<script src="js/custom-file-input.js"></script>
 	<SCRIPT type="text/javascript" src="js/volver.js"></SCRIPT>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

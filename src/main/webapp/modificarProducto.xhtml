@@ -10,14 +10,20 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 <style type="text/css">
-body{
-	background-color: yellow;
+body {
+	background-image: url(imagenes/Accenture3.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 </style>
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-	<br/><br/><br/><br/>
 	<DIV class="container-fluid">
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 		<DIV class="row text-center">
 			<DIV class="col-md-8 col-md-offset-2 bg-primary">
 				<H1>Modificar Producto</H1>
@@ -39,9 +45,10 @@ body{
 
 
 			<div class="col-md-8 col-md-offset-2 bg-info">
-			<br/><br/>
+				<br /> <br />
 				<h:form>
-					<h:dataTable id="table" value="#{modificarProductoCtrl.producto}" var="p"
+					<h:dataTable id="table" value="#{modificarProductoCtrl.producto}"
+						var="p"
 						styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
 						headerClass="order-table-header text-center"
 						rowClasses="order-table-odd-row,order-table-even-row">
@@ -73,25 +80,31 @@ body{
 							<f:facet id="stock" name="header">
 										Stock
 									</f:facet>
-							<h:outputText value="#{p.stock}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
-							<h:inputText value="#{p.stock}" required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>		
+							<h:outputText value="#{p.stock}"
+								rendered="#{!modificarProductoCtrl.flag}"></h:outputText>
+							<h:inputText value="#{p.stock}" required="true"
+								rendered="#{modificarProductoCtrl.flag}"></h:inputText>
 						</h:column>
 						<h:column>
 							<f:facet id="precio" name="header">
 										Precio
 									</f:facet>
-							<h:outputText value="#{p.precio}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
-							<h:inputText value="#{p.precio}"  required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>
-											
+							<h:outputText value="#{p.precio}"
+								rendered="#{!modificarProductoCtrl.flag}"></h:outputText>
+							<h:inputText value="#{p.precio}" required="true"
+								rendered="#{modificarProductoCtrl.flag}"></h:inputText>
+
 						</h:column>
 						<h:column>
 							<f:facet id="minstock" name="header">
 										Stock Minimo
 									</f:facet>
-							
-							<h:outputText value="#{p.minstock}" rendered="#{!modificarProductoCtrl.flag}" ></h:outputText>
-							<h:inputText value="#{p.minstock}" required="true" rendered="#{modificarProductoCtrl.flag}"></h:inputText>
-							
+
+							<h:outputText value="#{p.minstock}"
+								rendered="#{!modificarProductoCtrl.flag}"></h:outputText>
+							<h:inputText value="#{p.minstock}" required="true"
+								rendered="#{modificarProductoCtrl.flag}"></h:inputText>
+
 						</h:column>
 						<h:column>
 							<f:facet id="botones" name="header">
@@ -100,29 +113,36 @@ body{
 								rendered="#{!modificarProductoCtrl.flag}"
 								action="#{modificarProductoCtrl.habilitarModificar}"
 								styleClass="btn btn-success"></h:commandButton>
-							
+
 							<h:commandButton value="Guardar"
 								rendered="#{modificarProductoCtrl.flag}"
 								action="#{modificarProductoCtrl.modificarProducto}"
-								styleClass="btn btn-success"></h:commandButton>	
-							
+								styleClass="btn btn-success"></h:commandButton>
+
 							<h:commandButton value="Cancelar"
 								rendered="#{modificarProductoCtrl.flag}"
 								action="#{modificarProductoCtrl.cancelarModificar}"
-								styleClass="btn btn-default"></h:commandButton>	
-							
+								styleClass="btn btn-default"></h:commandButton>
+
 						</h:column>
 
 					</h:dataTable>
-					<H1><h:outputText value="#{modificarProductoCtrl.mensaje}"/> </H1>
+					<H1>
+						<h:outputText value="#{modificarProductoCtrl.mensaje}" />
+					</H1>
 					<h:commandButton value="Volver"
-								action="#{modificarProductoCtrl.volver}"
-								styleClass="btn btn-default"></h:commandButton>
+						action="#{modificarProductoCtrl.volver}"
+						styleClass="btn btn-default"></h:commandButton>
 				</h:form>
 			</div>
 		</DIV>
-
+		<div class="row">
+			<br /> <br /> <br /> <br /> <br /> <br />
+		</div>
 
 	</DIV>
 </body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 </html>

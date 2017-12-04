@@ -3,7 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,30 +13,49 @@
 <title>Transaccion</title>
 </head>
 <style type="text/css">
-
-body{
-	background-image: url(imagenes/Accenture3.png); 
+body {
+	background-image: url(imagenes/Accenture3.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+	height: auto;
 }
-h4{
+
+hr {
 	color: black;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+#unidades {
+	text-align: center;
+	border-width: 0 0 2px 0;
+}
+
+#carrodecompra {
+	text-align: center;
 }
 </style>
 <h:body>
-<body>
-	<header>
-				<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
-				<br /> <br /> <br /> <br/>
-	</header>
+	<body>
+		<header>
+			<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
+		</header>
 		<div id="transaccion" class="container-fluid">
+			<div class="row">
+				<br /> <br /> <br /> <br /> <br />
+			</div>
+
 			<div class="row">
 				<div class="col-md-7 text-center">
 					<div class="bg-info" style="padding: 10px;">
-					<h4>Lista de Productos</h4>
-					<hr></hr>
+						<h4>Lista de Productos</h4>
+						<hr></hr>
 						<h:form>
 							<h:inputText id="search"
 								value="#{listarProductosControlador.nombreP}"></h:inputText>
@@ -132,24 +152,24 @@ h4{
 					</div>
 				</div>
 
-				<div class="col-md-5 text-center">
+				<div id="carrodecompra" class="col-md-5 text-center">
 					<div class="bg-success" style="padding: 10px;">
-					<h4>Carro de Compra</h4>
-					<hr></hr>
+						<h4>Carro de Compra</h4>
+						<hr></hr>
 						<h:form>
 							<h:dataTable value="#{listarProductosControlador.carroDeCompra}"
 								var="producto"
 								styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
 								headerClass="order-table-header text-center"
 								rowClasses="order-table-odd-row,order-table-even-row">
-								
+
 								<h:column>
 									<f:facet id="nombre2" name="header">
 									Nombre
 								</f:facet>
 								#{producto.nombre}
 							</h:column>
-							<h:column>
+								<h:column>
 									<f:facet id="marca2" name="header">
 									Marca
 								</f:facet>
@@ -162,10 +182,11 @@ h4{
 								</f:facet>
 								#{producto.precio}
 							</h:column>
-							<h:column>
+								<h:column>
 									<f:facet id="precio2" name="header">
 									Unidades
 								</f:facet>
+
 								<h:inputText id="unidad" 
 								 size="3" value= "#{listarProductosControlador.precioP}" > </h:inputText>
 								
@@ -180,6 +201,7 @@ h4{
 								styleClass="btn btn-success btn-block btn-xs" value="Confirmar" actionListener="#{listarProductosControlador.addUni(producto.idProducto)}" />
 								
 								</h:column>
+
 								<h:column>
 									<f:facet id="Eliminar" name="header">
 									Eliminar
@@ -189,6 +211,7 @@ h4{
 										styleClass="btn btn-xs btn-danger" value="X" />
 								</h:column>
 							</h:dataTable>
+
 						
 							<h:dataTable value="#{listarProductosControlador.unidad}"
 								var="producto"
@@ -215,6 +238,7 @@ h4{
 							<hr></hr>
 							<h:outputLabel value="Total : #{listarProductosControlador.subtotal}" styleClass="table-bordered"></h:outputLabel>
 							<hr></hr>
+
 							<h:commandButton
 								action="#{listarProductosControlador.confirmar()}"
 								styleClass="btn btn-success btn-block" value="Confirmar" />
@@ -223,9 +247,15 @@ h4{
 					</div>
 				</div>
 			</div>
-			<hr/>
+			<hr />
+			<div class="row">
+				<br /> <br /> <br /> <br /> <br />
+			</div>
 		</div>
 	</body>
 </h:body>
+<footer id="footer">
+	<ui:include src="/WEB-INF/barraInferior.xhtml" />
+</footer>
 <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </html>
