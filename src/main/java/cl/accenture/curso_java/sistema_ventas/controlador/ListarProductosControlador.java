@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
+import cl.accenture.curso_java.sistema_ventas.dao.DetalleDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.TransaccionDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
@@ -364,7 +365,7 @@ public class ListarProductosControlador implements Serializable {
 	}
 
 	public void confirmar(){
-		Transaccion transaccion = new Transaccion(1 , this.subtotal, new Date() , this.detalle);
+		Transaccion transaccion = new Transaccion( this.subtotal, new Date() , this.detalle);
 		Transaccion t = new Transaccion();
 		
 		try {
@@ -376,9 +377,13 @@ public class ListarProductosControlador implements Serializable {
 		
 		t = dao.ultimaTransaccion();
 		
+		
+		
 		for (DetalleTransaccion det : this.detalle) {
 			
+			DetalleDAO ddao = new DetalleDAO();
 			
+			ddao.guardarDetalle(det, t);
 			
 			
 			
@@ -394,7 +399,14 @@ public class ListarProductosControlador implements Serializable {
 			e.printStackTrace();
 		}
 		
+	
+	
 	}
 	
-	
+	public void limpiarCarro(){
+		
+		this.unidad = new ArrayList<Unidades>();
+
+		
+	}
 }

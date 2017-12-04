@@ -240,8 +240,8 @@ hr {
 							<hr></hr>
 
 							<h:commandButton
-								action="#{listarProductosControlador.confirmar()}"
-								styleClass="btn btn-success btn-block" value="Confirmar" />
+								action="#{listarProductosControlador.limpiarCarro()}"
+								styleClass="btn btn-success btn-block" value="Confirmar" actionListener="#{listarProductosControlador.confirmar()}" />
 							<br></br>
 						</h:form>
 					</div>
