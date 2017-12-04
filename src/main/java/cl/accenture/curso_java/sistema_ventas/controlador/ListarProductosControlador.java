@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
+import cl.accenture.curso_java.sistema_ventas.dao.DetalleDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
 import cl.accenture.curso_java.sistema_ventas.dao.TransaccionDAO;
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
@@ -45,6 +46,8 @@ public class ListarProductosControlador implements Serializable {
 	private int subtotal;
 	private List<DetalleTransaccion> detalle;
 	private List<Unidades> unidad;
+	private int preciomin;
+	private int preciomax;
 
 	/**
 	 * 
@@ -55,6 +58,44 @@ public class ListarProductosControlador implements Serializable {
 		this.detalle = new ArrayList<DetalleTransaccion>();
 		this.unidad = new ArrayList<Unidades>();
 	}
+	
+	
+
+	/**
+	 * @return the preciomin
+	 */
+	public int getPreciomin() {
+		return preciomin;
+	}
+
+
+
+	/**
+	 * @param preciomin the preciomin to set
+	 */
+	public void setPreciomin(int preciomin) {
+		this.preciomin = preciomin;
+	}
+
+
+
+	/**
+	 * @return the preciomax
+	 */
+	public int getPreciomax() {
+		return preciomax;
+	}
+
+
+
+	/**
+	 * @param preciomax the preciomax to set
+	 */
+	public void setPreciomax(int preciomax) {
+		this.preciomax = preciomax;
+	}
+
+
 
 	/**
 	 * @return the unidad
@@ -364,7 +405,7 @@ public class ListarProductosControlador implements Serializable {
 	}
 
 	public void confirmar(){
-		Transaccion transaccion = new Transaccion(1 , this.subtotal, new Date() , this.detalle);
+		Transaccion transaccion = new Transaccion( this.subtotal, new Date() , this.detalle);
 		Transaccion t = new Transaccion();
 		
 		try {
@@ -376,9 +417,13 @@ public class ListarProductosControlador implements Serializable {
 		
 		t = dao.ultimaTransaccion();
 		
+		
+		
 		for (DetalleTransaccion det : this.detalle) {
 			
+			DetalleDAO ddao = new DetalleDAO();
 			
+			ddao.guardarDetalle(det, t);
 			
 			
 			
@@ -394,7 +439,30 @@ public class ListarProductosControlador implements Serializable {
 			e.printStackTrace();
 		}
 		
+	
+	
 	}
 	
+	public void limpiarCarro(){
+		
+		this.unidad = new ArrayList<Unidades>();
+
+		
+	}
 	
+	public void buscarPrecio(){
+		
+		ProductoDAO dao = new ProductoDAO();
+		
+		try {
+			this.setProductos(dao.buscarPrecio(preciomin, preciomax));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SinConexionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

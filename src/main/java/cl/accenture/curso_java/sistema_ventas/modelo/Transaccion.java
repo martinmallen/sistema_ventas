@@ -28,8 +28,8 @@ public class Transaccion {
 	 * @param fecha
 	 * @param detalle
 	 */
-	public Transaccion(int idTransaccion, int valor, Date fecha, List<DetalleTransaccion> detalle) {
-		this.idTransaccion = idTransaccion;
+	public Transaccion( int valor, Date fecha, List<DetalleTransaccion> detalle) {
+		
 		this.valor = valor;
 		this.fecha = fecha;
 		this.detalle = detalle;
