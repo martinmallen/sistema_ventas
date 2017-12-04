@@ -17,6 +17,7 @@ public class Producto {
 	private String categoria;
 	private int minstock;
 	private int Sucursal_idSucursal;
+	
 
 	/**
 	 * 

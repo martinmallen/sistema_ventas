@@ -1,9 +1,11 @@
 package cl.accenture.curso_java.sistema_ventas.controlador;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -13,9 +15,12 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 
 import cl.accenture.curso_java.sistema_ventas.dao.ProductoDAO;
+import cl.accenture.curso_java.sistema_ventas.dao.TransaccionDAO;
+import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.DetalleTransaccion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
 import cl.accenture.curso_java.sistema_ventas.modelo.Transaccion;
+import cl.accenture.curso_java.sistema_ventas.modelo.Unidades;
 import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
@@ -37,9 +42,48 @@ public class ListarProductosControlador implements Serializable {
 	private String nombreP;
 	private String marcaP;
 	private int precioP;
+	private int subtotal;
+	private List<DetalleTransaccion> detalle;
+	private List<Unidades> unidad;
+
+	/**
+	 * 
+	 */
 
 	public ListarProductosControlador() {
 		this.carroDeCompra = new ArrayList<Producto>();
+		this.detalle = new ArrayList<DetalleTransaccion>();
+		this.unidad = new ArrayList<Unidades>();
+	}
+
+	/**
+	 * @return the unidad
+	 */
+	public List<Unidades> getUnidad() {
+		return unidad;
+	}
+
+	/**
+	 * @param unidad
+	 *            the unidad to set
+	 */
+	public void setUnidad(List<Unidades> unidad) {
+		this.unidad = unidad;
+	}
+
+	/**
+	 * @return the detalle
+	 */
+	public List<DetalleTransaccion> getDetalle() {
+		return detalle;
+	}
+
+	/**
+	 * @param detalle
+	 *            the detalle to set
+	 */
+	public void setDetalle(List<DetalleTransaccion> detalle) {
+		this.detalle = detalle;
 	}
 
 	public List<Producto> getCarroDeCompra() {
@@ -57,6 +101,7 @@ public class ListarProductosControlador implements Serializable {
 	public void setNombreP(String nombreP) {
 		this.nombreP = nombreP;
 	}
+
 	public String getMarcaP() {
 		return marcaP;
 	}
@@ -64,13 +109,28 @@ public class ListarProductosControlador implements Serializable {
 	public void setMarcaP(String marcaP) {
 		this.marcaP = marcaP;
 	}
-	
+
 	public int getPrecioP() {
 		return precioP;
 	}
 
 	public void setPrecioP(int precioP) {
 		this.precioP = precioP;
+	}
+
+	/**
+	 * @return the subtotal
+	 */
+	public int getSubtotal() {
+		return subtotal;
+	}
+
+	/**
+	 * @param subtotal
+	 *            the subtotal to set
+	 */
+	public void setSubtotal(int subtotal) {
+		this.subtotal = subtotal;
 	}
 
 	/**
@@ -119,9 +179,14 @@ public class ListarProductosControlador implements Serializable {
 		this.productosSucursal = productosSucursal;
 	}
 
-	public void limpiar(){
-		this.productos= new ArrayList<Producto>();
+	/**
+	 * @return the unidades
+	 */
+
+	public void limpiar() {
+		this.productos = new ArrayList<Producto>();
 	}
+
 	public void buscarPorNombre() {
 
 		try {
@@ -136,8 +201,6 @@ public class ListarProductosControlador implements Serializable {
 		}
 
 	}
-	
-
 
 	public void obtenerProductos() {
 
@@ -260,30 +323,78 @@ public class ListarProductosControlador implements Serializable {
 		});
 
 	}
-	
-	public void agregarProducto( Producto producto ) {
+
+	public void agregarProducto(Producto producto) {
 		this.carroDeCompra.add(producto);
 	}
 
 	public void eliminarProducto(Producto producto) {
 		this.carroDeCompra.remove(producto);
 	}
+
 	public String volver() {
 		return "principal.xhtml";
 	}
 
-	public String confirmar(){
-		
+	public void addUni(int id) {
+		Producto remove = new Producto();
 		
 		for (Producto producto2 : carroDeCompra) {
+
+			if (producto2.getIdProducto() == id) {
+				int precio = precioP;
+				int subtotal2 = producto2.getPrecio() * precio;
+				this.detalle.add(new DetalleTransaccion(id, precio, subtotal2, producto2));
+
+				this.unidad.add(new Unidades(producto2, precio));
+
+				this.subtotal += subtotal2;
+
+				precio = 0;
+			
+				remove = producto2;
+				
+			}
 			
 			
-			DetalleTransaccion det = new DetalleTransaccion(idDetalleTransaccion, unidades, subtotal, producto2);
-					TransaccionControlador trans = new Transaccion(idTransaccion, valor, fecha, detalle);
+		}
+	
+		
+
+	}
+
+	public void confirmar(){
+		Transaccion transaccion = new Transaccion(1 , this.subtotal, new Date() , this.detalle);
+		Transaccion t = new Transaccion();
+		
+		try {
+		
+		
+		TransaccionDAO dao = new TransaccionDAO();
+		
+		dao.guardarTransaccion(transaccion);
+		
+		t = dao.ultimaTransaccion();
+		
+		for (DetalleTransaccion det : this.detalle) {
+			
+			
+			
+			
+			
 		}
 		
 		
 		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SinConexionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-
+	
+	
 }

@@ -166,10 +166,20 @@ h4{
 									<f:facet id="precio2" name="header">
 									Unidades
 								</f:facet>
-								<h:inputText id="unidades"
-								value="#{listarProductosControlador.nombreP}"></h:inputText>
+								<h:inputText id="unidad" 
+								 size="3" value= "#{listarProductosControlador.precioP}" > </h:inputText>
+								
+										
 							</h:column>
-
+								<h:column>
+									<f:facet id="confirmar" name="header">
+									confirmar
+								</f:facet>
+									<h:commandButton
+								action="#{listarProductosControlador.eliminarProducto(producto)}"
+								styleClass="btn btn-success btn-block btn-xs" value="Confirmar" actionListener="#{listarProductosControlador.addUni(producto.idProducto)}" />
+								
+								</h:column>
 								<h:column>
 									<f:facet id="Eliminar" name="header">
 									Eliminar
@@ -179,9 +189,34 @@ h4{
 										styleClass="btn btn-xs btn-danger" value="X" />
 								</h:column>
 							</h:dataTable>
+						
+							<h:dataTable value="#{listarProductosControlador.unidad}"
+								var="producto"
+								styleClass="table table-striped table-bordered dt-responsive nowrap text-center"
+								headerClass="order-table-header text-center"
+								rowClasses="order-table-odd-row,order-table-even-row"
+								title="Carro">
+								
+								
+								<h:column>
+									<f:facet id="nombre3" name="header">
+									Nombre
+								</f:facet>
+								#{producto.producto.nombre}
+							</h:column>
+							<h:column>
+									<f:facet id="marca2" name="header">
+									Cantidad
+								</f:facet>
+								#{producto.unidad}
+							</h:column>
+							
+							</h:dataTable>
+							<hr></hr>
+							<h:outputLabel value="Total : #{listarProductosControlador.subtotal}" styleClass="table-bordered"></h:outputLabel>
 							<hr></hr>
 							<h:commandButton
-								action="#{listarProductoControlador.confirmarCompra()}"
+								action="#{listarProductosControlador.confirmar()}"
 								styleClass="btn btn-success btn-block" value="Confirmar" />
 							<br></br>
 						</h:form>

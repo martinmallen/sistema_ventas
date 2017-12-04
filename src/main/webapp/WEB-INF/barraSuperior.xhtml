@@ -28,7 +28,7 @@
 							aria-expanded="false">Transacciones<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<c:if test="#{loginCtrl.tienePermiso('nueva transaccion') }">
-									<li><a href="buscarProducto.xhtml">Nueva</a></li>
+									<li><a href="nuevaTransaccion.xhtml">Nueva</a></li>
 								</c:if>
 								<c:if test="#{loginCtrl.tienePermiso('anular transaccion') }">
 									<li><a href="#">Anular</a></li>
@@ -66,11 +66,11 @@
 									</c:if>
 									<c:if
 										test="#{loginCtrl.tienePermiso('generar reporteGanancia') }">
-										<li><a href="reporte-ganancias.xhtml">Reporte
+										<li><a href="reporte-venta.xhtml">Reporte
 												Ganancias</a></li>
 									</c:if>
 									<c:if test="#{loginCtrl.tienePermiso('generar reporteVenta') }">
-										<li><a href="reporte-venta.xhtml">Reporte Ventas</a></li>
+										<li><a href="reporte.xhtml">Reporte Ventas</a></li>
 									</c:if>
 								</ul></li>
 						</c:if>

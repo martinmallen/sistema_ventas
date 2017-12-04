@@ -34,6 +34,13 @@ public class Transaccion {
 		this.fecha = fecha;
 		this.detalle = detalle;
 	}
+	public Transaccion(int int1, int int2, java.sql.Date date) {
+		// TODO Auto-generated constructor stub
+		this.idTransaccion = int1;
+		this.valor = int2;
+		this.fecha = date;
+		
+	}
 	/**
 	 * @return the idTransaccion
 	 */
