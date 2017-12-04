@@ -54,14 +54,18 @@ public class DetalleDAO {
 		return tran;
 		
 	}
-	public void guardarDetalle(DetalleTransaccion det) throws SQLException, SinConexionException{
+	public void guardarDetalle(DetalleTransaccion det, Transaccion tran) throws SQLException, SinConexionException{
 		PreparedStatement psInsert = conexion.obtenerConexion()
-				.prepareStatement("INSERT INTO detalletransaccion(idDetalleTransaccion,unidades,subtotal,Producto_idProducto" + "VALUES (?, ?, ?,?);");
-		psInsert.setInt(1, det.getIdDetalleTransaccion());
+				.prepareStatement("INSERT INTO detalletransaccion ( Transaccion_idTransaccion,unidades,subTotal,Producto_idProducto ) VALUES (?,?,?,?)");
+		psInsert.setInt(1, tran.getIdTransaccion());
 		psInsert.setInt(2, det.getUnidades());
 		psInsert.setInt(3, det.getSubtotal());
 		psInsert.setInt(4,  det.getProducto().getIdProducto());
 		psInsert.executeUpdate();
+		
+		ProductoDAO dao = new ProductoDAO();
+		dao.modificarStock(det.getUnidades(), det.getProducto().getIdProducto());
+		
 	}
 }
 

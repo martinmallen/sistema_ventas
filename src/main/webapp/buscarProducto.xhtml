@@ -52,7 +52,7 @@ hr {
 						<h:commandButton
 							action="#{listarProductosControlador.buscarPorNombre}">
 							<f:attribute name="value" value="Buscar">
-								<!-- 								<i class="glyphicon glyphicon-search"></i> -->
+								<!-- <i class="glyphicon glyphicon-search"></i> -->
 							</f:attribute>
 
 						</h:commandButton>
@@ -74,16 +74,16 @@ hr {
 					<div class="bg-info text-left" style="padding: 10px;">
 						<h:form>
 							<h:inputText id="pmin"
-								style="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;">
-							</h:inputText><span>Precio Min.</span>
+								styleClass="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;" value = "#{listarProductosControlador.preciomin}">
+							</h:inputText><span>Minimo</span>
 									<br></br>
 							<br />
 							<h:inputText id="pmax"
-								style="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;">
-							</h:inputText><span>Precio Max.</span>
+								styleClass="margin-top: 0px; margin-bottom: 5px; margin-right: 0px; margin-left: 0px;" value = "#{listarProductosControlador.preciomax}">
+							</h:inputText><span>Maximo</span>
 									<br />
 							<h:commandButton
-								action="#{listarProductosControlador.obtenerProductos}"
+								action="#{listarProductosControlador.buscarPrecio()}"
 								styleClass="btn btn-primary btn-block" value="Buscar">
 							</h:commandButton>
 						</h:form>

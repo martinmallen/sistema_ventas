@@ -10,9 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import cl.accenture.curso_java.sistema_ventas.excepciones.SinConexionException;
 import cl.accenture.curso_java.sistema_ventas.modelo.Conexion;
 import cl.accenture.curso_java.sistema_ventas.modelo.Producto;
+import cl.accenture.curso_java.sistema_ventas.modelo.Usuario;
 
 /**
  * @author Mauricio
@@ -107,7 +110,7 @@ public class ProductoDAO {
 			producto.setStock(rs.getInt("stock"));
 			producto.setCategoria(rs.getString("categoria"));
 			producto.setMinstock(rs.getInt("minstock"));
-
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
 			productos.add(producto);
 		}
 		return productos;
@@ -127,6 +130,7 @@ public class ProductoDAO {
 			producto.setStock(rs.getInt("stock"));
 			producto.setCategoria(rs.getString("categoria"));
 			producto.setMinstock(rs.getInt("minstock"));
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
 			productos.add(producto);
 		}
 		return productos;
@@ -192,12 +196,67 @@ public class ProductoDAO {
 	}
 
 	public void modificarProducto(Producto producto) throws SQLException, SinConexionException {
-		PreparedStatement psUpdate = conexion.obtenerConexion().prepareStatement(
-				"UPDATE producto SET precio = ?, stock = ?, minstock = ? WHERE idProducto = ? ;");
+		PreparedStatement psUpdate = conexion.obtenerConexion()
+				.prepareStatement("UPDATE producto SET precio = ?, stock = ?, minstock = ? WHERE idProducto = ? ;");
 		psUpdate.setInt(1, producto.getPrecio());
 		psUpdate.setInt(2, producto.getStock());
 		psUpdate.setInt(3, producto.getMinstock());
 		psUpdate.setInt(4, producto.getIdProducto());
 		psUpdate.executeUpdate();
+	}
+
+	public void modificarStock(int stock, int id) throws SQLException, SinConexionException {
+		int stockfinal = 0;
+		Usuario user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		PreparedStatement psSelect = conexion.obtenerConexion()
+				.prepareStatement("SELECT * FROM producto WHERE sucursal_idSucursal = ? AND idProducto = ? ;");
+
+		psSelect.setInt(1, user.getIdSucursal());
+		psSelect.setInt(2, id);
+		ResultSet rs = psSelect.executeQuery();
+		Producto pro = new Producto();
+		if (rs.next()) {
+
+			pro.setStock(rs.getInt("stock"));
+
+		}
+		stockfinal = pro.getStock() - stock;
+		PreparedStatement psUpdate = conexion.obtenerConexion()
+				.prepareStatement("UPDATE producto SET  stock = ? WHERE idProducto = ? ;");
+		psUpdate.setInt(1, stockfinal);
+		psUpdate.setInt(2, id);
+		psUpdate.executeUpdate();
+
+	}
+
+	public List<Producto> buscarPrecio(int min, int max) throws SQLException, SinConexionException {
+		
+		Usuario user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		
+		
+		
+		List<Producto> pro = new ArrayList<Producto>();
+		
+		PreparedStatement ps = conexion.obtenerConexion()
+				.prepareStatement("SELECT * FROM producto WHERE precio BETWEEN ? AND ? ;");
+		ps.setInt(1, min);
+		ps.setInt(2, max);
+
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			Producto producto = new Producto();
+			producto.setIdProducto(rs.getInt("idProducto"));
+			producto.setNombre(rs.getString("nombre"));
+			producto.setPrecio(rs.getInt("precio"));
+			producto.setMarca(rs.getString("marca"));
+			producto.setStock(rs.getInt("stock"));
+			producto.setCategoria(rs.getString("categoria"));
+			producto.setMinstock(rs.getInt("minstock"));
+			producto.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+
+			pro.add(producto);
+		}
+		return pro;
 	}
 }
