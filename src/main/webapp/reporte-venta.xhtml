@@ -22,11 +22,10 @@ body {
 <body>
 	<ui:include src="/WEB-INF/barraSuperior.xhtml"></ui:include>
 	<div class="container-fluid">
-		<div class="row">
-			<br /> <br /> <br /> <br /> <br />
-		</div>
-		<div class="row col-md-6 col-md-offset-3">
-			<div class="bg-info" style="padding: 10px;">
+
+		<div class="row col-md-6 col-md-offset-3 bg-info padding: 10px;">
+			
+
 				<h:form name="formReporteVenta" id="formReporteVenta">
 					<div class="form-group">
 						<H1>Reporte Ganacias</H1>
@@ -47,7 +46,7 @@ body {
 					</div>
 				</h:form>
 				<DIV class="col-md-12">
-					<h:dataTable value="#" var="reporte"
+					<h:dataTable value="#{reporteControlador.transacciones}" var="reporte"
 						styleClass="table table-bordered" id="report">
 						<h:column>
 							<f:facet name="header">ID Transaccion</f:facet>#{reporte.idTransaccion}</h:column>
@@ -61,12 +60,12 @@ body {
 
 				</DIV>
 				<DIV class="col-md-4">
-					<H4>Total:</H4>
+					<h:outputLabel value="Total : "></h:outputLabel>
 				</DIV>
 				<DIV class="col-md-8">
-					<h:outputText value="#{reporteControlador.total}"></h:outputText>
+					<h:outputLabel value="#{reporteControlador.total} "></h:outputLabel>
 				</DIV>
-			</div>
+			
 		</div>
 		<div class="row">
 			<br /> <br /> <br /> <br /> <br />

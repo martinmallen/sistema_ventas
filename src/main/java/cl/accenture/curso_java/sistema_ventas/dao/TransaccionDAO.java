@@ -59,13 +59,13 @@ public class TransaccionDAO {
 		Connection conec = conexion.obtenerConexion();
 		Usuario user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuario");
-			PreparedStatement psInsert = conec.prepareStatement("INSERT INTO transaccion(idTransaccion, valor, fecha, usuario_rut, usuario_prefil_nombre)"+"VALUES (?, ?, ?, ?, ?);");
+			PreparedStatement psInsert = conec.prepareStatement("INSERT INTO transaccion(valor, fecha, usuario_rut, usuario_prefil_nombre)"+"VALUES (?, ?, ?, ?);");
 			
-			psInsert.setInt(1, transaccion.getIdTransaccion());
-			psInsert.setInt(2, transaccion.getValor());
-			psInsert.setDate(3, new java.sql.Date( transaccion.getFecha().getTime() ));
-			psInsert.setString(4, user.getRut());
-			psInsert.setString(5, user.getNombre());
+			//psInsert.setInt(1, transaccion.getIdTransaccion());
+			psInsert.setInt(1, transaccion.getValor());
+			psInsert.setDate(2, new java.sql.Date( transaccion.getFecha().getTime() ));
+			psInsert.setString(3, user.getRut());
+			psInsert.setString(4, user.getNombre());
 			
 			psInsert.executeUpdate();
 		
@@ -81,7 +81,7 @@ public class TransaccionDAO {
 			transaccion.setIdTransaccion(rs.getInt("idTransaccion"));
 			transaccion.setValor(rs.getInt("valor"));
 			transaccion.setFecha(rs.getDate("fecha"));
-			transaccion.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+			
 			transacciones.add(transaccion);
 		}
 		return transacciones;
@@ -97,7 +97,7 @@ public class TransaccionDAO {
 			transaccion.setIdTransaccion(rs.getInt("idTransaccion"));
 			transaccion.setValor(rs.getInt("valor"));
 			transaccion.setFecha(rs.getDate("fecha"));
-			transaccion.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+			
 			tran.add(transaccion);
 			
 		}
@@ -105,4 +105,17 @@ public class TransaccionDAO {
 		return tran;
 	}
 	
+	public Transaccion ultimaTransaccion() throws SQLException, SinConexionException{
+		
+		PreparedStatement ps = conexion.obtenerConexion().prepareStatement("SELECT TOP 1 * FROM transaccion ORDER BY idTransaccion DESC");
+		
+		ResultSet rs = ps.executeQuery();
+		
+		Transaccion t = new Transaccion();
+		t.setIdTransaccion(rs.getInt("idTransaccion"));
+		t.setValor(rs.getInt("valor"));
+		t.setFecha(rs.getDate("fecha"));
+		
+		return t;
+	}
 }

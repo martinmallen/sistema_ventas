@@ -39,7 +39,7 @@ public class TransaccionControlador implements Serializable{
 	public TransaccionControlador() {
 	
 		this.producto = new Producto();
-		this.detalle = new DetalleTransaccion();
+		
 		this.transaccion = new Transaccion();
 	
 	}

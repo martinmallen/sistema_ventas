@@ -15,9 +15,16 @@ public class DetalleTransaccion {
 	private int subtotal;
 	private Producto producto;
 	/**
+	 * @param producto2 
+	 * @param subtotal2 
+	 * @param precioP 
 	 * 
 	 */
-	public DetalleTransaccion() {
+	public DetalleTransaccion(int unidades, int subtotal, Producto producto) {
+	
+		  this.unidades = unidades;
+		  this.subtotal = subtotal;
+		  this.producto = producto;
 	}
 	/**
 	 * @param idDetalleTransaccion
