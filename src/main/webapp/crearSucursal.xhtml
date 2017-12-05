@@ -31,19 +31,19 @@ h1{
 				<h:form>
 					<div class="form-group">
 						<H1>Datos de Nueva Sucursal</H1>
-						<LABEL>Codigo</LABEL>
+						<LABEL>Codigo <SMALL>(*)</SMALL></LABEL>
 						<h:inputText value="#{crearSucursalCtrl.idSucursal}"
 							styleClass="form-control">
 							<f:validateLength minimum="1" maximum="5"></f:validateLength>
 						</h:inputText>
 
-						<LABEL>Nombre</LABEL>
+						<LABEL>Nombre <SMALL>(*)</SMALL></LABEL>
 						<h:inputText value="#{crearSucursalCtrl.nombre}"
 							styleClass="form-control">
 							<f:validateLength minimum="5" maximum="20"></f:validateLength>
 						</h:inputText>
 
-						<LABEL>Direccion</LABEL>
+						<LABEL>Direccion <SMALL>(*)</SMALL></LABEL>
 						<h:inputText value="#{crearSucursalCtrl.direccion}"
 							styleClass="form-control">
 							<f:validateLength minimum="5" maximum="50"></f:validateLength>

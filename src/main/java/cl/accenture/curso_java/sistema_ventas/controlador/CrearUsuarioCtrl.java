@@ -41,6 +41,8 @@ public class CrearUsuarioCtrl implements Serializable {
 	private int idSucursal;
 	private String mensaje;
 	private List<Sucursal> sucursales;
+	private String confMail;
+	private String confPass;
 
 	/**
 	 * 
@@ -232,32 +234,70 @@ public class CrearUsuarioCtrl implements Serializable {
 		this.sucursales = sucursales;
 	}
 
-	public void guardarUsuario() {
-		String encriptado = "";
-		try {
-			encriptado = SHAServices.encriptacion(this.password);
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Usuario usuario = new Usuario(this.rut, this.nombre, encriptado, this.email, new Perfil(this.perfil_nombre),
-				this.apellido, this.idSucursal);
-		UsuarioDAO dao = new UsuarioDAO();
+	/**
+	 * @return the confMail
+	 */
+	public String getConfMail() {
+		return confMail;
+	}
 
-		try {
-			dao.ingresarUsuario(usuario);
-			this.mensaje = "Usuario Creado Correctamente";
-		} catch (SQLException e) {
-			this.mensaje = "Error en la busqueda";
-			e.printStackTrace();
-		} catch (SinConexionException e) {
-			this.mensaje = "Error en la conexion";
-			e.printStackTrace();
+	/**
+	 * @param confMail
+	 *            the confMail to set
+	 */
+	public void setConfMail(String confMail) {
+		this.confMail = confMail;
+	}
+
+	/**
+	 * @return the confPass
+	 */
+	public String getConfPass() {
+		return confPass;
+	}
+
+	/**
+	 * @param confPass
+	 *            the confPass to set
+	 */
+	public void setConfPass(String confPass) {
+		this.confPass = confPass;
+	}
+
+	public void guardarUsuario() {
+		if ((this.password.equals(this.confPass) && this.email.equals(this.confMail))) {
+			String encriptado = "";
+			try {
+				encriptado = SHAServices.encriptacion(this.password);
+			} catch (NoSuchAlgorithmException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Usuario usuario = new Usuario(this.rut, this.nombre, encriptado, this.email, new Perfil(this.perfil_nombre),
+					this.apellido, this.idSucursal);
+			UsuarioDAO dao = new UsuarioDAO();
+
+			try {
+				dao.ingresarUsuario(usuario);
+				limpiar();
+				this.mensaje = "Usuario Creado Correctamente";
+			} catch (SQLException e) {
+				this.mensaje = "Error en la busqueda";
+				e.printStackTrace();
+			} catch (SinConexionException e) {
+				this.mensaje = "Error en la conexion";
+				e.printStackTrace();
+			}
+
+		}else {
+			this.email = "";
+			this.confMail = "";
+			this.mensaje = "Email o Password no Coinciden";
 		}
 	}
 
 	public void obtenerSucursales() {
-		
+
 		SucursalDAO sdao = new SucursalDAO();
 		try {
 			this.setSucursales(sdao.obtenerSucursales());
